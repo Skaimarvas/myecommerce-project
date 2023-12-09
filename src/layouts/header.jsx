@@ -1,5 +1,10 @@
 import React from "react";
+import NavbarDark from "../components/NavbarDark";
 
-export default function header() {
-  return <div>header</div>;
+export default function Header() {
+  return (
+    <div>
+      <NavbarDark />
+    </div>
+  );
 }

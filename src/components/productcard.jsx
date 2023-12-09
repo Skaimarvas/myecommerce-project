@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function productcard() {
+export default function ProductCard() {
   return <div>productcard</div>;
 }
