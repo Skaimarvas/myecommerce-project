@@ -1,10 +1,10 @@
 import React from "react";
-import NavbarDark from "../components/NavbarDark";
+import Navbar from "../components/Navbar";
 
 export default function Header() {
   return (
     <div>
-      <NavbarDark />
+      <Navbar />
     </div>
   );
 }

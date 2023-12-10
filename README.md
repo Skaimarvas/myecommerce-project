@@ -15,4 +15,4 @@ NOTE! There should be only ONE Header, Footer components for all pages, no color
 [X] - Create repetitive Components like: **ProductCard, CategoryCard**
 [] - Home Page: Slider component - Find a slider component can be used in React JS
 [] - Activate **React Router and Links** for Home and Shopping links
-[] - Use an **Icon Library** like: FontAwesome (CDN is recommended)
+[X] - Use an **Icon Library** like: FontAwesome (CDN is recommended) - Used React-icons
