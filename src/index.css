@@ -5,6 +5,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 * {
-  border: 1px solid lime;
+  /* border: 1px solid lime; */
   font-family: "Montserrat", sans-serif;
+}
+
+.examplecolor {
+  color: #25a15f;
 }
