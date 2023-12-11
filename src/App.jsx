@@ -1,4 +1,5 @@
 import "./App.css";
+import BestsellerProduct from "./components/BestsellerProduct";
 import EditorPick from "./components/EditorPick";
 import Header from "./layouts/header";
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <Header />
       <EditorPick />
+      <BestsellerProduct />
     </>
   );
 }

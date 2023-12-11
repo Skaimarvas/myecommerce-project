@@ -6,7 +6,7 @@ import kids from "../assets/editorpickkids.png";
 
 export default function EditorPick() {
   return (
-    <div className="flex flex-col items-center py-[80px] gap-[48px]">
+    <div className="flex flex-col items-center py-[80px] gap-[48px] bg-[#FAFAFA]">
       <div className="flex flex-col items-center gap-[10px]">
         <h3 className="text-2xl font-bold tracking-[0.1px]">EDITOR'S PICK</h3>
         <p className="text-sm text-center text-[#737373] tracking-[0.2px]">
