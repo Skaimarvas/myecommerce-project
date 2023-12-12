@@ -8,7 +8,7 @@ import { FaTwitter } from "react-icons/fa";
 
 export default function NavbarDark() {
   return (
-    <div className="flex  bg-[#252B42] px-[24px] justify-between justify-center items-center pt-[9px] pb-[3px] w-full text-white ">
+    <div className="flex bg-[#252B42] px-[24px] justify-between justify-center items-center pt-[9px] pb-[3px] w-full text-white ">
       <div className="flex gap-[10px]">
         <div className="flex items-center p-[10px] gap-[5px]">
           <BsTelephone className="min-w-[16px] min-h-[16px]" />
