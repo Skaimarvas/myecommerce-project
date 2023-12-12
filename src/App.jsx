@@ -9,6 +9,7 @@ import BestsellerProduct from "./components/BestsellerProduct";
 import EditorPick from "./components/EditorPick";
 import CarouselMid from "./components/CarouselMid";
 import Footer from "./layouts/Footer";
+import ContainerFluid from "./components/ContainerFluid";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <EditorPick />
       <BestsellerProduct />
       <CarouselMid />
+      <ContainerFluid />
       <Footer />
     </>
   );
