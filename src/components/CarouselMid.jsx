@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "@material-tailwind/react";
-import photo1 from "../assets/sliderphoto1.jpeg";
+import shophero from "../assets/shophero.png";
 import photo3 from "../assets/sliderphoto3.jpeg";
 
 export default function CarouselComp() {
@@ -23,35 +23,41 @@ export default function CarouselComp() {
           </div>
         )}
       >
-        <div className="relative">
-          <img
-            className="h-screen w-full object-cover"
-            src={photo1}
-            alt="image 1"
-          />
-          <div className="flex items-center justify-center absolute inset-0  h-full w-full text-white">
-            <div className="flex flex-row items-center gap-[30px] py-[48px] w-[1044px]">
-              <div className="flex flex-col text-left gap-[35px] max-w-[599px]">
-                <h5 className="font-bold text-base tracking-[0.1px]">
-                  SUMMER 2020
-                </h5>
-                <h2 className="text-[58px] font-bold leading-[80px] tracking-[0.2px]">
-                  {" "}
-                  NEW COLLECTION{" "}
-                </h2>
-                <h5 className="text-[20px] leading-[30px] tracking-[0.2px]">
-                  We know how large objects will act, but things on a small
-                  scale.
-                </h5>
+        <div className=" flex justify-center items-center   bg-[#23856D]   h-full w-full text-white pt-[106px] ">
+          <div className=" flex flex-wrap justify-center   items-center gap-[30px]  ">
+            <div className=" flex flex-col text-left gap-[35px] max-w-[509px]">
+              <h5 className="font-bold text-base tracking-[0.1px]">
+                SUMMER 2020
+              </h5>
+              <h2 className="text-[58px] font-bold leading-[80px] tracking-[0.2px]">
+                {" "}
+                Vita Classic Product{" "}
+              </h2>
+              <h5 className="text-[20px] leading-[30px] tracking-[0.2px]">
+                We know how large objects will act, We know how are objects will
+                act, We know
+              </h5>
+              <div className="flex flex-wrap items-center gap-[34px]">
+                <span className="text-2xl font-bold text-center tracking-[0.1px]">
+                  $16.48
+                </span>
                 <button className="bg-[#2DC071] hover:bg-[#25a15f] shadow-lg rounded-md py-[15px] px-[40px] max-w-[221px]">
-                  <span className="text-2xl font-bold tracking-[0.1px]">
-                    SHOP NOW
+                  <span className="text-[14px] text-center leading-[22px] font-bold tracking-[0.2px]">
+                    ADD TO CART
                   </span>
                 </button>
               </div>
             </div>
+            <div className=" ">
+              <img
+                className="h-[600px] w-[443px] object-cover object-top"
+                src={shophero}
+                alt="image 1"
+              />
+            </div>
           </div>
         </div>
+
         <div className="relative">
           <img
             className="h-screen w-full object-cover"
