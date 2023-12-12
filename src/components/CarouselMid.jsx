@@ -3,7 +3,7 @@ import { Carousel } from "@material-tailwind/react";
 import shophero from "../assets/shophero.png";
 import photo3 from "../assets/sliderphoto3.jpeg";
 
-export default function CarouselComp() {
+export default function CarouselMid() {
   return (
     <>
       <Carousel

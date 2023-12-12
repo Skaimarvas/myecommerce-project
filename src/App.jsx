@@ -2,25 +2,17 @@
 import "./App.css";
 
 //LAYOUT
-import Header from "./layouts/header";
+import Header from "./layouts/Header";
+import Footer from "./layouts/Footer";
+import PageContent from "./layouts/PageContent";
 
 //COMPONENTS
-import BestsellerProduct from "./components/BestsellerProduct";
-import EditorPick from "./components/EditorPick";
-import CarouselMid from "./components/CarouselMid";
-import Footer from "./layouts/Footer";
-import ContainerFluid from "./components/ContainerFluid";
-import Blog from "./components/Blog";
 
 function App() {
   return (
     <>
       <Header />
-      <EditorPick />
-      <BestsellerProduct />
-      <CarouselMid />
-      <ContainerFluid />
-      <Blog />
+      <PageContent />
       <Footer />
     </>
   );

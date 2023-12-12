@@ -4,6 +4,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { BsSearch } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function NavbarLight() {
   return (
@@ -15,9 +16,11 @@ export default function NavbarLight() {
       </div>
       <div className="flex flex-wrap  justify-between items-center basis-5/6">
         <ul className="flex flex-wrap font-bold text-[#737373] leading-6 justify-center items-center gap-[15px] py-3">
-          <li>Home</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
           <li className="flex  items-center gap-[9px] pl-[6px]  font-medium text-[#252B42] leading-7 ">
-            Shop
+            <Link to="/productlist">Shop</Link>
             <button>
               {" "}
               <img src={vector} alt="" />{" "}

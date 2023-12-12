@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className=" flex flex-wrap gap-[30px] py-[50px] ">
+      <div className=" flex flex-wrap justify-center gap-[30px] py-[50px] ">
         <div className=" flex flex-col gap-[20px]">
           <h5 className="text-base text-[#252B42] font-bold traking-[0.1px]">
             Company Info
@@ -101,8 +101,8 @@ export default function Footer() {
             Get In Touch
           </h5>
           <div>
-            <div className="flex flex-row items-center">
-              <form>
+            <div className="flex flex-wrap ">
+              <form className="flex flex-wrap items-center justify-center">
                 <label>
                   <input
                     type="email"
