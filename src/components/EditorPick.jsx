@@ -6,10 +6,10 @@ import kids from "../assets/editorpickkids.png";
 
 export default function EditorPick() {
   return (
-    <div className="flex flex-col items-center py-[80px] gap-[48px] bg-[#FAFAFA]">
+    <div className="flex flex-col items-center py-[80px] gap-[48px] bg-[#FAFAFA] tracking-wider">
       <div className="flex flex-col items-center gap-[10px]">
-        <h3 className="text-2xl font-bold tracking-[0.1px]">EDITOR'S PICK</h3>
-        <p className="text-sm text-center text-[#737373] tracking-[0.2px]">
+        <h3 className="text-2xl font-bold ">EDITOR'S PICK</h3>
+        <p className="text-sm text-center text-[#737373] ">
           Problems trying to resolve the conflict between{" "}
         </p>
       </div>
@@ -22,9 +22,7 @@ export default function EditorPick() {
           />
           <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
             <button className="bg-white w-[170px] py-[12px]">
-              <span className="text-[#252B42] text-base font-bold tracking-[0.1px]">
-                MEN
-              </span>
+              <span className="text-[#252B42] text-base font-bold ">MEN</span>
             </button>
           </div>
         </div>
@@ -36,9 +34,7 @@ export default function EditorPick() {
           />
           <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
             <button className="bg-white w-[136px] py-[12px]">
-              <span className="text-[#252B42] text-base font-bold tracking-[0.1px]">
-                WOMEN
-              </span>
+              <span className="text-[#252B42] text-base font-bold ">WOMEN</span>
             </button>
           </div>
         </div>
@@ -52,7 +48,7 @@ export default function EditorPick() {
             />
             <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
               <button className="bg-white px-[26px] py-[12px]">
-                <span className="text-[#252B42] text-base font-bold tracking-[0.1px]">
+                <span className="text-[#252B42] text-base font-bold ">
                   ACCESSORIES
                 </span>
               </button>
@@ -67,7 +63,7 @@ export default function EditorPick() {
             />
             <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
               <button className="bg-white px-[40px] py-[12px]">
-                <span className="text-[#252B42] text-base font-bold tracking-[0.1px]">
+                <span className="text-[#252B42] text-base font-bold ">
                   KIDS
                 </span>
               </button>

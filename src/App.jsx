@@ -10,6 +10,7 @@ import EditorPick from "./components/EditorPick";
 import CarouselMid from "./components/CarouselMid";
 import Footer from "./layouts/Footer";
 import ContainerFluid from "./components/ContainerFluid";
+import Blog from "./components/Blog";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <BestsellerProduct />
       <CarouselMid />
       <ContainerFluid />
+      <Blog />
       <Footer />
     </>
   );

@@ -5,13 +5,11 @@ import { FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col items-center tracking-wider ">
       <div className="flex justify-center bg-[#FAFAFA] w-full">
         <div className=" flex flex-wrap justify-between items-center py-[40px] w-[1044px] ">
           <div className=" flex py-[13px]">
-            <h3 className=" text-[#252B42] text-2xl font-bold tracking-[0.1px]">
-              Bandage
-            </h3>
+            <h3 className=" text-[#252B42] text-2xl font-bold ">Bandage</h3>
           </div>
           <div className=" flex flex-row gap-[20px] text-[#23A6F0] text-[24px]">
             <FaFacebook className="" />
@@ -109,7 +107,7 @@ export default function Footer() {
                   <input
                     type="email"
                     placeholder="Your Email"
-                    className="text-[14px] leading-7 tracking-[0.2px] bg-[#F9F9F9] border border-[#E6E6E6] rounded-l-sm w-[204px] h-[58px] pl-4  "
+                    className="text-[14px] leading-7  bg-[#F9F9F9] border border-[#E6E6E6] rounded-l-sm w-[204px] h-[58px] pl-4  "
                   />
                 </label>
                 <button
@@ -117,13 +115,13 @@ export default function Footer() {
                   className="bg-[#23A6F0] h-[58px] w-[117px] rounded-r-sm hover:bg-[#1e90d2]"
                   onClick={(e) => e.preventDefault()}
                 >
-                  <span className="text-white text-[14px] text-center leading-7 tracking-[0.2px]">
+                  <span className="text-white text-[14px] text-center leading-7 ">
                     Subscribe
                   </span>
                 </button>
               </form>
             </div>
-            <p className="text-[#737373] text-[12px] leading-7 tracking-[0.2px] font-medium">
+            <p className="text-[#737373] text-[12px] leading-7  font-medium">
               Lore imp sum dolor Amit
             </p>
           </div>
@@ -131,7 +129,7 @@ export default function Footer() {
       </div>
       <div className="flex justify-center bg-[#FAFAFA] w-full">
         <div className=" flex w-[1044px] py-[25px] ">
-          <h6 className=" text-[#737373] text-[14px] font-bold tracking-[0.2px]">
+          <h6 className=" text-[#737373] text-[14px] font-bold ">
             Made With Love By Finland All Right Reserved
           </h6>
         </div>
