@@ -3,7 +3,7 @@ import shopcard1 from "../assets/shopcard1.jpeg";
 
 export default function ShopCard() {
   return (
-    <div className="relative">
+    <div className="relative shadow-md">
       <img
         src={shopcard1}
         alt="image 1"
