@@ -38,17 +38,17 @@ export default function NavbarLight() {
             <span>Login / Register</span>
           </div>
           <div className="p-[15px]">
-            <BsSearch className="w-[20px] h-[20px]" />
+            <BsSearch className="text-[20px]" />
           </div>
           <div className="p-[15px]">
             {" "}
             <div className="flex items-center gap-[5px]">
-              <BsCart className="w-[20px] h-[20px]" /> <span>1</span>{" "}
+              <BsCart className="text-[20px]" /> <span>1</span>{" "}
             </div>
           </div>
           <div className="p-[15px]">
             <div className="flex items-center gap-[5px]">
-              <FaRegHeart className="w-[20px] h-[20px]" />
+              <FaRegHeart className="text-[20px]" />
               <span>1</span>
             </div>
           </div>

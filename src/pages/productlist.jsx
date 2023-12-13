@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MdNavigateNext } from "react-icons/md";
+//components
 import ShopCard from "../components/ShopCard";
+import ProductCard from "../components/productcard";
+//Icons
+import { MdNavigateNext } from "react-icons/md";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { PiListChecksThin } from "react-icons/pi";
-import ProductCard from "../components/productcard";
+//assets
 import brand1 from "../assets/logos/fa-brands-1.png";
 import brand2 from "../assets/logos/fa-brands-2.png";
 import brand3 from "../assets/logos/fa-brands-3.png";

@@ -12,7 +12,15 @@ Task 2:
 [X] - Create Layout Components like: **Header, PageContent, Footer
 NOTE! There should be only ONE Header, Footer components for all pages, no color changes needed!**
 [X] - Create Page Components (**Only Desktop Views**): **Home, Product List**
-[X] - Create repetitive Components like: **ProductCard, CategoryCard**
-[] - Home Page: Slider component - Find a slider component can be used in React JS
-[] - Activate **React Router and Links** for Home and Shopping links
+[-] - Create repetitive Components like: **ProductCard, CategoryCard** Not: ProductCard yapıldı
+[X] - Home Page: Slider component - Find a slider component can be used in React JS
+[X] - Activate **React Router and Links** for Home and Shopping links
 [X] - Use an **Icon Library** like: FontAwesome (CDN is recommended) - Used React-icons
+
+Task 3:
+
+[] Create Page Components (**Only Desktop Views**):
+[] Product Page
+[] About Page
+[] Team Page
+[] Contact Page - (optionally, you can add Contact Form without functionality)
