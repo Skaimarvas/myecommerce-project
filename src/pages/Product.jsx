@@ -173,7 +173,7 @@ export default function Product() {
                 alt="description"
               />
             </div>
-            <div className="w-[332px]">
+            <div className="flex flex-col  gap-[30px] w-[332px]">
               <h3 className="text-2xl text-[#252B42] font-bold">
                 the quick fox jumps over
               </h3>
@@ -182,9 +182,11 @@ export default function Product() {
                 sent. RELIT official consequent door ENIM RELIT Mollie.
                 Excitation venial consequent sent nostrum met.
                 <br />
+                <br />
                 Met minim Mollie non desert Alamo est sit cliquey dolor do met
                 sent. RELIT official consequent door ENIM RELIT Mollie.
                 Excitation venial consequent sent nostrum met.
+                <br />
                 <br />
                 Met minim Mollie non desert Alamo est sit cliquey dolor do met
                 sent. RELIT official consequent door ENIM RELIT Mollie.

@@ -19,8 +19,8 @@ NOTE! There should be only ONE Header, Footer components for all pages, no color
 
 Task 3:
 
-[] Create Page Components (**Only Desktop Views**):
-[] Product Page
+Create Page Components (**Only Desktop Views**):
+[X] Product Page
 [] About Page
 [] Team Page
 [] Contact Page - (optionally, you can add Contact Form without functionality)

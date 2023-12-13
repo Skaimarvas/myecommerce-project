@@ -26,7 +26,10 @@ export default function NavbarLight() {
               <img src={vector} alt="" />{" "}
             </button>
           </li>
-          <li>About</li>
+          <li>
+            {" "}
+            <Link to="/about">About</Link>
+          </li>
           <li>Blog</li>
           <li>Contact</li>
           <li>Pages</li>
