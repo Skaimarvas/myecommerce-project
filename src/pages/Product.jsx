@@ -11,6 +11,10 @@ import { IoMdEye } from "react-icons/io";
 //Assets
 import product1 from "../assets/product1.jpeg";
 import product2 from "../assets/product2.jpeg";
+import product3 from "../assets/product3.jpeg";
+//Components
+import BestsellerProduct from "../components/BestsellerProduct";
+import Brands from "../components/Brands";
 
 export default function Product() {
   return (
@@ -139,6 +143,118 @@ export default function Product() {
           </div>
         </div>
       </div>
+      <div className="flex flex-col items-center bg-white w-full">
+        <div className="flex flex-col w-4/5">
+          <div className="flex flex-row justify-center">
+            <div className="p-[24px]">
+              <span className="text-[#737373] text-[14px] font-semibold leading-6">
+                Descripton
+              </span>
+            </div>
+            <div className="p-[24px]">
+              <span className="text-[#737373] text-[14px] font-bold leading-6">
+                Additional Information
+              </span>
+            </div>
+            <div className="p-[24px]">
+              <span className="text-[#737373] text-[14px] font-bold leading-6">
+                Reviews <span className="text-[#23856D]">(0)</span>
+              </span>
+            </div>
+          </div>
+
+          <hr className="py-[20px]" />
+
+          <div className="flex flex-wrap justify-center  gap-[30px]">
+            <div>
+              <img
+                className="h-[372px] w-[316px] rounded-sm"
+                src={product3}
+                alt="description"
+              />
+            </div>
+            <div className="w-[332px]">
+              <h3 className="text-2xl text-[#252B42] font-bold">
+                the quick fox jumps over
+              </h3>
+              <p className="text-[#737373] text-[14px] leading-5">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+                <br />
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+                <br />
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </div>
+            <div className="flex flex-col gap-[20px]">
+              <div className="flex flex-col gap-[30px]">
+                <h3 className="text-2xl text-[#252B42] font-bold">
+                  the quick fox jumps over
+                </h3>
+                <div className="flex flex-col gap-[10px]">
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[30px]">
+                <h3 className="text-2xl text-[#252B42] font-bold">
+                  the quick fox jumps over
+                </h3>
+                <div className="flex flex-col gap-[10px]">
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <MdNavigateNext className="text-[25px] text-[#BDBDBD]" />{" "}
+                    <span className="text-[#737373] text-[14px] leading-6 font-bold">
+                      the quick fox jumps over the lazy dog
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <BestsellerProduct />
+      <Brands />
     </div>
   );
 }
