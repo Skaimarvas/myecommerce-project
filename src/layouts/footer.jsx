@@ -12,12 +12,13 @@ export default function Footer() {
             <h3 className=" text-[#252B42] text-2xl font-bold ">Bandage</h3>
           </div>
           <div className=" flex flex-row gap-[20px] text-[#23A6F0] text-[24px]">
-            <FaFacebook className="" />
+            <FaFacebook />
             <FaInstagram />
             <FaTwitter />
           </div>
         </div>
       </div>
+      <hr className=" w-4/5" />
       <div className=" flex flex-wrap justify-center gap-[30px] py-[50px] ">
         <div className=" flex flex-col gap-[20px]">
           <h5 className="text-base text-[#252B42] font-bold traking-[0.1px]">

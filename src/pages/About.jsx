@@ -2,8 +2,11 @@ import React from "react";
 //Assets
 import shopping from "../assets/shopping.png";
 import video from "../assets/videocard.jpeg";
+import workwithus from "../assets/workwithus.jpeg";
 //Icons
 import { FaPlay } from "react-icons/fa";
+import TeamCard from "../components/TeamCard";
+import Brands from "../components/Brands";
 
 export default function About() {
   return (
@@ -92,7 +95,7 @@ export default function About() {
           <FaPlay className="text-white text-[23px]" />
         </button>
       </div>
-      <div className="flex flex-col items-center  gap-[112px]">
+      <div className="flex flex-col items-center  py-[112px] gap-[112px]">
         <div className="flex flex-col items-center gap-[10px] max-w-[607px] px-10">
           <h2 className="text-[#252B42] text-center text-[40px] font-bold leading-[50px]">
             Meet Our Team
@@ -102,7 +105,49 @@ export default function About() {
             of Classical physics: Newtonian mechanics{" "}
           </p>
         </div>
-        <div></div>
+        <div className="flex flex-wrap justify-center items-center gap-[30px]">
+          <TeamCard />
+          <TeamCard />
+          <TeamCard />
+        </div>
+      </div>
+      <div className="flex flex-col gap-[24px] py-[80px] bg-[#FAFAFA] w-full">
+        <div className=" flex justify-center">
+          <div className="flex flex-col items-center  gap-[10px] max-w-[864px] px-10">
+            <h2 className="text-[#252B42] text-center text-[40px] font-bold leading-[50px]">
+              Big Companies Are Here
+            </h2>
+            <p className="text-center text-[#737373] text-[14px] leading-5">
+              Problems trying to resolve the conflict between the two major
+              realms of Classical physics: Newtonian mechanics
+            </p>
+          </div>
+        </div>
+        <Brands />
+      </div>
+      <div className=" flex flex-wrap justify-between items-center bg-[#2A7CC7] w-full">
+        <div className="flex flex-col text-left text-white gap-[35px] p-[80px] max-w-[599px]">
+          <h5 className="font-bold text-[16px] leading-6 ">WORK WITH US</h5>
+          <h2 className="text-[40px] font-bold leading-[50px] ">
+            Now Let’s grow Yours
+          </h2>
+          <p className="text-[14px] leading-[20px] ">
+            The gradual accumulation of information about atomic and small-scale
+            behavior during the first quarter of the 20th
+          </p>
+          <button className="border border-white hover:bg-[#25a15f] shadow-lg rounded-md py-[15px] px-[40px] w-[132px]">
+            <span className="text-[#FAFAFA] text-[14px] leading-[22px] font-bold ">
+              Button
+            </span>
+          </button>
+        </div>
+        <div className="flex justify-center">
+          <img
+            className="object-cover w-[590px] h-[640px]"
+            src={workwithus}
+            alt="work with us"
+          />
+        </div>
       </div>
     </div>
   );
