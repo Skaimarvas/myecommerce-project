@@ -109,6 +109,20 @@ export default function Team() {
             <TeamCard />{" "}
           </div>
         </div>
+        <div className="flex flex-col items-center gap-[30px] py-[80px] max-w-[547px]">
+          <h2 className="text-[#252B42] text-center text-[40px] font-bold leading-[50px]">
+            Start your 14 days free trial
+          </h2>
+          <p className="text-[#737373] text-center text-[14px] leading-5">
+            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
+            RELIT official consequent.
+          </p>
+          <button className="bg-[#23A6F0] hover:bg-[#1c96dd] shadow-lg rounded-md py-[15px] px-[40px] max-w-[221px]">
+            <span className="text-[14px] leading-[22px] text-white font-bold ">
+              Try it free now
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
