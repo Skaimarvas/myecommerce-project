@@ -5,11 +5,15 @@ import Home from "../pages/Home";
 import ProductList from "../pages/ProductList";
 import Product from "../pages/Product";
 import About from "../pages/About";
+import Team from "../pages/Team";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
+        <Route path="/team" exact>
+          <Team />
+        </Route>
         <Route path="/about" exact>
           <About />
         </Route>

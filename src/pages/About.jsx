@@ -5,6 +5,8 @@ import video from "../assets/videocard.jpeg";
 import workwithus from "../assets/workwithus.jpeg";
 //Icons
 import { FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
+//Components
 import TeamCard from "../components/TeamCard";
 import Brands from "../components/Brands";
 
@@ -87,7 +89,7 @@ export default function About() {
 
       <div className="flex justify-center items-center relative w-[989px] h-[540px] my-[112px]">
         <img
-          className="absolute h-[540px] w-[989px]  rounded-md object-cover"
+          className="absolute m-max-h-[540px] m-max-w-[989px]  rounded-md object-cover"
           src={video}
           alt="videocard"
         />
@@ -106,7 +108,10 @@ export default function About() {
           </p>
         </div>
         <div className="flex flex-wrap justify-center items-center gap-[30px]">
-          <TeamCard />
+          <Link to="/team">
+            {" "}
+            <TeamCard />{" "}
+          </Link>
           <TeamCard />
           <TeamCard />
         </div>
