@@ -6,11 +6,15 @@ import ProductList from "../pages/ProductList";
 import Product from "../pages/Product";
 import About from "../pages/About";
 import Team from "../pages/Team";
+import Contact from "../pages/Contact";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
+        <Route path="/contact" exact>
+          <Contact />
+        </Route>
         <Route path="/team" exact>
           <Team />
         </Route>

@@ -31,7 +31,9 @@ export default function NavbarLight() {
             <Link to="/about">About</Link>
           </li>
           <li>Blog</li>
-          <li>Contact</li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
           <li>Pages</li>
         </ul>
 
