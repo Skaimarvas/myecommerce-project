@@ -1,7 +1,8 @@
 import React from "react";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 //Icons
 import { MdNavigateNext } from "react-icons/md";
-import { Link } from "react-router-dom";
 //Assets
 import model1 from "../assets/model1.jpeg";
 import model2 from "../assets/model2.jpeg";
@@ -122,6 +123,12 @@ export default function Team() {
               Try it free now
             </span>
           </button>
+          <div className="flex flex-row gap-[34px] p-[10px]">
+            <Icon className="text-[30px]" icon="logos:twitter" />
+            <Icon className="text-[30px]" icon="devicon:facebook" />
+            <Icon className="text-[30px]" icon="logos:instagram-icon" />
+            <Icon className="text-[30px]" icon="devicon:linkedin" />
+          </div>
         </div>
       </div>
     </div>
