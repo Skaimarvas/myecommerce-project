@@ -124,10 +124,13 @@ export default function Team() {
             </span>
           </button>
           <div className="flex flex-row gap-[34px] p-[10px]">
-            <Icon className="text-[30px]" icon="logos:twitter" />
-            <Icon className="text-[30px]" icon="devicon:facebook" />
-            <Icon className="text-[30px]" icon="logos:instagram-icon" />
-            <Icon className="text-[30px]" icon="devicon:linkedin" />
+            <Icon className="text-[30px] shadow-sm" icon="logos:twitter" />
+            <Icon className="text-[30px] shadow-sm " icon="devicon:facebook" />
+            <Icon
+              className="text-[30px] shadow-sm"
+              icon="logos:instagram-icon"
+            />
+            <Icon className="text-[30px] shadow-sm" icon="devicon:linkedin" />
           </div>
         </div>
       </div>
