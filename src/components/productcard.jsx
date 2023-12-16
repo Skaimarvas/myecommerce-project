@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function ProductCard() {
   return (
     <Link to="/product">
-      <div className="flex flex-col max-w-[239px] shadow-md">
+      <div className="flex flex-col sm:w-full w-[239px] shadow-md">
         <img
           src={bs1}
           alt="bs image 1"
