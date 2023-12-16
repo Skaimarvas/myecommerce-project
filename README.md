@@ -21,6 +21,8 @@ Task 3:
 
 Create Page Components (**Only Desktop Views**):
 [X] Product Page
-[] About Page
-[] Team Page
-[] Contact Page - (optionally, you can add Contact Form without functionality)
+[X] About Page
+[X] Team Page
+[X] Contact Page - (optionally, you can add Contact Form without functionality)
+
+Task 4:
