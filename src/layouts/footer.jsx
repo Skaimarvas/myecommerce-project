@@ -7,8 +7,8 @@ export default function Footer() {
   return (
     <div className="flex flex-col items-center tracking-wider ">
       <div className="flex justify-center bg-[#FAFAFA] w-full">
-        <div className=" flex flex-wrap justify-between items-center py-[40px] w-[1044px] ">
-          <div className=" flex py-[13px]">
+        <div className=" flex flex-wrap justify-between sm:flex-col items-center py-[40px] w-4/5  ">
+          <div className=" flex py-[13px] ">
             <h3 className=" text-[#252B42] text-2xl font-bold ">Bandage</h3>
           </div>
           <div className=" flex flex-row gap-[20px] text-[#23A6F0] text-[24px]">
@@ -19,7 +19,7 @@ export default function Footer() {
         </div>
       </div>
       <hr className=" w-4/5" />
-      <div className=" flex flex-wrap justify-center gap-[30px] py-[50px] ">
+      <div className=" flex flex-wrap justify-center gap-[30px] py-[50px] w-4/5   sm:flex-col ">
         <div className=" flex flex-col gap-[20px]">
           <h5 className="text-base text-[#252B42] font-bold traking-[0.1px]">
             Company Info
@@ -102,18 +102,18 @@ export default function Footer() {
             Get In Touch
           </h5>
           <div>
-            <div className="flex flex-wrap ">
-              <form className="flex flex-wrap items-center justify-center">
-                <label>
+            <div className="flex ">
+              <form className="flex flex-wrap sm:flex-col sm:w-full items-center justify-center">
+                <label className="sm:w-full">
                   <input
                     type="email"
                     placeholder="Your Email"
-                    className="text-[14px] leading-7  bg-[#F9F9F9] border border-[#E6E6E6] rounded-l-sm w-[204px] h-[58px] pl-4  "
+                    className="text-[14px] leading-7  bg-[#F9F9F9] border border-[#E6E6E6] rounded-l-sm w-[204px]   h-[58px] pl-4  "
                   />
                 </label>
                 <button
                   type="submit"
-                  className="bg-[#23A6F0] h-[58px] w-[117px] rounded-r-sm hover:bg-[#1e90d2]"
+                  className="bg-[#23A6F0] h-[58px] w-[117px] sm:w-full rounded-r-sm hover:bg-[#1e90d2]"
                   onClick={(e) => e.preventDefault()}
                 >
                   <span className="text-white text-[14px] text-center leading-7 ">
@@ -129,8 +129,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex justify-center bg-[#FAFAFA] w-full">
-        <div className=" flex w-[1044px] py-[25px] ">
-          <h6 className=" text-[#737373] text-[14px] font-bold ">
+        <div className=" flex w-4/5 py-[25px] sm:px-[40px] sm:justify-center ">
+          <h6 className=" text-[#737373] text-[14px] font-bold sm:text-center ">
             Made With Love By Finland All Right Reserved
           </h6>
         </div>

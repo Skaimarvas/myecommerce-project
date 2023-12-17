@@ -9,7 +9,7 @@ export default function ContainerFluid() {
         <img
           src={fluid1}
           alt="image 1 "
-          className="w-[600px] h-[600px] sm:max-w-[600px] sm:h-full object-cover sm:object-center "
+          className="w-[600px] h-[600px] sm:w-full sm:h-full object-cover sm:object-center "
         />
       </div>
       <div className=" flex flex-col text-left gap-[35px] max-w-[509px] sm:items-center ]">

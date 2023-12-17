@@ -3,7 +3,7 @@ import ContentCard from "../components/ContentCard";
 export default function Blog() {
   return (
     <div className="flex flex-col items-center py-[112px] gap-[80px] tracking-wider">
-      <div className="flex flex-col items-center  gap-[10px] max-w-[500px]">
+      <div className="flex flex-col items-center  gap-[10px] max-w-[500px] sm:px-[40px]">
         <h6 className="text-[#23A6F0] text-center text-[14px] font-bold leading-6  ">
           Practice Advice
         </h6>
