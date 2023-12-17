@@ -6,7 +6,7 @@ import { FcNext } from "react-icons/fc";
 
 export default function ContentCard() {
   return (
-    <div className="shadow-md">
+    <div className="shadow-lg transition-transform hover:scale-[1.05]">
       <div className="relative">
         <img
           src={blog1}

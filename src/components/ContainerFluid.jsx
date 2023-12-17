@@ -12,7 +12,7 @@ export default function ContainerFluid() {
           className="w-[600px] h-[600px] sm:w-full sm:h-full object-cover sm:object-center "
         />
       </div>
-      <div className=" flex flex-col text-left gap-[35px] max-w-[509px] sm:items-center ]">
+      <div className="flex flex-col text-left gap-[35px] max-w-[509px] sm:items-center] sm:pt-[50px]">
         <h5 className="font-bold text-[#BDBDBD] text-base sm:text-center ">
           SUMMER 2020
         </h5>

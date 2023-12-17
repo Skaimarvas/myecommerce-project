@@ -14,7 +14,7 @@ export default function EditorPick() {
         </p>
       </div>
       <div className="flex flex-wrap sm:flex-col items-center justify-center  gap-[30px] sm:px-[20px]">
-        <div className="relative">
+        <div className="relative shadow-lg">
           <img
             src={men}
             alt="image 1"
@@ -26,7 +26,7 @@ export default function EditorPick() {
             </button>
           </div>
         </div>
-        <div className="relative">
+        <div className="relative shadow-lg">
           <img
             src={women}
             alt="image 2"
@@ -39,7 +39,7 @@ export default function EditorPick() {
           </div>
         </div>
         <div className="flex flex-col gap-[16px] sm:w-full">
-          <div className="relative">
+          <div className="relative shadow-lg">
             {" "}
             <img
               src={accessories}
@@ -54,7 +54,7 @@ export default function EditorPick() {
               </button>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative shadow-lg">
             {" "}
             <img
               src={kids}
