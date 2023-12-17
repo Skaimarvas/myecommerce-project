@@ -108,7 +108,7 @@ export default function Footer() {
                   <input
                     type="email"
                     placeholder="Your Email"
-                    className="text-[14px] leading-7  bg-[#F9F9F9] border border-[#E6E6E6] rounded-l-sm w-[204px]   h-[58px] pl-4  "
+                    className="text-[14px] leading-7  bg-[#F9F9F9] border border-[#E6E6E6] rounded-l-sm w-[204px] sm:w-full  h-[58px] pl-4  "
                   />
                 </label>
                 <button

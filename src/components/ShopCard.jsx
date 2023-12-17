@@ -3,11 +3,11 @@ import shopcard1 from "../assets/shopcard1.jpeg";
 
 export default function ShopCard() {
   return (
-    <div className="relative shadow-md">
+    <div className="relative shadow-lg transition-transform hover:scale-[1.05]">
       <img
         src={shopcard1}
         alt="image 1"
-        className=" w-[206px] h-[223px] object-cover"
+        className=" w-[206px] h-[223px] sm:w-full object-cover"
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center  text-white gap-[9.5px]">
         <h5 className="text-center text-base font-bold">CLOTHS</h5>

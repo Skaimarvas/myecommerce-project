@@ -13,7 +13,7 @@ export default function ProductList() {
   return (
     <div className="flex flex-col items-center tracking-wider  ">
       <div className="flex flex-col items-center w-full bg-[#FAFAFA]">
-        <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px]">
+        <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:flex-col sm:gap-[30px]">
           <div>
             <h3 className="text-[#252B42] text-2xl font-bold">Shop</h3>
           </div>
@@ -31,7 +31,7 @@ export default function ProductList() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-around  w-4/5 pb-[48px]">
+        <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
           <ShopCard />
           <ShopCard />
           <ShopCard />
@@ -39,24 +39,24 @@ export default function ProductList() {
           <ShopCard />
         </div>
       </div>
-      <div className="flex flex-wrap justify-between items-center w-4/5">
+      <div className="flex flex-wrap justify-between items-center w-4/5 py-[40px] sm:flex-col sm:gap-[24px]">
         <div>
           <span className="text-[#737373] text-[14px] leading-6 font-bold">
             Showing all 12 results
           </span>
         </div>
-        <div className="flex flex-row items-center gap-[15px]">
+        <div className="flex flex-row items-center gap-[15px] sm:justify-between sm:w-4/5">
           <span className="text-[#737373] text-[14px] leading-6 font-bold">
             Views:
           </span>
           <button className="p-[15px]">
-            <PiSquaresFourFill className="text-2xl text-[#252B42]" />
+            <PiSquaresFourFill className="text-2xl sm:text-[40px] text-[#252B42]" />
           </button>
           <button className="p-[15px]">
-            <PiListChecksThin className="text-2xl text-[#737373]" />
+            <PiListChecksThin className="text-2xl sm:text-[40px] text-[#737373]" />
           </button>
         </div>
-        <div className="py-[40px]">
+        <div>
           <form className="flex flex-row gap-[15px]">
             <label>
               <select
@@ -83,7 +83,7 @@ export default function ProductList() {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-[30px] w-4/5">
+      <div className="flex flex-wrap justify-center gap-[30px] w-4/5 ">
         <ProductCard />
         <ProductCard />
         <ProductCard />
@@ -97,30 +97,30 @@ export default function ProductList() {
         <ProductCard />
         <ProductCard />
       </div>
-      <div className="py-[40px] tracking-wider">
-        <button className="border border-[#BDBDBD] bg-[#F3F3F3] p-[25px] rounded-l-sm">
+      <div className="py-[40px] ">
+        <button className="border border-[#BDBDBD] bg-[#F3F3F3] p-[25px] hover:bg-blue-gray-100 rounded-l-sm">
           {" "}
           <span className="text-[#BDBDBD] text-[14px] text-center leading-6 ">
             First
           </span>{" "}
         </button>
-        <button className="border border-[#E9E9E9] py-[25px] px-[20px]">
-          <span className="text-[14px] text-[#23A6F0] text-center font-bold leading-6">
+        <button className="border border-[#E9E9E9] py-[25px] px-[20px] hover:bg-[#23A6F0] hover:text-white text-[#23A6F0] ">
+          <span className="text-[14px]    text-center font-bold leading-6">
             1
           </span>
         </button>
-        <button className="border border-[#E9E9E9] py-[25px] px-[20px] bg-[#23A6F0] ">
-          <span className="text-[14px] text-white text-center font-bold leading-6">
+        <button className="border border-[#E9E9E9] py-[25px] px-[20px] hover:bg-[#23A6F0] hover:text-white text-[#23A6F0] ">
+          <span className="text-[14px]    text-center font-bold leading-6">
             2
           </span>
         </button>
-        <button className="border border-[#E9E9E9] py-[25px] px-[20px]">
-          <span className="text-[14px] text-[#23A6F0] text-center font-bold leading-6">
+        <button className="border border-[#E9E9E9] py-[25px] px-[20px] hover:bg-[#23A6F0] hover:text-white text-[#23A6F0] ">
+          <span className="text-[14px]    text-center font-bold leading-6">
             3
           </span>
         </button>
-        <button className="border border-[#E9E9E9] p-[25px] rounded-r-sm">
-          <span className="text-[14px] text-[#23A6F0] text-center font-bold leading-6">
+        <button className="border border-[#E9E9E9] p-[25px]  hover:text-white text-[#23A6F0] hover:bg-[#23A6F0] rounded-r-sm">
+          <span className="text-[14px]  text-center font-bold leading-6">
             Next
           </span>
         </button>
