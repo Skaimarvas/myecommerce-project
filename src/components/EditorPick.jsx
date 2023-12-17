@@ -21,7 +21,7 @@ export default function EditorPick() {
             className="w-[509px] sm:w-full  h-[500px] object-cover"
           />
           <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
-            <button className="bg-white w-[170px] py-[12px]">
+            <button className="bg-white w-[170px] py-[12px] hover:underline">
               <span className="text-[#252B42] text-base font-bold ">MEN</span>
             </button>
           </div>
@@ -33,7 +33,7 @@ export default function EditorPick() {
             className="w-[239px] sm:w-full h-[500px] object-cover"
           />
           <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
-            <button className="bg-white w-[136px] py-[12px]">
+            <button className="bg-white w-[136px] py-[12px] hover:underline">
               <span className="text-[#252B42] text-base font-bold ">WOMEN</span>
             </button>
           </div>
@@ -47,7 +47,7 @@ export default function EditorPick() {
               className="w-[239px] sm:w-full h-[242px] object-cover"
             />
             <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
-              <button className="bg-white px-[26px] py-[12px]">
+              <button className="bg-white px-[26px] py-[12px] hover:underline">
                 <span className="text-[#252B42] text-base font-bold ">
                   ACCESSORIES
                 </span>
@@ -62,7 +62,7 @@ export default function EditorPick() {
               className="w-[239px] sm:w-full h-[242px] object-cover"
             />
             <div className="flex justify-start items-end absolute inset-0 py-[15px] px-[20px]">
-              <button className="bg-white px-[40px] py-[12px]">
+              <button className="bg-white px-[40px] py-[12px] hover:underline">
                 <span className="text-[#252B42] text-base font-bold ">
                   KIDS
                 </span>
