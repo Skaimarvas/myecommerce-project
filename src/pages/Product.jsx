@@ -19,8 +19,8 @@ import Brands from "../components/Brands";
 export default function Product() {
   return (
     <div className="flex flex-col items-center tracking-wider bg-[#FAFAFA]">
-      <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px]">
-        <div className="flex flex-row gap-[15px] items-center py-[15px] ">
+      <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:justify-center ">
+        <div className="flex flex-row gap-[15px] items-center py-[15px]  ">
           <Link to="/">
             {" "}
             <span className="text-[#252B42] text-base font-bold">
@@ -36,7 +36,7 @@ export default function Product() {
       <div className="flex flex-wrap justify-center gap-[30px] w-4/5">
         <div className="flex flex-col gap-[20px]">
           <Carousel
-            className="tracking-wider w-[506px] "
+            className="tracking-wider w-[506px] sm:w-full"
             navigation={({ setActiveIndex, activeIndex, length }) => (
               <div className="absolute bottom-4 left-2/4  flex -translate-x-2/4 ">
                 {new Array(length).fill("").map((_, i) => (
@@ -55,14 +55,14 @@ export default function Product() {
           >
             <div className="relative ">
               <img
-                className="h-[450px] w-[506px] object-cover"
+                className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover"
                 src={product1}
                 alt="image 1"
               />
             </div>
             <div className="relative">
               <img
-                className="h-[450px] w-[506px] object-cover"
+                className="h-[450px] w-[506px]  sm:w-full sm:h-[277px]  object-cover"
                 src={product2}
                 alt="image 2"
               />
