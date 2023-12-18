@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "@material-tailwind/react";
+import Slider from "react-slick";
+
 //Icons
 import { MdNavigateNext } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
@@ -168,7 +170,7 @@ export default function Product() {
           <div className="flex flex-wrap justify-center  gap-[30px]">
             <div>
               <img
-                className="h-[372px] w-[316px] rounded-sm"
+                className="h-[372px] w-[316px] sm:w-full sm:h-full rounded-sm shadow-special"
                 src={product3}
                 alt="description"
               />
