@@ -1,20 +1,28 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function SignUp() {
+  const formSchema = Yup.object().shape({
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password length should be at least 4 characters")
+      .max(16, "Password cannot exceed more than 12 characters"),
+    cpassword: Yup.string()
+      .required("Password is required")
+      .min(8, "Password length should be at least 4 characters")
+      .max(16, "Password cannot exceed more than 12 characters")
+      .oneOf([Yup.ref("password")], "Passwords do not match"),
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     watch,
-  } = useForm({ mode: "onChange" });
-
-  const formSchema = Yup.object().shape({
-    password: Yup.string()
-      .required("Password is required")
-      .min(3, "Password length should be at least 4 characters").max,
-  });
+  } = useForm({ mode: "onChange", resolver: yupResolver(formSchema) });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -49,24 +57,14 @@ export default function SignUp() {
         </label>
         <label className="flex flex-col gap-[10px]">
           Password
-          <input
-            type="password"
-            {...register("password", { required: true })}
-          />
-          {errors.password && (
-            <p className=" text-deep-orange-900">Password Required</p>
-          )}
+          <input type="password" {...register("password")} />
+          {<p className=" text-deep-orange-900">{errors.password?.message} </p>}
         </label>
 
         <label className="flex flex-col gap-[10px]">
           Confirm Password
-          <input
-            type="password"
-            {...register("cpassword", { required: true })}
-          />
-          {errors.cpassword && (
-            <p className=" text-deep-orange-900">Confirm Password Required</p>
-          )}
+          <input type="password" {...register("cpassword")} />
+          <p className=" text-deep-orange-900">{errors.cpassword?.message}</p>
         </label>
 
         <button
