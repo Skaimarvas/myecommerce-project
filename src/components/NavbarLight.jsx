@@ -30,7 +30,7 @@ export default function NavbarLight() {
           <Link to="/">Home</Link>
         </li>
         <li className="flex  items-center gap-[9px] pl-[6px]  font-medium sm:font-normal text-[#252B42] sm:text-[#737373] leading-7 ">
-          <Link to="/productlist">Shop</Link>
+          <Link to="/productlist"> Shop</Link>
           <button className="sm:hidden">
             {" "}
             <img src={vector} alt="" />{" "}

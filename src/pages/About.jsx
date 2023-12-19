@@ -38,7 +38,7 @@ export default function About() {
           <div className="absolute bg-[#977DF4] h-[15px] w-[15px] sm:h-[7px] sm:w-[7px] rounded-full inset-x-[550px] inset-y-[100px] sm:inset-x-[320px] sm:inset-y-[50px] "></div>
           <div className="absolute bg-[#977DF4] h-[15px] w-[15px] sm:h-[7px] sm:w-[7px] rounded-full inset-x-[20px] inset-y-[400px] sm:inset-x-[10px] sm:inset-y-[200px] "></div>
           <img
-            className="absolute h-[672px] w-[593px] sm:h-[420px] sm:w-[350px] object-cover inset-0"
+            className="absolute h-[672px] w-[593px] sm:h-[420px] sm:w-[350px] object-cover "
             src={shopping}
             alt=""
           />

@@ -26,3 +26,12 @@ Create Page Components (**Only Desktop Views**):
 [X] Contact Page - (optionally, you can add Contact Form without functionality)
 
 Task 4:
+
+In figma design there are also mobile views. Mobile views should be implemented to all pages:
+
+- [x] Home
+- [x] Shopping
+- [x] Product
+- [x] About
+- [x] Team
+- [x] Contac

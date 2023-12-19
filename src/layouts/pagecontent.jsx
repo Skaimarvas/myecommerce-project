@@ -8,11 +8,15 @@ import About from "../pages/About";
 import Team from "../pages/Team";
 import Contact from "../pages/Contact";
 import ProductSlider from "../components/ProductSlider";
+import SignUp from "../pages/SignUp";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
+        <Route path="/signup" exact>
+          <SignUp />
+        </Route>
         <Route path="/productslider" exact>
           <ProductSlider />
         </Route>
