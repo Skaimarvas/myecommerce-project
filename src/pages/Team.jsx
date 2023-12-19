@@ -35,7 +35,7 @@ export default function Team() {
           </span>
         </div>
       </div>
-      <div className="flex flex-wrap   justify-center gap-[20px] w-full">
+      <div className="flex flex-wrap   justify-center gap-[20px] w-full ">
         <div>
           <img
             className="h-[530px] w-[700px] object-cover"
@@ -43,26 +43,26 @@ export default function Team() {
             alt="model 1"
           />
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between sm:flex-row sm:gap-1">
           <img
-            className="h-[260px] w-[361px] object-cover"
+            className="h-[260px] w-[361px] sm:w-1/2 object-cover"
             src={model2}
             alt="model 1"
           />
           <img
-            className="h-[260px] w-[361px] object-cover"
+            className="h-[260px] w-[361px] sm:w-1/2 object-cover"
             src={model3}
             alt="model 1"
           />
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between sm:flex-row sm:gap-1">
           <img
-            className="h-[260px] w-[361px] object-cover"
+            className="h-[260px] w-[361px] sm:w-1/2  object-cover"
             src={model4}
             alt="model 1"
           />
           <img
-            className="h-[260px] w-[361px] object-cover"
+            className="h-[260px] w-[361px] sm:w-1/2  object-cover"
             src={model5}
             alt="model 1"
           />
