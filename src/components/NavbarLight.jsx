@@ -47,10 +47,12 @@ export default function NavbarLight() {
       </ul>
 
       <div className="flex items-center text-[#23A6F0] sm:hidden">
-        <div className=" flex text-base p-[15px] items-center gap-[5px] font-bold  ">
-          <FaRegUser />
-          <span>Login / Register</span>
-        </div>
+        <Link to="/signup">
+          <div className=" flex text-base p-[15px] items-center gap-[5px] font-bold  ">
+            <FaRegUser />
+            <span>Login / Register</span>
+          </div>
+        </Link>
         <div className="p-[15px]">
           <BsSearch className="text-[20px]" />
         </div>
