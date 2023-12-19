@@ -14,7 +14,7 @@ export default function About() {
   return (
     <div className="flex flex-col items-center  tracking-wider">
       <div className="flex flex-wrap justify-center items-center gap-[30px]">
-        <div className="flex flex-col items-start  text-left gap-[24px] py-[40px] max-w-[580px]">
+        <div className="flex flex-col items-start  text-left gap-[24px] py-[40px] max-w-[580px] sm:items-center sm:text-center sm:py-[80px]">
           <h5 className="text-[#252B42] text-base font-bold">ABOUT COMPANY</h5>
           <h2 className="text-[58px] font-bold leading-[80px]  text-center">
             {" "}
@@ -31,20 +31,20 @@ export default function About() {
             </span>
           </button>
         </div>
-        <div className="relative h-[672px] w-[593px]">
-          <div className="absolute bg-[#FFE9EA] h-[77px] w-[77px] rounded-full inset-y-[20px]  "></div>
-          <div className="absolute bg-[#FFE9EA] h-[484px] w-[484px] rounded-full inset-x-[40px] "></div>
-          <div className="absolute bg-[#FFE9EA] h-[30px] w-[30px] rounded-full inset-x-[540px] inset-y-[250px]"></div>
-          <div className="absolute bg-[#977DF4] h-[15px] w-[15px] rounded-full inset-x-[550px] inset-y-[100px]"></div>
-          <div className="absolute bg-[#977DF4] h-[15px] w-[15px] rounded-full inset-x-[20px] inset-y-[400px]"></div>
+        <div className="relative h-[672px] w-[593px] sm:w-[350px] sm:h-[420px] ">
+          <div className="absolute bg-[#FFE9EA] h-[77px] w-[77px] sm:h-[38px] sm:w-[38px] rounded-full inset-y-[20px]  "></div>
+          <div className="absolute bg-[#FFE9EA] h-[484px] w-[484px] sm:h-[260px] sm:w-[260px] rounded-full inset-x-[40px] "></div>
+          <div className="absolute bg-[#FFE9EA] h-[30px] w-[30px] sm:h-[15px] sm:w-[15px] rounded-full inset-x-[540px] sm:inset-x-[310px] sm:inset-y-[125px] inset-y-[250px]"></div>
+          <div className="absolute bg-[#977DF4] h-[15px] w-[15px] sm:h-[7px] sm:w-[7px] rounded-full inset-x-[550px] inset-y-[100px] sm:inset-x-[320px] sm:inset-y-[50px] "></div>
+          <div className="absolute bg-[#977DF4] h-[15px] w-[15px] sm:h-[7px] sm:w-[7px] rounded-full inset-x-[20px] inset-y-[400px] sm:inset-x-[10px] sm:inset-y-[200px] "></div>
           <img
-            className="absolute h-[668px] w-[571px] object-cover inset-0"
+            className="absolute h-[672px] w-[593px] sm:h-[420px] sm:w-[350px] object-cover inset-0"
             src={shopping}
             alt=""
           />
         </div>
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-[30px] w-4/5 py-[25px]">
+      <div className="flex flex-wrap justify-center items-center gap-[30px] w-4/5 py-[25px] sm:text-center">
         <div className="flex flex-col gap-[24px] w-[394px]">
           <span className="text-[#E74040] text-[14px] leading-5 ">
             Problems trying
@@ -60,7 +60,7 @@ export default function About() {
           </p>
         </div>
       </div>
-      <div className="flex flex-wrap justify-around items-center w-4/5 py-[80px]">
+      <div className="flex flex-wrap justify-around items-center w-4/5 py-[80px] sm:flex-col sm:gap-[20px] mb-[112px] ">
         <div className="flex flex-col items-center font-bold">
           <h3 className="text-[#252B42] text-[58px] leading-[80px] text-center">
             15K
@@ -87,9 +87,9 @@ export default function About() {
         </div>
       </div>
 
-      <div className="flex justify-center items-center relative w-[989px] h-[540px] my-[112px]">
+      <div className=" flex justify-center items-center relative  w-4/5 h-[500px]">
         <img
-          className="absolute m-max-h-[540px] m-max-w-[989px]  rounded-md object-cover"
+          className="absolute w-full h-auto rounded-md object-cover"
           src={video}
           alt="videocard"
         />
@@ -97,7 +97,8 @@ export default function About() {
           <FaPlay className="text-white text-[23px]" />
         </button>
       </div>
-      <div className="flex flex-col items-center  py-[112px] gap-[112px]">
+
+      <div className="flex flex-col items-center  py-[112px] gap-[112px] mt-[112px]">
         <div className="flex flex-col items-center gap-[10px] max-w-[607px] px-10">
           <h2 className="text-[#252B42] text-center text-[40px] font-bold leading-[50px]">
             Meet Our Team
@@ -146,7 +147,7 @@ export default function About() {
             </span>
           </button>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center sm:hidden">
           <img
             className="object-cover w-[590px] h-[640px]"
             src={workwithus}
