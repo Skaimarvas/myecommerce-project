@@ -32,8 +32,6 @@ export default function SignUp() {
     return /^[A-Z]{2}\d{2}[A-Z\d]{4}\d{7}([A-Z\d]{1,16})?$/.test(value);
   };
 
-  console.log("ROLE ID", watch("role_id"));
-
   const onSubmit = (data) => {
     console.log(data);
     if (data.role_id === "2") {
@@ -54,7 +52,6 @@ export default function SignUp() {
 
   useEffect(() => {
     dataRequest();
-    console.log("useEffect çalışıyor");
   }, []);
 
   return (
@@ -85,7 +82,9 @@ export default function SignUp() {
               })}
             />
 
-            <p className=" text-red-500 text-sm">{errors.name?.message}</p>
+            <p className=" text-red-500 text-sm max-w-[200px]">
+              {errors.name?.message}
+            </p>
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -99,7 +98,9 @@ export default function SignUp() {
               className="py-2 px-3 border border-gray-300 rounded-md w-full"
               {...register("email", { required: "Email is required" })}
             />
-            <p className=" text-red-500 text-sm">{errors.email?.message}</p>
+            <p className=" text-red-500 text-sm max-w-[200px]">
+              {errors.email?.message}
+            </p>
           </div>
         </div>
 
@@ -147,7 +148,7 @@ export default function SignUp() {
               })}
             />
             <div className="max-w-[200px]">
-              <p className=" text-red-500 text-sm">
+              <p className=" text-red-500 text-sm max-w-[200px]">
                 {errors.cpassword?.message}
               </p>
             </div>
@@ -193,7 +194,7 @@ export default function SignUp() {
                     required: "Store Name should be at least 3 letters",
                   })}
                 />
-                <p className=" text-red-500 text-sm">
+                <p className=" text-red-500 text-sm max-w-[200px]">
                   {errors.storename?.message}
                 </p>
               </div>
@@ -216,7 +217,7 @@ export default function SignUp() {
                     },
                   })}
                 />
-                <p className=" text-red-500 text-sm">
+                <p className=" text-red-500 text-sm max-w-[200px]">
                   {errors.storephone?.message}
                 </p>
               </div>
@@ -237,7 +238,7 @@ export default function SignUp() {
                     },
                   })}
                 />
-                <p className=" text-red-500 text-sm">
+                <p className=" text-red-500 text-sm max-w-[200px]">
                   {errors.storetaxid?.message}
                 </p>
               </div>
@@ -253,14 +254,13 @@ export default function SignUp() {
                   className="py-2 px-3 border border-gray-300 rounded-md w-full"
                   {...register("storebank", {
                     required: "Store Bank Account Required",
-                    validate: { validIBAN: isValidIBAN },
                     validate: {
                       validIBAN: (value) =>
                         isValidIBAN(value) || "Store Bank is not valid",
                     },
                   })}
                 />
-                <p className=" text-red-500 text-sm">
+                <p className=" text-red-500 text-sm max-w-[200px]">
                   {errors.storebank?.message}
                 </p>
               </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
@@ -27,10 +28,13 @@ export default function useAxios() {
     return axiosRequest[reqType](endPoint, payLoad)
       .then((res) => {
         console.log("RESDATA", res.data);
-
+        reqType === "post" && toast.success(res.data.message);
         return reqType === "get" ? setResData(res.data) : "";
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        toast.error(err.message);
+        console.log(err);
+      })
       .finally(setLoading(false));
   };
 

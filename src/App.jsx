@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //CSS
 import "./App.css";
@@ -20,6 +22,7 @@ function App() {
       <Header />
       <PageContent />
       <Footer />
+      <ToastContainer />
     </>
   );
 }
