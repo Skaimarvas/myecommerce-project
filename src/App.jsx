@@ -15,11 +15,13 @@ import PageContent from "./layouts/PageContent";
 import { useDispatch } from "react-redux";
 //Actions
 import { getCategories } from "./store/actions/globalActions";
+import { getProduct } from "./store/thunks/productThunk";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getProduct());
   }, []);
   return (
     <>

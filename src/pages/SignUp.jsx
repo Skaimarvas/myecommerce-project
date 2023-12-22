@@ -48,6 +48,8 @@ export default function SignUp() {
     console.log(data);
 
     dispatch(postSignup(formData));
+
+    reset();
   };
 
   useEffect(() => {
