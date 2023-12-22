@@ -32,23 +32,9 @@ export default function SignUp() {
     return /^[A-Z]{2}\d{2}[A-Z\d]{4}\d{7}([A-Z\d]{1,16})?$/.test(value);
   };
   const onSubmit = (data) => {
-    const { cpassword, role_id, ...postdata } = data;
-    const store =
-      role_id === "2"
-        ? {
-            name: data.storename,
-            phone: data.storephone,
-            tax_no: data.storetaxid,
-            bank_account: data.storebank,
-          }
-        : {};
-
-    const formData = { ...postdata, ...(role_id === "2" && { store }) };
-
     console.log(data);
-
-    dispatch(postSignup(formData));
-
+    const { cpassword, ...postdata } = data;
+    dispatch(postSignup(postdata));
     reset();
   };
 
@@ -196,12 +182,12 @@ export default function SignUp() {
                   id="storename"
                   type="text"
                   className="py-2 px-3 border border-gray-300 rounded-md w-full"
-                  {...register("storename", {
+                  {...register("store.name", {
                     required: "Store Name should be at least 3 letters",
                   })}
                 />
                 <p className=" text-red-500 text-sm max-w-[200px]">
-                  {errors.storename?.message}
+                  {errors.store?.name?.message}
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -212,9 +198,10 @@ export default function SignUp() {
                   Store Phone{" "}
                 </label>
                 <input
+                  id="storephone"
                   type="text"
                   className="py-2 px-3 border border-gray-300 rounded-md w-full"
-                  {...register("storephone", {
+                  {...register("store.phone", {
                     required: "Store Phone Number Required",
                     validate: {
                       validPhoneNumber: (value) =>
@@ -224,19 +211,23 @@ export default function SignUp() {
                   })}
                 />
                 <p className=" text-red-500 text-sm max-w-[200px]">
-                  {errors.storephone?.message}
+                  {errors.store?.phone?.message}
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap gap-4 justify-center w-full">
               <div className="flex flex-col gap-2">
-                <label className="text-[#252B42] text-sm leading-6 font-semibold">
+                <label
+                  htmlFor="storetaxid"
+                  className="text-[#252B42] text-sm leading-6 font-semibold"
+                >
                   Store Tax ID
                 </label>
                 <input
+                  id="storetaxid"
                   type="text"
                   className="py-2 px-3 border border-gray-300 rounded-md w-full"
-                  {...register("storetaxid", {
+                  {...register("store.tax_no", {
                     required: "Store Tax Id Required",
                     validate: {
                       validStoreTaxId: (value) =>
@@ -245,7 +236,7 @@ export default function SignUp() {
                   })}
                 />
                 <p className=" text-red-500 text-sm max-w-[200px]">
-                  {errors.storetaxid?.message}
+                  {errors.store?.tax_no?.message}
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -256,9 +247,10 @@ export default function SignUp() {
                   Store Bank Account
                 </label>{" "}
                 <input
+                  id="storebank"
                   type="text"
                   className="py-2 px-3 border border-gray-300 rounded-md w-full"
-                  {...register("storebank", {
+                  {...register("store.bank_account", {
                     required: "Store Bank Account Required",
                     validate: {
                       validIBAN: (value) =>
@@ -267,7 +259,7 @@ export default function SignUp() {
                   })}
                 />
                 <p className=" text-red-500 text-sm max-w-[200px]">
-                  {errors.storebank?.message}
+                  {errors.store?.bank_account?.message}
                 </p>
               </div>
             </div>
