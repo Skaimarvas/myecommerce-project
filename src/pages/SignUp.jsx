@@ -53,7 +53,10 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    dispatch(getRoles());
+    console.log("ROLES", roles);
+    if (roles.length === 0) {
+      dispatch(getRoles());
+    }
   }, []);
 
   return (

@@ -12,16 +12,20 @@ import Footer from "./layouts/Footer";
 import PageContent from "./layouts/PageContent";
 
 //Hooks
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //Actions
 import { getCategories } from "./store/actions/globalActions";
 import { getProduct } from "./store/thunks/productThunk";
 
 function App() {
+  const { productlist } = useSelector((store) => store.product);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getProduct());
+    console.log("productlist", productlist);
+    if (productlist.length === 0) {
+      dispatch(getCategories());
+      dispatch(getProduct());
+    }
   }, []);
   return (
     <>
