@@ -1,14 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAxios from "../hooks/useAxios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCategories, getRoles } from "../store/actions/globalActions";
+import { getRoles } from "../store/actions/globalActions";
 import { postSignup } from "../store/actions/userActions";
 
 export default function SignUp() {
   const { roles } = useSelector((store) => store.global);
-  const [resData, error, dataRequest] = useAxios();
   const dispatch = useDispatch();
   const {
     register,
@@ -34,28 +32,25 @@ export default function SignUp() {
     return /^[A-Z]{2}\d{2}[A-Z\d]{4}\d{7}([A-Z\d]{1,16})?$/.test(value);
   };
   const onSubmit = (data) => {
+    const { cpassword, role_id, ...postdata } = data;
+    const store =
+      role_id === "2"
+        ? {
+            name: data.storename,
+            phone: data.storephone,
+            tax_no: data.storetaxid,
+            bank_account: data.storebank,
+          }
+        : {};
+
+    const formData = { ...postdata, ...(role_id === "2" && { store }) };
+
     console.log(data);
-    if (data.role_id === "2") {
-      const { cpassword, ...postdata } = data;
-      dispatch(postSignup(postdata));
-      // reset();
-      // dataRequest("post", "/signup", postdata);
-    }
-    const {
-      cpassword,
-      storename,
-      storephone,
-      storetaxid,
-      storebank,
-      ...postdata
-    } = data;
-    dispatch(postSignup(postdata));
-    // dataRequest("post", "/signup", postdata);
-    // reset();
+
+    dispatch(postSignup(formData));
   };
 
   useEffect(() => {
-    // dataRequest();
     dispatch(getRoles());
   }, []);
 
@@ -193,6 +188,7 @@ export default function SignUp() {
                   Store Name
                 </label>
                 <input
+                  id="storename"
                   type="text"
                   className="py-2 px-3 border border-gray-300 rounded-md w-full"
                   {...register("storename", {

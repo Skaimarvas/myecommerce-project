@@ -4,13 +4,6 @@ import { axiosInstance } from "../../api/api";
 export const GET_ROLES_FROM_API = "GET_ROLES_FROM_API";
 export const GET_CATEGORIES_FROM_API = "GET_CATEGORIES_FROM_API";
 
-export const FETCH_STATES = {
-  notFetched: "NOT_FETCHED",
-  fetching: "FETCHING",
-  fetched: "FETCHED",
-  error: "ERROR",
-};
-
 export const getRolesFromApi = (roles) => {
   return {
     type: GET_ROLES_FROM_API,
@@ -25,6 +18,7 @@ export const getCategoriesFromApi = (categories) => {
   };
 };
 
+//thunks
 export const getRoles = () => {
   return (dispatch, getState) => {
     axiosInstance
