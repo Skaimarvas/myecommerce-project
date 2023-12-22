@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import useAxios from "../hooks/useAxios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getRoles } from "../store/actions/globalActions";
+import { getCategories, getRoles } from "../store/actions/globalActions";
 import { postSignup } from "../store/actions/userActions";
 
 export default function SignUp() {

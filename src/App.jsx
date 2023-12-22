@@ -1,22 +1,26 @@
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 //CSS
 import "./App.css";
 
-//LAYOUT
+//Components
+
+//Layout
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import PageContent from "./layouts/PageContent";
 
-//COMPONENTS
 //Hooks
-import useAxios from "./hooks/useAxios";
+import { useDispatch } from "react-redux";
+//Actions
+import { getCategories } from "./store/actions/globalActions";
 
 function App() {
-  const [resData, dataRequest] = useAxios();
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
   return (
     <>
       <Header />
