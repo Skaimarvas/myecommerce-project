@@ -16,8 +16,6 @@ export const axiosWithAuth = () => {
       });
 };
 
-export let axiosRequest = axiosWithAuth();
-
 export default function useAxios() {
   const [resData, setResData] = useState();
   const [error, setError] = useState();
@@ -34,9 +32,10 @@ export default function useAxios() {
       .catch((err) => {
         toast.error(err.message);
         console.log(err);
+        setError(err.message);
       })
       .finally(setLoading(false));
   };
 
-  return [resData, dataRequest];
+  return [resData, error, dataRequest];
 }

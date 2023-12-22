@@ -2,10 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../hooks/useAxios";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getRoles } from "../store/actions/globalActions";
+import { postSignup } from "../store/actions/userActions";
 
 export default function SignUp() {
-  const [resData, dataRequest] = useAxios();
-
+  const { roles } = useSelector((store) => store.global);
+  const [resData, error, dataRequest] = useAxios();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -23,20 +27,19 @@ export default function SignUp() {
   const isValidPhoneNumber = (value) => {
     return /^(\+90\s?|0)([0-9]\s?){9}[0-9]$/.test(value);
   };
-
   const isValidStoreTaxId = (value) => {
     return /^T\d{4}V\d{6}$/.test(value);
   };
-
   const isValidIBAN = (value) => {
     return /^[A-Z]{2}\d{2}[A-Z\d]{4}\d{7}([A-Z\d]{1,16})?$/.test(value);
   };
-
   const onSubmit = (data) => {
     console.log(data);
     if (data.role_id === "2") {
       const { cpassword, ...postdata } = data;
-      dataRequest("post", "/signup", postdata);
+      dispatch(postSignup(postdata));
+      // reset();
+      // dataRequest("post", "/signup", postdata);
     }
     const {
       cpassword,
@@ -46,12 +49,14 @@ export default function SignUp() {
       storebank,
       ...postdata
     } = data;
-    dataRequest("post", "/signup", postdata);
-    reset();
+    dispatch(postSignup(postdata));
+    // dataRequest("post", "/signup", postdata);
+    // reset();
   };
 
   useEffect(() => {
-    dataRequest();
+    // dataRequest();
+    dispatch(getRoles());
   }, []);
 
   return (
@@ -167,8 +172,8 @@ export default function SignUp() {
             className="uppercase py-2 px-3 border border-gray-300 rounded-md w-full"
             value={watch("role_id")}
           >
-            {resData &&
-              resData.map((rol) => (
+            {roles &&
+              roles.map((rol) => (
                 <option key={rol.id} value={rol.id}>
                   {" "}
                   {rol.code}{" "}
