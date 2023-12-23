@@ -15,7 +15,7 @@ import { storeReducer } from "./reducers/storeReducer";
 
 const reducers = combineReducers({
   global: globalReducer,
-  user: userReducer,
+  userData: userReducer,
   product: productReducer,
   shopping: shoppingCartReducer,
   storeReducer: storeReducer,

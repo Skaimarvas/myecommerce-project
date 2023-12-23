@@ -1,9 +1,9 @@
 import {
   GET_PRODUCT_FROM_API,
   GET_TOTAL_PRODUCTS_COUNT,
-  SET_PRODUCT_FETCH_STATE,
 } from "../actions/productActions";
-import { FETCH_STATES } from "../actions/productActions";
+import { FETCH_STATES } from "../actions/globalActions";
+import { SET_PRODUCT_FETCH_STATE } from "../actions/productActions";
 
 const initalState = {
   productlist: [],
@@ -18,7 +18,7 @@ export const productReducer = (state = initalState, action) => {
     case GET_PRODUCT_FROM_API:
       const products = {
         ...state,
-        productlist: [...state.productlist, action.payload],
+        productlist: action.payload,
       };
       return products;
     case GET_TOTAL_PRODUCTS_COUNT:

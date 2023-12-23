@@ -16,17 +16,19 @@ import { useDispatch, useSelector } from "react-redux";
 //Actions
 import { getCategories } from "./store/actions/globalActions";
 import { getProduct } from "./store/thunks/productThunk";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const { productlist } = useSelector((store) => store.product);
   const dispatch = useDispatch();
+  const { user } = useSelector((store) => store.userData);
+
   useEffect(() => {
-    console.log("productlist", productlist);
     if (productlist.length === 0) {
       dispatch(getCategories());
       dispatch(getProduct());
     }
-  }, []);
+  }, [user]);
   return (
     <>
       <Header />

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getRoles } from "../store/actions/globalActions";
-import { postSignup } from "../store/actions/userActions";
+import { postSignup } from "../store/thunks/userThunk";
 
 export default function SignUp() {
   const { roles } = useSelector((store) => store.global);

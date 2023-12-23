@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import { axiosInstance } from "../../api/api";
-import { FETCH_STATES } from "../actions/productActions";
+import { FETCH_STATES } from "../actions/globalActions";
+import { setProductFetchState } from "../actions/productActions";
 
 import {
   getProductFromApi,
   getTotalProductsCount,
-  setProductFetchState,
 } from "../actions/productActions";
 
 export const getProduct = () => {
