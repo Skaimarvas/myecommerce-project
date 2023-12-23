@@ -1,7 +1,9 @@
 import { ADD_PRODUCT_TO_CART } from "../actions/shoppingCartActions";
 
 const initialState = {
-  product: [],
+  cart: [],
+  payment: {},
+  adress: {},
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -10,7 +12,7 @@ export const shoppingCartReducer = (state = initialState, action) => {
       const productcart = {
         ...state,
         //id ile count kontrolü yapılacak
-        product: [...state.product, action.payload],
+        cart: [...state.cart, action.payload],
       };
       return productcart;
     default:

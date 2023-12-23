@@ -10,11 +10,15 @@ import {
 import { globalReducer } from "./reducers/globalReducer";
 import { userReducer } from "./reducers/userReducer";
 import { productReducer } from "./reducers/productReducer";
+import { shoppingCartReducer } from "./reducers/shoppingCartReducer";
+import { storeReducer } from "./reducers/storeReducer";
 
 const reducers = combineReducers({
   global: globalReducer,
   user: userReducer,
   product: productReducer,
+  shopping: shoppingCartReducer,
+  storeReducer: storeReducer,
 });
 
 export const store = createStore(reducers, applyMiddleware(logger, thunk));
