@@ -7,9 +7,12 @@ import {
   SET_USER_FETCH_STATE,
 } from "../actions/userActions";
 import { POST_LOGIN_DATA_TO_API } from "../actions/userActions";
+const userInfo = localStorage.getItem("user")
+  ? { email: JSON.parse(localStorage.getItem("user")) }
+  : {};
 const initialState = {
   newUsers: [],
-  user: {},
+  user: userInfo,
   userfetchstate: FETCH_STATES.notFetched,
 };
 
@@ -35,6 +38,7 @@ export const userReducer = (state = initialState, action) => {
       };
       toast.success("You succesfully logged out!");
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       return logoutuser;
     case SET_USER_FETCH_STATE:
       const userFetch = {

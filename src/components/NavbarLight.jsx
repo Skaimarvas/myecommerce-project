@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Gravatar from "react-gravatar";
+
 //Icons
 import vector from "../assets/Vector.png";
 import { Icon } from "@iconify/react";
@@ -16,8 +17,8 @@ import { FETCH_STATES } from "../store/actions/globalActions";
 
 export default function NavbarLight() {
   const dispatch = useDispatch();
-  const [value] = useLocalStorage("token");
   const tokenValue = localStorage.getItem("token");
+  const useremail = localStorage.getItem("user");
   const { email, token } = useSelector((store) => store.userData.user);
 
   const logoutHandler = () => {
@@ -25,8 +26,9 @@ export default function NavbarLight() {
     dispatch(setUserFetchState(FETCH_STATES.notFetched));
   };
 
-  console.log("TOKENVALUE", value);
-  useEffect(() => {}, [tokenValue]);
+  useEffect(() => {
+    console.log("LOCALUSEREMAIL ->", useremail, "REDUXEMAIL ->", email);
+  }, []);
 
   return (
     <div className="flex flex-wrap  justify-between  md:justify-center items-center sm:flex-col tracking-wider px-[10px] ">
@@ -67,16 +69,17 @@ export default function NavbarLight() {
         </li>
       </ul>
 
-      <div className="flex items-center text-[#23A6F0] sm:hidden">
+      <div className="flex items-center text-[#23A6F0] gap-4 sm:hidden">
         {!tokenValue && (
-          <Link to="/signup">
+          <Link to="/login">
             <div className=" flex text-base p-[15px] items-center gap-[5px] font-bold  ">
               <FaRegUser />
-              <span>Sig up / Register</span>
+              <span>Login</span>
             </div>
           </Link>
         )}
         <Gravatar email={email} size={24} className="rounded-full" />
+        {tokenValue && <span className="text-[#252B42]">Harold Smile</span>}
         {tokenValue && (
           <button
             className="rounded-md bg-light-blue-800 hover:bg-light-blue-900 text-white px-2 py-1"
@@ -87,27 +90,32 @@ export default function NavbarLight() {
         )}
 
         {!tokenValue && (
-          <Link to="/login">
-            <button className="rounded-md bg-light-blue-800 hover:bg-light-blue-900 text-white px-2 py-1">
-              <span>Log in</span>
+          <Link to="/signup">
+            <button className="flex gap-2 items-center rounded-md bg-light-blue-800 hover:bg-light-blue-900 text-white   px-[25px] py-[15px] tracking-wider">
+              <span>Become a member</span>
+              <Icon icon="cil:arrow-right" />
             </button>
           </Link>
         )}
-        <div className="p-[15px]">
-          <BsSearch className="text-[20px]" />
-        </div>
-        <div className="p-[15px]">
-          {" "}
-          <div className="flex items-center gap-[5px]">
-            <BsCart className="text-[20px]" /> <span>1</span>{" "}
+        {tokenValue && (
+          <div className="flex items-center">
+            <div className="p-[15px]">
+              <BsSearch className="text-[20px]" />
+            </div>
+            <div className="p-[15px]">
+              {" "}
+              <div className="flex items-center gap-[5px]">
+                <BsCart className="text-[20px]" /> <span>1</span>{" "}
+              </div>
+            </div>
+            <div className="p-[15px]">
+              <div className="flex items-center gap-[5px]">
+                <FaRegHeart className="text-[20px]" />
+                <span>1</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="p-[15px]">
-          <div className="flex items-center gap-[5px]">
-            <FaRegHeart className="text-[20px]" />
-            <span>1</span>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

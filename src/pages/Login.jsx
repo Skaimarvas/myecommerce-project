@@ -4,10 +4,13 @@ import { postLogin } from "../store/thunks/userThunk";
 
 //Hooks
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Login() {
+  const [userInfo, setUserInfo] = useLocalStorage("user");
+  const token = localStorage.getItem("token");
   const history = useHistory();
   const {
     register,
@@ -21,10 +24,14 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
+    const { email, password } = data;
     console.log(data);
     dispatch(postLogin(data));
+    setUserInfo(email);
     reset();
-    history.push("/");
+    // if (token) {
+    //   history.push("/");
+    // }
   };
 
   return (

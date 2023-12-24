@@ -10,6 +10,7 @@ import Contact from "../pages/Contact";
 import ProductSlider from "../components/ProductSlider";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export default function PageContent() {
   return (
@@ -41,6 +42,9 @@ export default function PageContent() {
         </Route>
         <Route path="/" exact>
           <Home />
+        </Route>
+        <Route path="*">
+          <NotFoundPage />
         </Route>
       </Switch>
     </div>

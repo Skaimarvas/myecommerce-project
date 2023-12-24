@@ -11,7 +11,7 @@ export default function SignUp() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid, isSubmitting },
     watch,
     getValues,
     reset,
@@ -265,13 +265,24 @@ export default function SignUp() {
             </div>
           </>
         )}
-
-        <button
-          type="submit"
-          className=" py-3 px-6 bg-[#23A6F0] hover:bg-[#207eb4] rounded-md text-white w-full"
-        >
-          <span> Sign Up </span>
-        </button>
+        <div className="flex flex-col w-full">
+          <button
+            disabled={!isValid || isSubmitting}
+            type="submit"
+            className=" py-3 px-6 bg-[#23A6F0] hover:bg-[#207eb4] rounded-md text-white w-full disabled:cursor-not-allowed disabled:hover:none"
+          >
+            <span> Sign Up </span>
+          </button>
+          <p className="max-w-[450px] text-[12px] text-center leading-7 text-[#737373]">
+            By clicking the 'Sign Up' button, you acknowledge that you have
+            read, understood, and agree to the terms and conditions governing
+            this service. Please review our{" "}
+            <span className="font-bold hover:underline cursor-pointer">
+              terms of service
+            </span>{" "}
+            and privacy policy for more information.
+          </p>
+        </div>
       </form>
     </div>
   );
