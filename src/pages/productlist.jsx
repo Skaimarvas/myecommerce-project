@@ -1,15 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//components
+//Components
 import ShopCard from "../components/ShopCard";
 import ProductCard from "../components/productcard";
+import Brands from "../components/Brands";
 //Icons
 import { MdNavigateNext } from "react-icons/md";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { PiListChecksThin } from "react-icons/pi";
-import Brands from "../components/Brands";
+//Hooks
+import { useSelector } from "react-redux";
 
 export default function ProductList() {
+  const { categories } = useSelector((store) => store.global);
+
+  const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
+  const firstFive = descendingList.slice(0, 5);
   return (
     <div className="flex flex-col items-center tracking-wider  ">
       <div className="flex flex-col items-center w-full bg-[#FAFAFA]">
@@ -32,11 +38,16 @@ export default function ProductList() {
         </div>
 
         <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
-          <ShopCard />
-          <ShopCard />
-          <ShopCard />
-          <ShopCard />
-          <ShopCard />
+          {firstFive?.map((cat) => (
+            <Link to={`${cat.gender}/${cat.title}`}>
+              {" "}
+              <ShopCard
+                img={cat.img}
+                title={cat.title}
+                gender={cat.gender}
+              />{" "}
+            </Link>
+          ))}
         </div>
       </div>
       <div className="flex flex-wrap justify-between items-center w-4/5 py-[40px] sm:flex-col sm:gap-[24px]">

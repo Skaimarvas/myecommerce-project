@@ -5,7 +5,7 @@ import {
   postLoginDataToApi,
 } from "../actions/userActions";
 import { FETCH_STATES } from "../actions/globalActions";
-import { setUserFetchState } from "../actions/userActions";
+import { setUserFetchState, verifyUserToken } from "../actions/userActions";
 
 export const postSignup = (data) => {
   return (dispatch, getState) => {
@@ -33,6 +33,24 @@ export const postLogin = (data) => {
       })
       .catch((err) => {
         toast.error("Your password or email are wrong!");
+        dispatch(setUserFetchState(FETCH_STATES.failed));
+        localStorage.removeItem("token");
+      });
+  };
+};
+
+export const verifyToken = (data) => {
+  return (dispatch, getState) => {
+    dispatch(setUserFetchState(FETCH_STATES.fetching));
+    axiosInstance
+      .get("/verify")
+      .then((res) => {
+        dispatch(verifyUserToken(res.data));
+        toast.success("Verification Successfully Completed");
+        dispatch(setUserFetchState(FETCH_STATES.fetched));
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
         dispatch(setUserFetchState(FETCH_STATES.failed));
       });
   };

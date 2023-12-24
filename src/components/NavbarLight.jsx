@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Gravatar from "react-gravatar";
 
@@ -10,25 +9,28 @@ import { BsSearch } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 //Hooks
-import useLocalStorage from "../hooks/useLocalStorage";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+//Actions
 import { logoutUser, setUserFetchState } from "../store/actions/userActions";
 import { FETCH_STATES } from "../store/actions/globalActions";
 
 export default function NavbarLight() {
   const dispatch = useDispatch();
   const tokenValue = localStorage.getItem("token");
-  const useremail = localStorage.getItem("user");
-  const { email, token } = useSelector((store) => store.userData.user);
+  const [categoryVisible, setCategoryVisible] = useState(false);
+  const { categories } = useSelector((store) => store.global);
+
+  const categoryMenuToggle = () => {
+    setCategoryVisible(!categoryVisible);
+  };
+
+  const { email, name } = useSelector((store) => store.userData.user);
 
   const logoutHandler = () => {
     dispatch(logoutUser());
     dispatch(setUserFetchState(FETCH_STATES.notFetched));
   };
-
-  useEffect(() => {
-    console.log("LOCALUSEREMAIL ->", useremail, "REDUXEMAIL ->", email);
-  }, []);
 
   return (
     <div className="flex flex-wrap  justify-between  md:justify-center items-center sm:flex-col tracking-wider px-[10px] ">
@@ -51,16 +53,30 @@ export default function NavbarLight() {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li className="flex  items-center gap-[9px] pl-[6px]  font-medium sm:font-normal text-[#252B42] sm:text-[#737373] leading-7 ">
-          <Link to="/productlist"> Shop</Link>
-
-          <button className="sm:hidden">
-            {" "}
-            <img src={vector} alt="" />{" "}
-          </button>
-        </li>
         <li>
-          {" "}
+          <div className="flex  items-center gap-[9px] pl-[6px]  font-medium sm:font-normal text-[#252B42] sm:text-[#737373] leading-7 ">
+            <Link to="/shopping"> Shop</Link>
+            <img
+              src={vector}
+              alt=""
+              onClick={() => categoryMenuToggle()}
+              className="sm:hidden"
+            />
+          </div>
+          {categoryVisible && (
+            <div>
+              <ul className="absolute mt-2 bg-white p-2 rounded shadow z-50 ">
+                {categories.map((cat, index) => (
+                  <li key={index}>
+                    <Link to={`${cat.gender}/${cat.title}`}> {cat.code} </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </li>
+
+        <li>
           <Link to="/about">About</Link>
         </li>
         <li>Blog</li>
@@ -79,7 +95,7 @@ export default function NavbarLight() {
           </Link>
         )}
         <Gravatar email={email} size={24} className="rounded-full" />
-        {tokenValue && <span className="text-[#252B42]">Harold Smile</span>}
+        {tokenValue && <span className="text-[#252B42]"> {name} </span>}
         {tokenValue && (
           <button
             className="rounded-md bg-light-blue-800 hover:bg-light-blue-900 text-white px-2 py-1"

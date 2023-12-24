@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 //Actions
 import { getCategories } from "./store/actions/globalActions";
 import { getProduct } from "./store/thunks/productThunk";
+import { verifyToken } from "./store/thunks/userThunk";
 
 function App() {
   const { productlist } = useSelector((store) => store.product);
@@ -23,11 +24,12 @@ function App() {
   const { user } = useSelector((store) => store.userData);
 
   useEffect(() => {
+    dispatch(verifyToken());
     if (productlist.length === 0) {
       dispatch(getCategories());
       dispatch(getProduct());
     }
-  }, [user]);
+  }, []);
   return (
     <>
       <Header />

@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom/";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Login() {
-  const [userInfo, setUserInfo] = useLocalStorage("user");
   const token = localStorage.getItem("token");
   const history = useHistory();
   const {
@@ -25,9 +24,8 @@ export default function Login() {
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    console.log(data);
+    console.log("LOGINDATA", data);
     dispatch(postLogin(data));
-    setUserInfo(email);
     reset();
     // if (token) {
     //   history.push("/");

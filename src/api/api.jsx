@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosWithAuth = () => {
-  const token = localStorage.getItem("token");
+  const token = JSON.parse(localStorage.getItem("token"));
   return token
     ? axios.create({
         baseURL: "https://workintech-fe-ecommerce.onrender.com",

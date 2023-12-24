@@ -5,14 +5,13 @@ import {
   LOGOUT_USER,
   POST_SIGNUP_DATA_TO_API,
   SET_USER_FETCH_STATE,
+  VERIFY_TOKEN,
 } from "../actions/userActions";
 import { POST_LOGIN_DATA_TO_API } from "../actions/userActions";
-const userInfo = localStorage.getItem("user")
-  ? { email: JSON.parse(localStorage.getItem("user")) }
-  : {};
+
 const initialState = {
   newUsers: [],
-  user: userInfo,
+  user: {},
   userfetchstate: FETCH_STATES.notFetched,
 };
 
@@ -38,7 +37,7 @@ export const userReducer = (state = initialState, action) => {
       };
       toast.success("You succesfully logged out!");
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
+
       return logoutuser;
     case SET_USER_FETCH_STATE:
       const userFetch = {
@@ -46,6 +45,12 @@ export const userReducer = (state = initialState, action) => {
         userfetchstate: action.payload,
       };
       return userFetch;
+    case VERIFY_TOKEN:
+      const verifyUser = {
+        ...state,
+        user: action.payload,
+      };
+      return verifyUser;
 
     default:
       return state;
