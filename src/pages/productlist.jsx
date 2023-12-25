@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 export default function ProductList() {
   const { categories } = useSelector((store) => store.global);
+  const { productlist } = useSelector((store) => store.product);
 
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
   const firstFive = descendingList.slice(0, 5);
@@ -38,8 +39,8 @@ export default function ProductList() {
         </div>
 
         <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
-          {firstFive?.map((cat) => (
-            <Link to={`${cat.gender}/${cat.title}`}>
+          {firstFive?.map((cat, index) => (
+            <Link key={index} to={`${cat.gender}/${cat.title}`}>
               {" "}
               <ShopCard
                 img={cat.img}
@@ -95,18 +96,17 @@ export default function ProductList() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-[30px] w-4/5 ">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        `
+        {productlist?.map((pro, index) => (
+          <ProductCard
+            key={index}
+            name={pro.name}
+            description={pro.description}
+            images={pro.images}
+            price={pro.price}
+          />
+        ))}
+        `
       </div>
       <div className="py-[40px] ">
         <button className="border border-[#BDBDBD] bg-[#F3F3F3] p-[25px] hover:bg-blue-gray-100 rounded-l-sm">
