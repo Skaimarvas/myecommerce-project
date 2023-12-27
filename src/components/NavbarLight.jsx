@@ -46,7 +46,7 @@ export default function NavbarLight() {
 
       <NavbarMenu />
 
-      <div className="flex items-center text-[#23A6F0] gap-4 sm:hidden">
+      <div className="flex items-center text-[#23A6F0] gap-4 sm:flex-col ">
         {!tokenValue && (
           <Link to="/login">
             <div className=" flex text-base p-[15px] items-center gap-[5px] font-bold  ">

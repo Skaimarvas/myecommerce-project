@@ -21,7 +21,7 @@ export default function NavbarMenu(props) {
 
   return (
     <nav>
-      <ul className="flex flex-wrap sm:flex-col text-[18px] sm:text-[30px] font-bold sm:font-normal text-[#737373] leading-6 sm:leading-[45px] justify-center items-center gap-[15px] py-3 sm:py-[98px]">
+      <ul className="flex flex-wrap sm:flex-col text-[18px] sm:text-[30px] font-bold sm:font-normal text-[#737373] leading-6 sm:leading-[45px] justify-center items-center gap-[15px]  sm:py-[30px]">
         <NavbarMenuItem
           path="/"
           name="Home"
@@ -47,7 +47,7 @@ export default function NavbarMenu(props) {
                   icon={<Icon icon="material-symbols:man" />}
                 >
                   {open1SubMenu && (
-                    <DropdownMenu className="ml-2 -mt-[18px] ">
+                    <DropdownMenu className="ml-2 -mt-[20px] ">
                       {male.map((pro) => (
                         <NavbarMenuItem
                           key={pro.id}
@@ -65,7 +65,7 @@ export default function NavbarMenu(props) {
                   icon={<Icon icon="material-symbols:woman" />}
                 >
                   {open2SubMenu && (
-                    <DropdownMenu className="ml-2 -mt-[18px] ">
+                    <DropdownMenu className="ml-2 -mt-[20px] ">
                       {female.map((pro) => (
                         <NavbarMenuItem
                           key={pro.id}

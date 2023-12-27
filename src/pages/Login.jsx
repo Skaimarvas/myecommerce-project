@@ -6,14 +6,12 @@ import { postLogin } from "../store/thunks/userThunk";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { FETCH_STATES } from "../store/actions/globalActions";
+import { useState } from "react";
+//Components
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function Login() {
-  const token = localStorage.getItem("token");
-  console.log("TOKEN", token);
-  const { userfetchstate } = useSelector((store) => store.userData);
-
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const {
     register,
@@ -27,72 +25,73 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
+    setLoading(true);
     const { email, password } = data;
     console.log("LOGINDATA", data);
-
-    // Dispatch the postLogin thunk and use .then to perform actions after it completes
     dispatch(postLogin(data)).then(() => {
-      history.push("/");
-      reset();
+      setTimeout(() => {
+        setLoading(false);
+        history.push("/");
+        reset();
+      }, 1000);
     });
   };
 
-  // if (token) {
-  //   history.push("/");
-  // }
-
   return (
     <div className=" flex justify-center items-center   bg-gray-100 traking-wider p-6">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center gap-6 py-8 text-left bg-white p-8 rounded-md shadow-lg "
-      >
-        <h2 className="text-2xl font-bold text-center"> Login</h2>
-        <div className="flex flex-wrap justify-center gap-4 w-full">
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="email"
-              className="text-[#252B42] text-sm leading-6 font-semibold "
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              className="py-2 px-3 border border-gray-300 rounded-md w-full"
-              {...register("email", { required: "Email is required" })}
-            />
-            <p className=" text-red-500 text-sm max-w-[200px]">
-              {errors.email?.message}
-            </p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="password"
-              className="text-[#252B42] text-sm leading-6 font-semibold"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              className="py-2 px-3 border border-gray-300 rounded-md w-full"
-              {...register("password", {
-                required: "Password is required",
-              })}
-            />
-
-            <p className=" text-red-500 text-sm max-w-[200px]">
-              {errors.password?.message}{" "}
-            </p>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className=" py-3 px-6 bg-[#23A6F0] hover:bg-[#207eb4] rounded-md text-white w-full"
+      {!loading && (
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-center justify-center gap-6 py-8 text-left bg-white p-8 rounded-md shadow-lg "
         >
-          <span> Login </span>
-        </button>
-      </form>
+          <h2 className="text-2xl font-bold text-center"> Login</h2>
+          <div className="flex flex-wrap justify-center gap-4 w-full">
+            <div className="flex flex-col gap-2">
+              <label
+                htmlFor="email"
+                className="text-[#252B42] text-sm leading-6 font-semibold "
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                className="py-2 px-3 border border-gray-300 rounded-md w-full"
+                {...register("email", { required: "Email is required" })}
+              />
+              <p className=" text-red-500 text-sm max-w-[200px]">
+                {errors.email?.message}
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label
+                htmlFor="password"
+                className="text-[#252B42] text-sm leading-6 font-semibold"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                className="py-2 px-3 border border-gray-300 rounded-md w-full"
+                {...register("password", {
+                  required: "Password is required",
+                })}
+              />
+
+              <p className=" text-red-500 text-sm max-w-[200px]">
+                {errors.password?.message}{" "}
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className=" py-3 px-6 bg-[#23A6F0] hover:bg-[#207eb4] rounded-md text-white w-full"
+          >
+            <span> Login </span>
+          </button>
+        </form>
+      )}
+      {loading && <LoadingScreen></LoadingScreen>}
     </div>
   );
 }
