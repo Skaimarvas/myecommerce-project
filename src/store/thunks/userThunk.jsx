@@ -24,17 +24,21 @@ export const postSignup = (data) => {
 export const postLogin = (data) => {
   return (dispatch, getState) => {
     dispatch(setUserFetchState(FETCH_STATES.fetching));
-    axiosInstance
+
+    // Returning the promise here
+    return axiosInstance
       .post("/login", data)
       .then((res) => {
         dispatch(postLoginDataToApi(res.data));
         dispatch(setUserFetchState(FETCH_STATES.fetched));
-        toast.success("You succesfully logged in!");
+        toast.success("You successfully logged in!");
       })
       .catch((err) => {
-        toast.error("Your password or email are wrong!");
+        toast.error("Your password or email is wrong!");
         dispatch(setUserFetchState(FETCH_STATES.failed));
         localStorage.removeItem("token");
+        // Propagate the error so that the promise is rejected
+        throw err;
       });
   };
 };

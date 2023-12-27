@@ -14,8 +14,8 @@ export default function NavbarMenuItem(props) {
   } = props;
   return (
     <div
-      onMouseEnter={() => setTimeout(() => setOpen(true), 300)}
-      onMouseLeave={() => setTimeout(() => setOpen(false), 300)}
+      onMouseEnter={() => setOpen && setTimeout(() => setOpen(true), 300)}
+      onMouseLeave={() => setOpen && setTimeout(() => setOpen(false), 300)}
       className={`flex items-center gap-[9px]  ${className} `}
     >
       {icon}

@@ -11,10 +11,10 @@ import { useSelector } from "react-redux";
 import NavbarMenuItem from "./NavbarMenuItem";
 import DropdownMenu from "./DropdownMenu";
 export default function NavbarMenu(props) {
+  const { categories } = useSelector((store) => store.global);
   const [openMenu, setOpenMenu] = useState(false);
   const [open1SubMenu, setOpen1SubMenu] = useState(false);
   const [open2SubMenu, setOpen2SubMenu] = useState(false);
-  const { categories } = useSelector((store) => store.global);
 
   const male = categories.filter((cat) => cat.gender === "e");
   const female = categories.filter((cat) => cat.gender === "k");
@@ -50,6 +50,7 @@ export default function NavbarMenu(props) {
                     <DropdownMenu className="ml-2 -mt-[18px] ">
                       {male.map((pro) => (
                         <NavbarMenuItem
+                          key={pro.id}
                           className="hover:bg-blue-gray-50 p-2 "
                           name={pro.title}
                         />
@@ -67,6 +68,7 @@ export default function NavbarMenu(props) {
                     <DropdownMenu className="ml-2 -mt-[18px] ">
                       {female.map((pro) => (
                         <NavbarMenuItem
+                          key={pro.id}
                           className="hover:bg-blue-gray-50 p-2 "
                           name={pro.title}
                         />

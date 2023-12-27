@@ -29,8 +29,12 @@ export default function Login() {
   const onSubmit = (data) => {
     const { email, password } = data;
     console.log("LOGINDATA", data);
-    dispatch(postLogin(data));
-    reset();
+
+    // Dispatch the postLogin thunk and use .then to perform actions after it completes
+    dispatch(postLogin(data)).then(() => {
+      history.push("/");
+      reset();
+    });
   };
 
   // if (token) {
