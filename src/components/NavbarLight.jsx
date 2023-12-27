@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Gravatar from "react-gravatar";
 
 //Icons
-import vector from "../assets/Vector.png";
 import { Icon } from "@iconify/react";
 import { FaRegUser } from "react-icons/fa6";
 import { BsSearch } from "react-icons/bs";
@@ -16,15 +15,15 @@ import { FETCH_STATES } from "../store/actions/globalActions";
 //Components
 import NavbarMenu from "./NavbarMenu";
 
-export default function NavbarLight() {
+export default function NavbarLight(props) {
+  const { setConfirm } = props;
   const dispatch = useDispatch();
   const tokenValue = localStorage.getItem("token");
 
   const { email, name } = useSelector((store) => store.userData.user);
 
-  const logoutHandler = () => {
-    dispatch(logoutUser());
-    dispatch(setUserFetchState(FETCH_STATES.notFetched));
+  const confirmHandler = () => {
+    setConfirm(true);
   };
 
   return (
@@ -60,7 +59,7 @@ export default function NavbarLight() {
         {tokenValue && (
           <button
             className="rounded-md bg-light-blue-800 hover:bg-light-blue-900 text-white px-2 py-1"
-            onClick={() => logoutHandler()}
+            onClick={() => confirmHandler()}
           >
             <span>Log out</span>
           </button>

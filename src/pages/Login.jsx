@@ -91,7 +91,7 @@ export default function Login() {
           </button>
         </form>
       )}
-      {loading && <LoadingScreen></LoadingScreen>}
+      {loading && <LoadingScreen />}
     </div>
   );
 }
