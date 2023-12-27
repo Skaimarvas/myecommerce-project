@@ -54,7 +54,7 @@ export default function ProductList() {
       <div className="flex flex-wrap justify-between items-center w-4/5 py-[40px] sm:flex-col sm:gap-[24px]">
         <div>
           <span className="text-[#737373] text-[14px] leading-6 font-bold">
-            Showing all 12 results
+            Showing all {productlist.length} results
           </span>
         </div>
         <div className="flex flex-row items-center gap-[15px] sm:justify-between sm:w-4/5">
