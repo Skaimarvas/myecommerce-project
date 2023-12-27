@@ -51,6 +51,7 @@ export const verifyToken = (data) => {
       })
       .catch((err) => {
         toast.error(err.response.data.message);
+        localStorage.removeItem("token");
         dispatch(setUserFetchState(FETCH_STATES.failed));
       });
   };

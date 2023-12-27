@@ -9,30 +9,16 @@ import { BsSearch } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 //Hooks
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //Actions
 import { logoutUser, setUserFetchState } from "../store/actions/userActions";
 import { FETCH_STATES } from "../store/actions/globalActions";
+//Components
+import NavbarMenu from "./NavbarMenu";
 
 export default function NavbarLight() {
   const dispatch = useDispatch();
   const tokenValue = localStorage.getItem("token");
-  const [categoryVisible, setCategoryVisible] = useState(false);
-  const { categories } = useSelector((store) => store.global);
-
-  const male = categories.filter((cat) => cat.gender === "e");
-  const female = categories.filter((cat) => cat.gender === "k");
-
-  const categoryMenuToggle = () => {
-    setCategoryVisible(!categoryVisible);
-  };
-  const handleShopEnter = () => {
-    setCategoryVisible(true);
-  };
-  const handleShopLeave = () => {
-    setCategoryVisible(false);
-  };
 
   const { email, name } = useSelector((store) => store.userData.user);
 
@@ -58,75 +44,7 @@ export default function NavbarLight() {
         <Icon className="sm:block hidden text-[30px]" icon="typcn:th-menu" />
       </div>
 
-      <ul className="flex flex-wrap sm:flex-col text-[18px] sm:text-[30px] font-bold sm:font-normal text-[#737373] leading-6 sm:leading-[45px] justify-center items-center gap-[15px] py-3 sm:py-[98px]">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          {" "}
-          <div>
-            <div className="flex  items-center gap-[9px] pl-[6px]  font-medium sm:font-normal text-[#252B42] sm:text-[#737373] leading-7 ">
-              <Link to="/shopping"> Shop</Link>
-              <img
-                src={vector}
-                alt=""
-                onClick={() => categoryMenuToggle()}
-                className="sm:hidden"
-              />
-            </div>
-            {categoryVisible && (
-              <div>
-                <ul className="absolute mt-2 bg-white p-2 rounded shadow z-50 ">
-                  {/* {categories.map((cat, index) => (
-                  <li key={index}>
-                    <Link to={`${cat.gender}/${cat.title}`}> {cat.code} </Link>
-                  </li>
-                ))} */}
-                  <li>
-                    <div className="relative">
-                      <div className="flex items-center">
-                        <Link>Kadın </Link>{" "}
-                        <button>
-                          <Icon icon="bxs:right-arrow" />
-                        </button>{" "}
-                      </div>
-
-                      <div className="absolute z-50 ">
-                        <ul className="flex flex-col gap-4 ml-[45px]  bg-white p-5 rounded shadow  ">
-                          {female.map((cat, index) => (
-                            <li key={index}>
-                              <Link to={`${cat.gender}/${cat.title}`}>
-                                {cat.title}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex items-center">
-                      {" "}
-                      <Link>Erkek</Link>{" "}
-                      <button>
-                        <Icon icon="bxs:right-arrow" />
-                      </button>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-        </li>
-
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>Blog</li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-      </ul>
+      <NavbarMenu />
 
       <div className="flex items-center text-[#23A6F0] gap-4 sm:hidden">
         {!tokenValue && (

@@ -7,9 +7,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { FETCH_STATES } from "../store/actions/globalActions";
 
 export default function Login() {
   const token = localStorage.getItem("token");
+  console.log("TOKEN", token);
+  const { userfetchstate } = useSelector((store) => store.userData);
+
   const history = useHistory();
   const {
     register,
@@ -27,10 +31,11 @@ export default function Login() {
     console.log("LOGINDATA", data);
     dispatch(postLogin(data));
     reset();
-    // if (token) {
-    //   history.push("/");
-    // }
   };
+
+  // if (token) {
+  //   history.push("/");
+  // }
 
   return (
     <div className=" flex justify-center items-center   bg-gray-100 traking-wider p-6">
