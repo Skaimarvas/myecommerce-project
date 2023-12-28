@@ -7,27 +7,55 @@ import Brands from "../components/Brands";
 import InfiniteScroll from "react-infinite-scroll-component";
 //Icons
 import { MdNavigateNext } from "react-icons/md";
-import { PiSquaresFourFill } from "react-icons/pi";
-import { PiListChecksThin } from "react-icons/pi";
+import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
+
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../store/thunks/productThunk";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 export default function ProductList() {
   const { categories } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
-  const [proLength, setProLength] = useState(productlist.length);
-
+  const { register, watch } = useForm();
+  const [count, setCount] = useState(25);
   const dispatch = useDispatch();
 
   const fetchedData = () => {
-    setProLength(proLength + 25);
+    // const newSize = count + 25;
+    // setCount(newSize);
     dispatch(getProduct(`?offset=${productlist.length}`));
   };
 
+  const popularity = productlist;
+
+  const ascendingPriceProduct = [...productlist].sort(
+    (a, b) => a.price - b.price
+  );
+  const descendingPriceProduct = [...productlist].sort(
+    (a, b) => b.price - a.price
+  );
+  const ascendingRatingProduct = [...productlist].sort(
+    (a, b) => a.rating - b.rating
+  );
+  const descendingRatingProduct = [...productlist].sort(
+    (a, b) => b.rating - a.rating
+  );
+
+  const filteroption =
+    watch("filter") === "ascendingPriceProduct"
+      ? ascendingPriceProduct
+      : watch("filter") === "descendingPriceProduct"
+      ? descendingPriceProduct
+      : watch("filter") === "descendingRatingProduct"
+      ? descendingRatingProduct
+      : watch("filter") === "ascendingRatingProduct"
+      ? ascendingRatingProduct
+      : popularity;
+
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
-  const firstFive = descendingList.slice(0, 5);
+  const topCategories = descendingList.slice(0, 5);
   return (
     <div className="flex flex-col items-center  tracking-wider  ">
       <div className="flex flex-col items-center w-full bg-[#FAFAFA]">
@@ -50,7 +78,7 @@ export default function ProductList() {
         </div>
 
         <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
-          {firstFive?.map((cat, index) => (
+          {topCategories?.map((cat, index) => (
             <Link key={index} to={`${cat.gender}/${cat.title}`}>
               {" "}
               <ShopCard
@@ -83,15 +111,18 @@ export default function ProductList() {
           <form className="flex flex-row gap-[15px]">
             <label>
               <select
-                name="filter"
+                {...register("filter")}
                 id="filteroption"
-                defaultValue="Rating Ascending"
+                defaultValue="Popularity"
                 className="flex  w-[200px] h-[50px] rounded-md bg-[#F9F9F9] px-[10px]"
               >
-                <option value="Price Ascending">Price Ascending</option>
-                <option value="Price Descending">Price Descending</option>
-                <option value="Rating Ascending">Rating Ascending</option>
-                <option value="Rating Descending">Rating Descending</option>
+                <option value="popularity">Popularity</option>
+                <option value="ascendingPriceProduct">Price Ascending</option>
+                <option value="descendingPriceProduct">Price Descending</option>
+                <option value="ascendingRatingProduct">Rating Ascending</option>
+                <option value="descendingRatingProduct">
+                  Rating Descending
+                </option>
               </select>
             </label>
             <button
@@ -131,7 +162,7 @@ export default function ProductList() {
         }
       >
         <div className="blackborder flex flex-wrap justify-center gap-[30px] ">
-          {productlist?.map((pro, index) => (
+          {filteroption?.map((pro, index) => (
             <ProductCard
               key={index}
               name={pro.name}

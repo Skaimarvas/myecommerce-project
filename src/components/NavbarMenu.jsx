@@ -47,7 +47,7 @@ export default function NavbarMenu(props) {
                   icon={<Icon icon="material-symbols:man" />}
                 >
                   {open1SubMenu && (
-                    <DropdownMenu className="ml-2 -mt-[20px] ">
+                    <DropdownMenu className="ml-2 -mt-[18px] ">
                       {male.map((pro) => (
                         <NavbarMenuItem
                           key={pro.id}
@@ -65,7 +65,7 @@ export default function NavbarMenu(props) {
                   icon={<Icon icon="material-symbols:woman" />}
                 >
                   {open2SubMenu && (
-                    <DropdownMenu className="ml-2 -mt-[20px] ">
+                    <DropdownMenu className="ml-2 -mt-[18px] ">
                       {female.map((pro) => (
                         <NavbarMenuItem
                           key={pro.id}

@@ -16,9 +16,12 @@ const initalState = {
 export const productReducer = (state = initalState, action) => {
   switch (action.type) {
     case GET_PRODUCT_FROM_API:
+      const renewProduct = action.payload.filter(
+        (pro) => !state.productlist.some((som) => pro.id === som.id)
+      );
       const products = {
         ...state,
-        productlist: [...state.productlist, ...action.payload],
+        productlist: [...state.productlist, ...renewProduct],
       };
       return products;
     case GET_TOTAL_PRODUCTS_COUNT:
