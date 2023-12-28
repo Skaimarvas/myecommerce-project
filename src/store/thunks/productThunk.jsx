@@ -8,11 +8,11 @@ import {
   getTotalProductsCount,
 } from "../actions/productActions";
 
-export const getProduct = () => {
+export const getProduct = (offset) => {
   return (dispatch, getState) => {
     dispatch(setProductFetchState(FETCH_STATES.fetching));
     axiosInstance
-      .get("/products")
+      .get(`products${offset ? offset : ""}`)
       .then((res) => {
         dispatch(getProductFromApi(res.data.products));
         dispatch(getTotalProductsCount(res.data.total));

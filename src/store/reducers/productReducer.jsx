@@ -18,7 +18,7 @@ export const productReducer = (state = initalState, action) => {
     case GET_PRODUCT_FROM_API:
       const products = {
         ...state,
-        productlist: action.payload,
+        productlist: [...state.productlist, ...action.payload],
       };
       return products;
     case GET_TOTAL_PRODUCTS_COUNT:

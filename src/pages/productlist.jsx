@@ -4,21 +4,32 @@ import { Link } from "react-router-dom";
 import ShopCard from "../components/ShopCard";
 import ProductCard from "../components/productcard";
 import Brands from "../components/Brands";
+import InfiniteScroll from "react-infinite-scroll-component";
 //Icons
 import { MdNavigateNext } from "react-icons/md";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { PiListChecksThin } from "react-icons/pi";
 //Hooks
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../store/thunks/productThunk";
+import { useState } from "react";
 
 export default function ProductList() {
   const { categories } = useSelector((store) => store.global);
-  const { productlist } = useSelector((store) => store.product);
+  const { productlist, productcount } = useSelector((store) => store.product);
+  const [proLength, setProLength] = useState(productlist.length);
+
+  const dispatch = useDispatch();
+
+  const fetchedData = () => {
+    setProLength(proLength + 25);
+    dispatch(getProduct(`?offset=${productlist.length}`));
+  };
 
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
   const firstFive = descendingList.slice(0, 5);
   return (
-    <div className="flex flex-col items-center tracking-wider  ">
+    <div className="flex flex-col items-center  tracking-wider  ">
       <div className="flex flex-col items-center w-full bg-[#FAFAFA]">
         <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:flex-col sm:gap-[30px]">
           <div>
@@ -74,12 +85,13 @@ export default function ProductList() {
               <select
                 name="filter"
                 id="filteroption"
-                defaultValue="Popularity"
-                className="flex  w-[141px] h-[50px] rounded-md bg-[#F9F9F9] px-[10px]"
+                defaultValue="Rating Ascending"
+                className="flex  w-[200px] h-[50px] rounded-md bg-[#F9F9F9] px-[10px]"
               >
-                <option value="Price">Price</option>
-                <option value="Popularity">Popularity</option>
-                <option value="Comments">Comments</option>
+                <option value="Price Ascending">Price Ascending</option>
+                <option value="Price Descending">Price Descending</option>
+                <option value="Rating Ascending">Rating Ascending</option>
+                <option value="Rating Descending">Rating Descending</option>
               </select>
             </label>
             <button
@@ -95,8 +107,7 @@ export default function ProductList() {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-[30px] w-4/5 ">
-        `
+      {/* <div className="flex flex-wrap justify-center gap-[30px] w-4/5 ">
         {productlist?.map((pro, index) => (
           <ProductCard
             key={index}
@@ -106,8 +117,32 @@ export default function ProductList() {
             price={pro.price}
           />
         ))}
-        `
-      </div>
+      </div> */}
+
+      <InfiniteScroll
+        dataLength={productlist.length}
+        next={fetchedData}
+        hasMore={productlist.length === productcount ? false : true}
+        loader={<h4> Loading...</h4>}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
+        <div className="blackborder flex flex-wrap justify-center gap-[30px] ">
+          {productlist?.map((pro, index) => (
+            <ProductCard
+              key={index}
+              name={pro.name}
+              description={pro.description}
+              images={pro.images}
+              price={pro.price}
+            />
+          ))}
+        </div>
+      </InfiniteScroll>
+
       <div className="py-[40px] ">
         <button className="border border-[#BDBDBD] bg-[#F3F3F3] p-[25px] hover:bg-blue-gray-100 rounded-l-sm">
           {" "}
