@@ -1,9 +1,11 @@
 import React from "react";
 import ProductCard from "./productcard";
 import { useSelector } from "react-redux";
+import { FETCH_STATES } from "../store/actions/globalActions";
+import SpiningAnimation from "./SpiningAnimation";
 
 export default function BestsellerProduct() {
-  const { productlist } = useSelector((store) => store.product);
+  const { productlist, fetchstate } = useSelector((store) => store.product);
 
   const descendingProduct = [...productlist].sort(
     (a, b) => b.rating - a.rating
@@ -23,15 +25,16 @@ export default function BestsellerProduct() {
         </p>
       </div>
       <div className="flex flex-wrap  justify-center gap-[30px] w-4/5 sm:w-full sm:px-[10px]">
-        {firstEightProduct?.map((pro, index) => (
-          <ProductCard
-            key={index}
-            name={pro.name}
-            description={pro.description}
-            images={pro.images}
-            price={pro.price}
-          />
-        ))}
+        {(fetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
+          firstEightProduct?.map((pro, index) => (
+            <ProductCard
+              key={index}
+              name={pro.name}
+              description={pro.description}
+              images={pro.images}
+              price={pro.price}
+            />
+          ))}
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
-import { toast } from "react-toastify";
-import { axiosInstance } from "../../api/api";
+export const SET_CATEGORIES_FETCH_STATE = "SET_CATEGORIES_FETCH_STATE";
 
 export const FETCH_STATES = {
   notFetched: "NOT_FETCHED",
@@ -22,5 +21,12 @@ export const getCategoriesFromApi = (categories) => {
   return {
     type: GET_CATEGORIES_FROM_API,
     payload: categories,
+  };
+};
+
+export const setCategoriesFetchState = (fetchstate) => {
+  return {
+    type: SET_CATEGORIES_FETCH_STATE,
+    payload: fetchstate,
   };
 };

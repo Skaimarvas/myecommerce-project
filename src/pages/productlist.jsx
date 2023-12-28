@@ -14,9 +14,10 @@ import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../store/thunks/productThunk";
 import { useForm } from "react-hook-form";
+import { FETCH_STATES } from "../store/actions/globalActions";
 
 export default function ProductList() {
-  const { categories } = useSelector((store) => store.global);
+  const { categories, cfetchstate } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
   const { register, watch } = useForm();
   const dispatch = useDispatch();
@@ -75,16 +76,17 @@ export default function ProductList() {
         </div>
 
         <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
-          {topCategories?.map((cat, index) => (
-            <Link key={index} to={`${cat.gender}/${cat.title}`}>
-              {" "}
-              <ShopCard
-                img={cat.img}
-                title={cat.title}
-                gender={cat.gender}
-              />{" "}
-            </Link>
-          ))}
+          {(cfetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
+            topCategories?.map((cat, index) => (
+              <Link key={index} to={`${cat.gender}/${cat.title}`}>
+                {" "}
+                <ShopCard
+                  img={cat.img}
+                  title={cat.title}
+                  gender={cat.gender}
+                />{" "}
+              </Link>
+            ))}
         </div>
       </div>
       <div className="flex flex-wrap justify-between items-center w-4/5 py-[40px] sm:flex-col sm:gap-[24px]">
@@ -153,12 +155,13 @@ export default function ProductList() {
         hasMore={productlist.length === productcount ? false : true}
         loader={
           <div className="flex justify-center items-center p-1">
-            <SpiningAnimation wh={3} />
+            {/* <SpiningAnimation wh={3} /> */}
+            Loading
           </div>
         }
         endMessage={
           <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
+            <b>All products were fetched</b>
           </p>
         }
       >

@@ -1,5 +1,8 @@
-import { toast } from "react-toastify";
-import { GET_ROLES_FROM_API } from "../actions/globalActions";
+import {
+  FETCH_STATES,
+  GET_ROLES_FROM_API,
+  SET_CATEGORIES_FETCH_STATE,
+} from "../actions/globalActions";
 import { GET_CATEGORIES_FROM_API } from "../actions/globalActions";
 
 const initalState = {
@@ -7,6 +10,7 @@ const initalState = {
   categories: [],
   theme: "",
   language: "",
+  cfetchstate: FETCH_STATES.notFetched,
 };
 
 export const globalReducer = (state = initalState, action) => {
@@ -23,7 +27,12 @@ export const globalReducer = (state = initalState, action) => {
         categories: action.payload,
       };
       return categories;
-
+    case SET_CATEGORIES_FETCH_STATE:
+      const cstate = {
+        ...state,
+        cfetchstate: action.payload,
+      };
+      return cstate;
     default:
       return state;
   }

@@ -11,11 +11,15 @@ import ProductSlider from "../components/ProductSlider";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import NotFoundPage from "../pages/NotFoundPage";
+import SpiningAnimation from "../components/SpiningAnimation";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
+        <Route path="/spin" exact>
+          <SpiningAnimation />
+        </Route>
         <Route path="/login" exact>
           <Login />
         </Route>
