@@ -5,6 +5,7 @@ import ShopCard from "../components/ShopCard";
 import ProductCard from "../components/productcard";
 import Brands from "../components/Brands";
 import InfiniteScroll from "react-infinite-scroll-component";
+import SpiningAnimation from "../components/SpiningAnimation";
 //Icons
 import { MdNavigateNext } from "react-icons/md";
 import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
@@ -13,18 +14,14 @@ import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../store/thunks/productThunk";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 export default function ProductList() {
   const { categories } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
   const { register, watch } = useForm();
-  const [count, setCount] = useState(25);
   const dispatch = useDispatch();
 
   const fetchedData = () => {
-    // const newSize = count + 25;
-    // setCount(newSize);
     dispatch(getProduct(`?offset=${productlist.length}`));
   };
 
@@ -154,14 +151,18 @@ export default function ProductList() {
         dataLength={productlist.length}
         next={fetchedData}
         hasMore={productlist.length === productcount ? false : true}
-        loader={<h4> Loading...</h4>}
+        loader={
+          <div className="flex justify-center items-center p-1">
+            <SpiningAnimation wh={3} />
+          </div>
+        }
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>
           </p>
         }
       >
-        <div className="blackborder flex flex-wrap justify-center gap-[30px] ">
+        <div className=" flex flex-wrap justify-center gap-[30px] ">
           {filteroption?.map((pro, index) => (
             <ProductCard
               key={index}
