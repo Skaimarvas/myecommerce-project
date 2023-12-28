@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getRoles } from "../store/actions/globalActions";
+import { getRoles } from "../store/thunks/globalThunk";
 import { postSignup } from "../store/thunks/userThunk";
 
 export default function SignUp() {
@@ -13,7 +13,6 @@ export default function SignUp() {
     handleSubmit,
     formState: { errors, isValid, isSubmitting },
     watch,
-    getValues,
     reset,
   } = useForm({
     mode: "onChange",

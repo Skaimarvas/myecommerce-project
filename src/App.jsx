@@ -15,7 +15,7 @@ import PageContent from "./layouts/PageContent";
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
 //Actions
-import { getCategories } from "./store/actions/globalActions";
+import { getCategories } from "./store/thunks/globalThunk";
 import { getProduct } from "./store/thunks/productThunk";
 import { verifyToken } from "./store/thunks/userThunk";
 
