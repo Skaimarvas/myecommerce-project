@@ -74,7 +74,7 @@ export default function NavbarLight(props) {
           </Link>
         )}
         {tokenValue && (
-          <div className="flex items-center">
+          <div className="flex items-center sm:hidden">
             <div className="p-[15px]">
               <BsSearch className="text-[20px]" />
             </div>

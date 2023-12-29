@@ -20,7 +20,7 @@ export default function NavbarMenuItem(props) {
     >
       {icon}
       <Link to={`${path}`}> {name} </Link>
-      <button onClick={() => handleMenuClick()}>
+      <button onClick={() => handleMenuClick && handleMenuClick()}>
         <img src={img} alt="" />
         {children}
       </button>

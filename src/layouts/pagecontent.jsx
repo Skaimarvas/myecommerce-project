@@ -17,9 +17,7 @@ export default function PageContent() {
   return (
     <div>
       <Switch>
-        <Route path="/spin" exact>
-          <SpiningAnimation />
-        </Route>
+        //Login olduktan sonra bu sayfalara yönlendirmeleri kapat
         <Route path="/login" exact>
           <Login />
         </Route>
@@ -38,7 +36,7 @@ export default function PageContent() {
         <Route path="/about" exact>
           <About />
         </Route>
-        <Route path="/product" exact>
+        <Route path="/shopping/:cat/:id/:name" exact>
           <Product />
         </Route>
         <Route path="/shopping" exact>

@@ -78,7 +78,7 @@ export default function ProductList() {
         <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
           {(cfetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
             topCategories?.map((cat, index) => (
-              <Link key={index} to={`${cat.gender}/${cat.title}`}>
+              <Link key={index} to={`/shopping/${cat.gender}/${cat.title}`}>
                 {" "}
                 <ShopCard
                   img={cat.img}
@@ -150,6 +150,7 @@ export default function ProductList() {
       </div> */}
 
       <InfiniteScroll
+        className="flex flex-col items-center justify-center"
         dataLength={productlist.length}
         next={fetchedData}
         hasMore={productlist.length === productcount ? false : true}
@@ -165,15 +166,22 @@ export default function ProductList() {
           </p>
         }
       >
-        <div className=" flex flex-wrap justify-center gap-[30px] ">
+        <div className=" flex flex-wrap justify-center gap-[30px] w-4/5 ">
           {filteroption?.map((pro, index) => (
-            <ProductCard
-              key={index}
-              name={pro.name}
-              description={pro.description}
-              images={pro.images}
-              price={pro.price}
-            />
+            <Link
+              to={`/shopping/${pro.category_id}/${
+                pro.id
+              }/${pro.name.toLowerCase()}`}
+            >
+              {" "}
+              <ProductCard
+                key={index}
+                name={pro.name}
+                description={pro.description}
+                images={pro.images}
+                price={pro.price}
+              />
+            </Link>
           ))}
         </div>
       </InfiniteScroll>

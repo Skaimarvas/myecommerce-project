@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "@material-tailwind/react";
-import Slider from "react-slick";
 
 //Icons
 import { MdNavigateNext } from "react-icons/md";
@@ -17,8 +16,26 @@ import product3 from "../assets/product3.jpeg";
 //Components
 import BestsellerProduct from "../components/BestsellerProduct";
 import Brands from "../components/Brands";
+//Hooks
+import { useParams } from "react-router-dom/";
+import { useSelector } from "react-redux";
 
 export default function Product() {
+  const { productlist } = useSelector((store) => store.product);
+  // const [pro, setPro] = useState();
+
+  const specPro = useParams();
+
+  const pro = productlist?.find((pro) => pro.id == specPro.id);
+
+  console.log("PRODUCTID", specPro);
+
+  console.log("PRODUCTLIST", productlist);
+  // useEffect(() => {
+  //   setPro(pro);
+  //   console.log("detail", pro);
+  // }, [productlist, specPro.id]);
+  console.log("ÜRÜN", pro);
   return (
     <div className="flex flex-col items-center tracking-wider bg-[#FAFAFA]">
       <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:justify-center ">
@@ -58,7 +75,7 @@ export default function Product() {
             <div className="relative ">
               <img
                 className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover"
-                src={product1}
+                src={pro.images[0].url}
                 alt="image 1"
               />
             </div>
@@ -87,7 +104,7 @@ export default function Product() {
           <div>
             <h4 className="text-[20px] text-[#252B42] leading-[30px]">
               {" "}
-              Floating Phone{" "}
+              {pro.name}{" "}
             </h4>
           </div>
           <div className="flex flex-row items-center gap-[10px]">
@@ -99,23 +116,21 @@ export default function Product() {
               <FaRegStarHalfStroke />
             </div>
             <span className="text-[#737373] text-[14px] leading-6">
-              10 Reviews
+              {pro.rating} Reviews
             </span>
           </div>
           <div>
             <span className="text-[#252B42] text-2xl font-bold  ">
-              $1,139.33
+              ${pro.price}
             </span>
           </div>
           <div className="flex flex-row gap-[5px] text-[14px] leading-6 font-bold">
             <span className="text-[#737373]">Availability :</span>
-            <span className="text-[#23A6F0]">In Stock</span>
+            <span className="text-[#23A6F0]"> {pro.stock} </span>
           </div>
           <div>
             <p className="text-[#858585] text-[14px] leading-5 ">
-              Met minim Mollie non desert Alamo est sit cliquey dolor do met
-              sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-              venial consequent sent nostrum met.
+              {pro.description}
             </p>
           </div>
 

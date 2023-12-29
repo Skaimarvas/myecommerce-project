@@ -41,15 +41,17 @@ export default function NavbarMenu(props) {
               {" "}
               <DropdownMenu className="-ml-[88px]">
                 <NavbarMenuItem
+                  path="/shopping"
                   className="p-2 hover:bg-blue-gray-50"
                   name="Erkek"
                   setOpen={setOpen1SubMenu}
                   icon={<Icon icon="material-symbols:man" />}
                 >
                   {open1SubMenu && (
-                    <DropdownMenu className="ml-2 -mt-[18px] ">
+                    <DropdownMenu className="ml-2 -mt-[20px] ">
                       {male.map((pro) => (
                         <NavbarMenuItem
+                          path={`/${pro.gender}/${pro.title.toLowerCase()}`}
                           key={pro.id}
                           className="hover:bg-blue-gray-50 p-2 "
                           name={pro.title}
@@ -59,15 +61,17 @@ export default function NavbarMenu(props) {
                   )}
                 </NavbarMenuItem>
                 <NavbarMenuItem
+                  path="/shopping"
                   setOpen={setOpen2SubMenu}
                   className="p-2 hover:bg-blue-gray-50"
                   name="Kadın"
                   icon={<Icon icon="material-symbols:woman" />}
                 >
                   {open2SubMenu && (
-                    <DropdownMenu className="ml-2 -mt-[18px] ">
+                    <DropdownMenu className="ml-2 -mt-[20px] ">
                       {female.map((pro) => (
                         <NavbarMenuItem
+                          path={`/${pro.gender}/${pro.title.toLowerCase()}`}
                           key={pro.id}
                           className="hover:bg-blue-gray-50 p-2 "
                           name={pro.title}
