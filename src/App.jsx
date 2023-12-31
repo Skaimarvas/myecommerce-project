@@ -13,23 +13,17 @@ import Footer from "./layouts/Footer";
 import PageContent from "./layouts/PageContent";
 
 //Hooks
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //Actions
-import { getCategories } from "./store/thunks/globalThunk";
-import { getProduct } from "./store/thunks/productThunk";
+
 import { verifyToken } from "./store/thunks/userThunk";
 
 function App() {
   const [confirm, setConfirm] = useState(false);
-  const { productlist } = useSelector((store) => store.product);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(verifyToken());
-    if (productlist.length === 0) {
-      dispatch(getCategories());
-      dispatch(getProduct());
-    }
   }, []);
   return (
     <>

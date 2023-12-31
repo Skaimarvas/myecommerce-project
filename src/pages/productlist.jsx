@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 //Components
 import ShopCard from "../components/ShopCard";
 import ProductCard from "../components/productcard";
@@ -10,50 +11,46 @@ import SpiningAnimation from "../components/SpiningAnimation";
 import { MdNavigateNext } from "react-icons/md";
 import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
 
+//Thunk
+import { getCategories } from "../store/thunks/globalThunk";
+import { getProduct } from "../store/thunks/productThunk";
+
+//Actions
+import { FETCH_STATES } from "../store/actions/globalActions";
+
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../store/thunks/productThunk";
 import { useForm } from "react-hook-form";
-import { FETCH_STATES } from "../store/actions/globalActions";
+import { useHistory } from "react-router-dom";
 
 export default function ProductList() {
   const { categories, cfetchstate } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
   const { register, watch } = useForm();
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const fetchedData = () => {
-    dispatch(getProduct(`?offset=${productlist.length}`));
+    const offsetcount = count + 25;
+    setCount(offsetcount);
+    dispatch(getProduct(`?offset=${offsetcount}&s`));
   };
-
-  const popularity = productlist;
-
-  const ascendingPriceProduct = [...productlist].sort(
-    (a, b) => a.price - b.price
-  );
-  const descendingPriceProduct = [...productlist].sort(
-    (a, b) => b.price - a.price
-  );
-  const ascendingRatingProduct = [...productlist].sort(
-    (a, b) => a.rating - b.rating
-  );
-  const descendingRatingProduct = [...productlist].sort(
-    (a, b) => b.rating - a.rating
-  );
-
-  const filteroption =
-    watch("filter") === "ascendingPriceProduct"
-      ? ascendingPriceProduct
-      : watch("filter") === "descendingPriceProduct"
-      ? descendingPriceProduct
-      : watch("filter") === "descendingRatingProduct"
-      ? descendingRatingProduct
-      : watch("filter") === "ascendingRatingProduct"
-      ? ascendingRatingProduct
-      : popularity;
 
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
   const topCategories = descendingList.slice(0, 5);
+
+  const filterHandle = (e) => {
+    e.preventDefault();
+    fetchedData();
+  };
+
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getProduct(`?offset=${count}&sort=price:desc`));
+    history.push(`?offset=${count}&sort=price:desc`);
+  }, []);
+
   return (
     <div className="flex flex-col items-center  tracking-wider  ">
       <div className="flex flex-col items-center w-full bg-[#FAFAFA]">
@@ -115,19 +112,17 @@ export default function ProductList() {
                 defaultValue="Popularity"
                 className="flex  w-[200px] h-[50px] rounded-md bg-[#F9F9F9] px-[10px]"
               >
-                <option value="popularity">Popularity</option>
-                <option value="ascendingPriceProduct">Price Ascending</option>
-                <option value="descendingPriceProduct">Price Descending</option>
-                <option value="ascendingRatingProduct">Rating Ascending</option>
-                <option value="descendingRatingProduct">
-                  Rating Descending
-                </option>
+                <option value="">Popularity</option>
+                <option value="price:asc">Price Ascending</option>
+                <option value="price:desc">Price Descending</option>
+                <option value="rating:asc">Rating Ascending</option>
+                <option value="rating:desc">Rating Descending</option>
               </select>
             </label>
             <button
-              className="w-[91px] h-[50px] bg-[#23A6F0] py-[10px] px-[20px] rounded-md"
+              className="w-[91px] h-[50px] bg-[#23A6F0] py-[10px] px-[20px] hover:bg-light-blue-900 rounded-md"
               type="Submit"
-              onClick={(e) => e.preventDefault()}
+              // onClick={(e) => filterHandle(e)}
             >
               <span className="text-white text-center text-[14px] leading-6 tracking-wider">
                 Filter
@@ -136,28 +131,15 @@ export default function ProductList() {
           </form>
         </div>
       </div>
-
-      {/* <div className="flex flex-wrap justify-center gap-[30px] w-4/5 ">
-        {productlist?.map((pro, index) => (
-          <ProductCard
-            key={index}
-            name={pro.name}
-            description={pro.description}
-            images={pro.images}
-            price={pro.price}
-          />
-        ))}
-      </div> */}
-
       <InfiniteScroll
-        className="flex flex-col items-center justify-center"
+        className="flex flex-col items-center p-1 justify-center"
         dataLength={productlist.length}
         next={fetchedData}
         hasMore={productlist.length === productcount ? false : true}
         loader={
           <div className="flex justify-center items-center p-1">
-            {/* <SpiningAnimation wh={3} /> */}
-            Loading
+            <SpiningAnimation wh={3} />
+            {/* Loading */}
           </div>
         }
         endMessage={
@@ -166,8 +148,8 @@ export default function ProductList() {
           </p>
         }
       >
-        <div className=" flex flex-wrap justify-center gap-[30px] w-4/5 ">
-          {filteroption?.map((pro, index) => (
+        <div className=" flex flex-wrap justify-center gap-[30px]">
+          {productlist?.map((pro, index) => (
             <Link
               to={`/shopping/${pro.category_id}/${
                 pro.id

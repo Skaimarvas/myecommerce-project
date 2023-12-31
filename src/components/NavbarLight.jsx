@@ -9,14 +9,18 @@ import { BsCart } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 //Actions
 import { logoutUser, setUserFetchState } from "../store/actions/userActions";
 import { FETCH_STATES } from "../store/actions/globalActions";
 //Components
 import NavbarMenu from "./NavbarMenu";
+import ShoppingCart from "./ShoppingCart";
 
 export default function NavbarLight(props) {
   const { setConfirm } = props;
+  const [showCart, setShowCart] = useState(false);
+
   const dispatch = useDispatch();
   const tokenValue = localStorage.getItem("token");
 
@@ -80,8 +84,16 @@ export default function NavbarLight(props) {
             </div>
             <div className="p-[15px]">
               {" "}
-              <div className="flex items-center gap-[5px]">
-                <BsCart className="text-[20px]" /> <span>1</span>{" "}
+              <div className="flex flex-col items-center gap-[5px]">
+                <button
+                  onClick={() => setShowCart(!showCart)}
+                  className="flex flex-row gap-[5px]"
+                >
+                  <BsCart className="text-[20px]" /> <span>1</span>{" "}
+                </button>
+                <div className="absolute mt-10 z-50">
+                  {showCart && <ShoppingCart />}
+                </div>
               </div>
             </div>
             <div className="p-[15px]">

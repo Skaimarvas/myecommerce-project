@@ -51,7 +51,9 @@ export default function NavbarMenu(props) {
                     <DropdownMenu className="ml-2 -mt-[20px] ">
                       {male.map((pro) => (
                         <NavbarMenuItem
-                          path={`/${pro.gender}/${pro.title.toLowerCase()}`}
+                          path={`/shopping/${
+                            pro.gender
+                          }/${pro.title.toLowerCase()}`}
                           key={pro.id}
                           className="hover:bg-blue-gray-50 p-2 "
                           name={pro.title}
@@ -71,7 +73,9 @@ export default function NavbarMenu(props) {
                     <DropdownMenu className="ml-2 -mt-[20px] ">
                       {female.map((pro) => (
                         <NavbarMenuItem
-                          path={`/${pro.gender}/${pro.title.toLowerCase()}`}
+                          path={`/shopping/${
+                            pro.gender
+                          }/${pro.title.toLowerCase()}`}
                           key={pro.id}
                           className="hover:bg-blue-gray-50 p-2 "
                           name={pro.title}

@@ -1,17 +1,28 @@
 import React from "react";
-import ProductCard from "./productcard";
-import { useSelector } from "react-redux";
-import { FETCH_STATES } from "../store/actions/globalActions";
-import SpiningAnimation from "./SpiningAnimation";
 import { Link } from "react-router-dom";
+import ProductCard from "./productcard";
+
+//Actions
+import { FETCH_STATES } from "../store/actions/globalActions";
+
+//Hooks
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+//Thunk
+import { getBproduct } from "../store/thunks/productThunk";
+
+//Components
+import SpiningAnimation from "./SpiningAnimation";
 
 export default function BestsellerProduct() {
-  const { productlist, fetchstate } = useSelector((store) => store.product);
+  const { bfetchstate, bproductlist } = useSelector((store) => store.product);
+  const dispatch = useDispatch();
 
-  const descendingProduct = [...productlist].sort(
-    (a, b) => b.rating - a.rating
-  );
-  const firstEightProduct = descendingProduct.slice(0, 8);
+  useEffect(() => {
+    dispatch(getBproduct("?sort=rating:desc&limit=8"));
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center gap-[80px] py-[80px] tracking-wider ">
       <div className="flex flex-col items-center gap-[10px] sm:px-[40px]">
@@ -26,9 +37,10 @@ export default function BestsellerProduct() {
         </p>
       </div>
       <div className="flex flex-wrap  justify-center gap-[30px] w-4/5 sm:w-full sm:px-[10px]">
-        {(fetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
-          firstEightProduct?.map((pro, index) => (
+        {(bfetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
+          bproductlist?.map((pro, index) => (
             <Link
+              key={index}
               to={`/shopping/${pro.category_id}/${
                 pro.id
               }/${pro.name.toLowerCase()}`}
