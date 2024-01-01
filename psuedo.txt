@@ -15,4 +15,7 @@ filter işlemi yaptığında product list doluysa önce onu sıfırlasın
 
 state.productlist : [] olacak 
 
-ardından ?sort=pric:...&offset=0 ile y 
+ardından ?sort=pric:...&offset=0 ile 
+
+
+-------------------------------------------------------------------------------

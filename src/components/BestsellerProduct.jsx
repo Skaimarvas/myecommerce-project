@@ -39,21 +39,14 @@ export default function BestsellerProduct() {
       <div className="flex flex-wrap  justify-center gap-[30px] w-4/5 sm:w-full sm:px-[10px]">
         {(bfetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
           bproductlist?.map((pro, index) => (
-            <Link
+            <ProductCard
               key={index}
-              to={`/shopping/${pro.category_id}/${
-                pro.id
-              }/${pro.name.toLowerCase()}`}
-            >
-              {" "}
-              <ProductCard
-                key={index}
-                name={pro.name}
-                description={pro.description}
-                images={pro.images}
-                price={pro.price}
-              />
-            </Link>
+              product={pro}
+              name={pro.name}
+              description={pro.description}
+              images={pro.images}
+              price={pro.price}
+            />
           ))}
       </div>
     </div>

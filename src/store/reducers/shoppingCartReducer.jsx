@@ -9,12 +9,22 @@ const initialState = {
 export const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
-      const productcart = {
-        ...state,
-        //id ile count kontrolü yapılacak
-        cart: [...state.cart, action.payload],
-      };
-      return productcart;
+      const existingProduct = state.cart.findIndex(
+        (item) => item.product.id === action.payload.product.id
+      );
+
+      if (existingProduct !== -1) {
+        const updatedCart = [...state.cart];
+        updatedCart[existingProduct].count += action.payload.count;
+
+        return { ...state, cart: updatedCart };
+      } else {
+        return {
+          ...state,
+          cart: [...state.cart, action.payload],
+        };
+      }
+
     default:
       return state;
   }

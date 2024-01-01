@@ -21,7 +21,6 @@ export const getProduct = (param) => {
         dispatch(getProductFromApi(res.data.products));
         dispatch(getTotalProductsCount(res.data.total));
         dispatch(setProductFetchState(FETCH_STATES.fetched));
-        console.log("PRODUCTS", res.data);
       })
       .catch((err) => {
         toast.error(err.message);

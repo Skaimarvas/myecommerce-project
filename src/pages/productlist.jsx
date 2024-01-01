@@ -150,20 +150,14 @@ export default function ProductList() {
       >
         <div className=" flex flex-wrap justify-center gap-[30px]">
           {productlist?.map((pro, index) => (
-            <Link
-              to={`/shopping/${pro.category_id}/${
-                pro.id
-              }/${pro.name.toLowerCase()}`}
-            >
-              {" "}
-              <ProductCard
-                key={index}
-                name={pro.name}
-                description={pro.description}
-                images={pro.images}
-                price={pro.price}
-              />
-            </Link>
+            <ProductCard
+              product={pro}
+              key={index}
+              name={pro.name}
+              description={pro.description}
+              images={pro.images}
+              price={pro.price}
+            />
           ))}
         </div>
       </InfiniteScroll>

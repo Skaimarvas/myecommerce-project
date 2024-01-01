@@ -1,9 +1,26 @@
-import React from "react";
-import bs1 from "../assets/bsimage1.png";
-import { Link } from "react-router-dom";
-
+//Hooks
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+//Actions
+import { addProductToCart } from "../store/actions/shoppingCartActions";
+//
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-toastify";
 export default function ProductCard(props) {
-  const { description, name, price, images } = props;
+  const { description, name, price, images, product } = props;
+  const dispatch = useDispatch();
+
+  const addCart = (e) => {
+    e.preventDefault();
+    const cartProduct = {
+      count: 1,
+      checked: true,
+      product,
+    };
+    dispatch(addProductToCart(cartProduct));
+    toast.success("Ürün Sepete Eklendi");
+  };
+
   return (
     <div className="flex flex-col sm:w-full w-[239px] shadow-lg transition-transform hover:scale-[1.05]">
       <img
@@ -31,6 +48,26 @@ export default function ProductCard(props) {
           <div className="w-[16px] h-[16px] bg-[#23856D] rounded-full"></div>
           <div className="w-[16px] h-[16px] bg-[#E77C40] rounded-full"></div>
           <div className="w-[16px] h-[16px] bg-[#252B42] rounded-full"></div>
+        </div>
+        <div className="flex flex-row gap-1">
+          <button
+            onClick={(e) => addCart(e)}
+            className="py-2 px-2 bg-blue-400 hover:bg-blue-700 rounded-md shadow-lg"
+          >
+            <span className="text-white">Sepete Ekle</span>
+          </button>
+          <Link
+            to={`/shopping/${product?.category_id}/${
+              product?.id
+            }/${product?.name.toLowerCase()}`}
+          >
+            <button
+              onClick={(e) => preventDefault()}
+              className="py-2 px-2 bg-blue-400 hover:bg-blue-700 rounded-md shadow-lg"
+            >
+              <span className="text-white">Ürünü İncele</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -21,21 +21,15 @@ import { useParams } from "react-router-dom/";
 import { useSelector } from "react-redux";
 
 export default function Product() {
-  const { productlist } = useSelector((store) => store.product);
-  // const [pro, setPro] = useState();
+  const { productlist, bproductlist } = useSelector((store) => store.product);
 
   const specPro = useParams();
 
-  const pro = productlist?.find((pro) => pro.id == specPro.id);
+  const fpro = productlist.find((pro) => pro.id == specPro.id);
+  const bpro = bproductlist.find((pro) => pro.id == specPro.id);
+  const pro = fpro ? fpro : bpro;
 
-  console.log("PRODUCTID", specPro);
-
-  console.log("PRODUCTLIST", productlist);
-  // useEffect(() => {
-  //   setPro(pro);
-  //   console.log("detail", pro);
-  // }, [productlist, specPro.id]);
-  console.log("ÜRÜN", pro);
+  console.log("ÜRÜN", pro, bpro);
   return (
     <div className="flex flex-col items-center tracking-wider bg-[#FAFAFA]">
       <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:justify-center ">
@@ -75,7 +69,7 @@ export default function Product() {
             <div className="relative ">
               <img
                 className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover"
-                src={pro.images[0].url}
+                src={pro?.images[0].url}
                 alt="image 1"
               />
             </div>
@@ -104,7 +98,7 @@ export default function Product() {
           <div>
             <h4 className="text-[20px] text-[#252B42] leading-[30px]">
               {" "}
-              {pro.name}{" "}
+              {pro?.name}{" "}
             </h4>
           </div>
           <div className="flex flex-row items-center gap-[10px]">
@@ -116,21 +110,21 @@ export default function Product() {
               <FaRegStarHalfStroke />
             </div>
             <span className="text-[#737373] text-[14px] leading-6">
-              {pro.rating} Reviews
+              {pro?.rating} Reviews
             </span>
           </div>
           <div>
             <span className="text-[#252B42] text-2xl font-bold  ">
-              ${pro.price}
+              ${pro?.price}
             </span>
           </div>
           <div className="flex flex-row gap-[5px] text-[14px] leading-6 font-bold">
             <span className="text-[#737373]">Availability :</span>
-            <span className="text-[#23A6F0]"> {pro.stock} </span>
+            <span className="text-[#23A6F0]"> {pro?.stock} </span>
           </div>
           <div>
             <p className="text-[#858585] text-[14px] leading-5 ">
-              {pro.description}
+              {pro?.description}
             </p>
           </div>
 

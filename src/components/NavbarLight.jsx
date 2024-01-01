@@ -23,7 +23,7 @@ export default function NavbarLight(props) {
 
   const dispatch = useDispatch();
   const tokenValue = localStorage.getItem("token");
-
+  const { cart } = useSelector((store) => store.shopping);
   const { email, name } = useSelector((store) => store.userData.user);
 
   const confirmHandler = () => {
@@ -89,7 +89,8 @@ export default function NavbarLight(props) {
                   onClick={() => setShowCart(!showCart)}
                   className="flex flex-row gap-[5px]"
                 >
-                  <BsCart className="text-[20px]" /> <span>1</span>{" "}
+                  <BsCart className="text-[20px]" />
+                  <span> {cart.length} </span>
                 </button>
                 <div className="absolute mt-10 z-50">
                   {showCart && <ShoppingCart />}
