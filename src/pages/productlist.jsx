@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 //Components
 import ShopCard from "../components/ShopCard";
 import ProductCard from "../components/productcard";
@@ -19,36 +16,70 @@ import { getProduct } from "../store/thunks/productThunk";
 import { FETCH_STATES } from "../store/actions/globalActions";
 
 //Hooks
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { Link, useParams, useHistory, useLocation } from "react-router-dom";
+import { setProductEmpty } from "../store/actions/productActions";
 
 export default function ProductList() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const offset = queryParams.get("offset");
+  const search = queryParams.get("search");
+  const sort = queryParams.get("sort");
+
   const { categories, cfetchstate } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
-  const { register, watch } = useForm();
+  const { register, watch } = useForm({
+    defaultValues: {
+      search: search ? search : "",
+      sort: sort ? sort : "",
+    },
+  });
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
 
+  console.log("OFFSET:>", offset, "SEARCH:>", search, "SORT:>", sort);
+
   const fetchedData = () => {
     const offsetcount = count + 25;
     setCount(offsetcount);
-    dispatch(getProduct(`?offset=${offsetcount}&s`));
+    // const categoryFilter = `&category=${1}`;
+    const searchparam = watch("search") ? `&search=${watch("search")}` : "";
+    const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
+    const offsetparam = `?offset=${count}`;
+    const queryParams = `${searchparam}${sortProduct}`;
+    const newURL = `${offsetparam}${queryParams}`;
+    history.push(newURL);
+
+    dispatch(getProduct(newURL));
   };
 
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
   const topCategories = descendingList.slice(0, 5);
 
-  const filterHandle = (e) => {
+  const filterHandler = (e) => {
     e.preventDefault();
+    dispatch(setProductEmpty());
+    setCount(0);
     fetchedData();
   };
 
   useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getProduct(`?offset=${count}&sort=price:desc`));
-    history.push(`?offset=${count}&sort=price:desc`);
+    const searchparam = watch("search") ? `&search=${watch("search")}` : "";
+    const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
+    const offsetparam = `?offset=${0}`;
+    const queryParams = `${searchparam}${sortProduct}`;
+    const newURL = `${offsetparam}${queryParams}`;
+    if (newURL) {
+      dispatch(getCategories());
+      dispatch(getProduct(newURL));
+    } else if (productlist.length === 0) {
+      dispatch(getCategories());
+      dispatch(getProduct(`?offset=${count}`));
+    }
   }, []);
 
   return (
@@ -104,12 +135,20 @@ export default function ProductList() {
           </button>
         </div>
         <div>
-          <form className="flex flex-row gap-[15px]">
+          <form className="flex flex-wrap gap-[15px]">
+            <label className="flex flex-row items-center gap-4">
+              {" "}
+              Search
+              <input
+                {...register("search")}
+                className="flex  w-[200px] h-[50px] rounded-md bg-[#F9F9F9] px-[10px]"
+                type="text"
+              />
+            </label>
             <label>
               <select
-                {...register("filter")}
+                {...register("sort")}
                 id="filteroption"
-                defaultValue="Popularity"
                 className="flex  w-[200px] h-[50px] rounded-md bg-[#F9F9F9] px-[10px]"
               >
                 <option value="">Popularity</option>
@@ -122,7 +161,7 @@ export default function ProductList() {
             <button
               className="w-[91px] h-[50px] bg-[#23A6F0] py-[10px] px-[20px] hover:bg-light-blue-900 rounded-md"
               type="Submit"
-              // onClick={(e) => filterHandle(e)}
+              onClick={(e) => filterHandler(e)}
             >
               <span className="text-white text-center text-[14px] leading-6 tracking-wider">
                 Filter

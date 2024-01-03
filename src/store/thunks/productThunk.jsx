@@ -30,6 +30,7 @@ export const getProduct = (param) => {
 };
 
 export const getBproduct = (param) => {
+  console.log("PARAM", param);
   return (dispatch, getState) => {
     dispatch(setBproductFetchState(FETCH_STATES.fetching));
     axiosInstance

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ShoppingCart() {
   const { cart } = useSelector((store) => store.shopping);
@@ -35,9 +36,11 @@ export default function ShoppingCart() {
         ))}
       </div>
       <div className="flex flex-row gap-1">
-        <button className="border border-black bg-blue-gray-100 px-1 py-2 rounded hover:bg-blue-gray-500">
-          <span>Sepete Git</span>
-        </button>
+        <Link to="/cart">
+          <button className="border border-black bg-blue-gray-100 px-1 py-2 rounded hover:bg-blue-gray-500">
+            <span>Sepete Git</span>
+          </button>
+        </Link>
         <button className="border border-black bg-blue-400 hover:bg-blue-700 px-1 py-2 rounded">
           <span className="text-white">Siparişi Tamamla</span>
         </button>

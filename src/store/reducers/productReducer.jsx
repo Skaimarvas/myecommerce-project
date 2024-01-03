@@ -7,6 +7,7 @@ import { FETCH_STATES } from "../actions/globalActions";
 import {
   SET_PRODUCT_FETCH_STATE,
   SET_BESTS_FETCH_STATE,
+  SET_PRODUCT_EMPTY,
 } from "../actions/productActions";
 
 const initalState = {
@@ -54,6 +55,12 @@ export const productReducer = (state = initalState, action) => {
         bfetchstate: action.payload,
       };
       return bfetch;
+    case SET_PRODUCT_EMPTY:
+      const empty = {
+        ...state,
+        productlist: [],
+      };
+      return empty;
     default:
       return state;
   }

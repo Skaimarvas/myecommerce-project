@@ -14,7 +14,7 @@ export default function ProductCard(props) {
     e.preventDefault();
     const cartProduct = {
       count: 1,
-      checked: true,
+      checked: false,
       product,
     };
     dispatch(addProductToCart(cartProduct));

@@ -11,15 +11,14 @@ import ProductSlider from "../components/ProductSlider";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import NotFoundPage from "../pages/NotFoundPage";
-import ShoppingCart from "../components/ShoppingCart";
+import ShoppingCartPage from "../pages/ShoppingCartPage";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
-        //Login olduktan sonra bu sayfalara yönlendirmeleri kapat
         <Route path="/cart" exact>
-          <ShoppingCart />
+          <ShoppingCartPage />
         </Route>
         <Route path="/login" exact>
           <Login />
@@ -48,6 +47,7 @@ export default function PageContent() {
         <Route path="/shopping/:gen/:cat" exact>
           <ProductList />
         </Route>
+
         <Route path="/" exact>
           <Home />
         </Route>
