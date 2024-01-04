@@ -4,6 +4,7 @@ import ProductCard from "../components/productcard";
 import Brands from "../components/Brands";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SpiningAnimation from "../components/SpiningAnimation";
+
 //Icons
 import { MdNavigateNext } from "react-icons/md";
 import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
@@ -14,20 +15,23 @@ import { getProduct } from "../store/thunks/productThunk";
 
 //Actions
 import { FETCH_STATES } from "../store/actions/globalActions";
+import { setProductEmpty } from "../store/actions/productActions";
 
 //Hooks
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link, useParams, useHistory, useLocation } from "react-router-dom";
-import { setProductEmpty } from "../store/actions/productActions";
 
 export default function ProductList() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const offset = queryParams.get("offset");
-  const search = queryParams.get("search");
+  const search = queryParams.get("filter");
   const sort = queryParams.get("sort");
+  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const { categories, cfetchstate } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
@@ -37,40 +41,66 @@ export default function ProductList() {
       sort: sort ? sort : "",
     },
   });
-  const [count, setCount] = useState(0);
-  const dispatch = useDispatch();
-  const history = useHistory();
 
-  console.log("OFFSET:>", offset, "SEARCH:>", search, "SORT:>", sort);
-
-  const fetchedData = () => {
-    const offsetcount = count + 25;
-    setCount(offsetcount);
-    // const categoryFilter = `&category=${1}`;
-    const searchparam = watch("search") ? `&search=${watch("search")}` : "";
-    const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
-    const offsetparam = `?offset=${count}`;
-    const queryParams = `${searchparam}${sortProduct}`;
-    const newURL = `${offsetparam}${queryParams}`;
+  const applyFilter = (offsetValue) => {
+    setCount(offsetValue);
+    const searchValue = watch("search") ? `&filter=${watch("search")}` : "";
+    const sortValue = watch("sort") ? `&sort=${watch("sort")}` : "";
+    const queryParams = `?offset=${offsetValue}${searchValue}${sortValue}`;
+    const newURL = `${queryParams}`;
     history.push(newURL);
-
     dispatch(getProduct(newURL));
   };
+
+  const filterHandler = (e) => {
+    e.preventDefault();
+    setCount(0);
+    dispatch(setProductEmpty());
+    applyFilter(0);
+    // const searchparam = watch("search") ? `&filter=${watch("search")}` : "";
+    // const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
+    // const offsetparam = `?offset=${0}`;
+    // const queryParams = `${searchparam}${sortProduct}`;
+    // const newURL = `${offsetparam}${queryParams}`;
+    // history.push(newURL);
+    // dispatch(getProduct(newURL));
+  };
+
+  const fetchedData = () => {
+    const offsetcalculate = count + 25;
+    // setCount(offsetcalculate);
+
+    applyFilter(offsetcalculate);
+
+    // const searchparam = watch("search") ? `&filter=${watch("search")}` : "";
+    // const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
+    // const offsetparam = `?offset=${offsetcalculate}`;
+    // const queryParams = `${searchparam}${sortProduct}`;
+    // const newURL = `${offsetparam}${queryParams}`;
+    // history.push(newURL);
+    // dispatch(getProduct(newURL));
+  };
+
+  console.log(
+    "OFFSET:>",
+    offset,
+    "SEARCH:>",
+    search,
+    "SORT:>",
+    sort,
+    "WATCH(SEARCH",
+    watch("search"),
+    "COUNT",
+    count
+  );
 
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
   const topCategories = descendingList.slice(0, 5);
 
-  const filterHandler = (e) => {
-    e.preventDefault();
-    dispatch(setProductEmpty());
-    setCount(0);
-    fetchedData();
-  };
-
   useEffect(() => {
-    const searchparam = watch("search") ? `&search=${watch("search")}` : "";
+    const searchparam = watch("search") ? `&filter=${watch("search")}` : "";
     const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
-    const offsetparam = `?offset=${0}`;
+    const offsetparam = `?offset=${count}`;
     const queryParams = `${searchparam}${sortProduct}`;
     const newURL = `${offsetparam}${queryParams}`;
     if (newURL) {
