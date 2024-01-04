@@ -26,13 +26,11 @@ import { Link, useParams, useHistory, useLocation } from "react-router-dom";
 export default function ProductList() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const offset = queryParams.get("offset");
   const search = queryParams.get("filter");
   const sort = queryParams.get("sort");
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const { categories, cfetchstate } = useSelector((store) => store.global);
   const { productlist, productcount } = useSelector((store) => store.product);
   const { register, watch } = useForm({
@@ -41,11 +39,11 @@ export default function ProductList() {
       sort: sort ? sort : "",
     },
   });
+  const searchValue = watch("search") ? `&filter=${watch("search")}` : "";
+  const sortValue = watch("sort") ? `&sort=${watch("sort")}` : "";
 
   const applyFilter = (offsetValue) => {
     setCount(offsetValue);
-    const searchValue = watch("search") ? `&filter=${watch("search")}` : "";
-    const sortValue = watch("sort") ? `&sort=${watch("sort")}` : "";
     const queryParams = `?offset=${offsetValue}${searchValue}${sortValue}`;
     const newURL = `${queryParams}`;
     history.push(newURL);
@@ -57,51 +55,20 @@ export default function ProductList() {
     setCount(0);
     dispatch(setProductEmpty());
     applyFilter(0);
-    // const searchparam = watch("search") ? `&filter=${watch("search")}` : "";
-    // const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
-    // const offsetparam = `?offset=${0}`;
-    // const queryParams = `${searchparam}${sortProduct}`;
-    // const newURL = `${offsetparam}${queryParams}`;
-    // history.push(newURL);
-    // dispatch(getProduct(newURL));
   };
 
   const fetchedData = () => {
     const offsetcalculate = count + 25;
-    // setCount(offsetcalculate);
-
     applyFilter(offsetcalculate);
-
-    // const searchparam = watch("search") ? `&filter=${watch("search")}` : "";
-    // const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
-    // const offsetparam = `?offset=${offsetcalculate}`;
-    // const queryParams = `${searchparam}${sortProduct}`;
-    // const newURL = `${offsetparam}${queryParams}`;
-    // history.push(newURL);
-    // dispatch(getProduct(newURL));
   };
-
-  console.log(
-    "OFFSET:>",
-    offset,
-    "SEARCH:>",
-    search,
-    "SORT:>",
-    sort,
-    "WATCH(SEARCH",
-    watch("search"),
-    "COUNT",
-    count
-  );
 
   const descendingList = [...categories].sort((a, b) => b.rating - a.rating);
   const topCategories = descendingList.slice(0, 5);
 
   useEffect(() => {
-    const searchparam = watch("search") ? `&filter=${watch("search")}` : "";
-    const sortProduct = watch("sort") ? `&sort=${watch("sort")}` : "";
+    dispatch(setProductEmpty());
     const offsetparam = `?offset=${count}`;
-    const queryParams = `${searchparam}${sortProduct}`;
+    const queryParams = `${searchValue}${sortValue}`;
     const newURL = `${offsetparam}${queryParams}`;
     if (newURL) {
       dispatch(getCategories());
