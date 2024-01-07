@@ -2,6 +2,8 @@ import {
   GET_BESTS_FROM_API,
   GET_PRODUCT_FROM_API,
   GET_TOTAL_PRODUCTS_COUNT,
+  GET_PRODUCT_DETAIL,
+  SET_DETAIL_STATE,
 } from "../actions/productActions";
 import { FETCH_STATES } from "../actions/globalActions";
 import {
@@ -13,10 +15,12 @@ import {
 const initalState = {
   productlist: [],
   bproductlist: [],
-  bfetchstate: FETCH_STATES.notFetched,
+  pdetail: "",
   productcount: "",
   pagecount: "",
   activepage: "",
+  detailstate: FETCH_STATES.notFetched,
+  bfetchstate: FETCH_STATES.notFetched,
   fetchstate: FETCH_STATES.notFetched,
 };
 
@@ -61,6 +65,18 @@ export const productReducer = (state = initalState, action) => {
         productlist: [],
       };
       return empty;
+    case GET_PRODUCT_DETAIL:
+      const detail = {
+        ...state,
+        pdetail: { ...action.payload },
+      };
+      return detail;
+    case SET_DETAIL_STATE:
+      const fetchdetail = {
+        ...state,
+        detailstate: action.payload,
+      };
+      return fetchdetail;
     default:
       return state;
   }

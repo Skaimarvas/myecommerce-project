@@ -1,9 +1,11 @@
 export const GET_PRODUCT_FROM_API = "GET_PRODUCT_FROM_API";
 export const GET_TOTAL_PRODUCTS_COUNT = "GET_TOTAL_PRODUCTS_COUNT";
 export const GET_BESTS_FROM_API = "GET_BESTS_FROM_API";
+export const SET_PRODUCT_EMPTY = "SET_PRODUCT_EMPTY";
+export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const SET_PRODUCT_FETCH_STATE = "SET_PRODUCT_FETCH_STATE";
 export const SET_BESTS_FETCH_STATE = "SET_BESTS_FETCH_STATE";
-export const SET_PRODUCT_EMPTY = "SET_PRODUCT_EMPTY";
+export const SET_DETAIL_STATE = "SET_DETAIL_STATE";
 
 export const getProductFromApi = (product) => {
   return {
@@ -43,5 +45,19 @@ export const setBproductFetchState = (fetchstate) => {
 export const setProductEmpty = () => {
   return {
     type: SET_PRODUCT_EMPTY,
+  };
+};
+
+export const getProductDetail = (detail) => {
+  return {
+    type: GET_PRODUCT_DETAIL,
+    payload: detail,
+  };
+};
+
+export const setDetailState = (fetchstate) => {
+  return {
+    type: SET_DETAIL_STATE,
+    payload: fetchstate,
   };
 };

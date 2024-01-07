@@ -18,18 +18,22 @@ import BestsellerProduct from "../components/BestsellerProduct";
 import Brands from "../components/Brands";
 //Hooks
 import { useParams } from "react-router-dom/";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../store/thunks/productThunk";
+import { FETCH_STATES } from "../store/actions/globalActions";
+import SpiningAnimation from "../components/SpiningAnimation";
 
 export default function Product() {
-  const { productlist, bproductlist } = useSelector((store) => store.product);
+  const dispatch = useDispatch();
+  const { pdetail, detailstate } = useSelector((store) => store.product);
 
   const specPro = useParams();
+  console.log("SPECPRO", specPro);
 
-  const fpro = productlist.find((pro) => pro.id == specPro.id);
-  const bpro = bproductlist.find((pro) => pro.id == specPro.id);
-  const pro = fpro ? fpro : bpro;
+  useEffect(() => {
+    dispatch(getDetail(`/${specPro.id}`));
+  }, [specPro.id]);
 
-  console.log("ÜRÜN", pro, bpro);
   return (
     <div className="flex flex-col items-center tracking-wider bg-[#FAFAFA]">
       <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:justify-center ">
@@ -46,114 +50,117 @@ export default function Product() {
           </span>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-[30px] w-4/5">
-        <div className="flex flex-col gap-[20px]">
-          <Carousel
-            className="tracking-wider w-[506px] sm:w-full"
-            navigation={({ setActiveIndex, activeIndex, length }) => (
-              <div className="absolute bottom-4 left-2/4  flex -translate-x-2/4 ">
-                {new Array(length).fill("").map((_, i) => (
-                  <span
-                    key={i}
-                    className={`block h-3  cursor-pointer transition-all content-[''] ${
-                      activeIndex === i
-                        ? "w-[70px] bg-white"
-                        : "w-[70px] bg-white/50"
-                    }`}
-                    onClick={() => setActiveIndex(i)}
+      {(detailstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
+        (pdetail && (
+          <div className="flex flex-wrap justify-center gap-[30px] w-4/5">
+            <div className="flex flex-col gap-[20px]">
+              <Carousel
+                className="tracking-wider w-[506px] sm:w-full"
+                navigation={({ setActiveIndex, activeIndex, length }) => (
+                  <div className="absolute bottom-4 left-2/4  flex -translate-x-2/4 ">
+                    {new Array(length).fill("").map((_, i) => (
+                      <span
+                        key={i}
+                        className={`block h-3  cursor-pointer transition-all content-[''] ${
+                          activeIndex === i
+                            ? "w-[70px] bg-white"
+                            : "w-[70px] bg-white/50"
+                        }`}
+                        onClick={() => setActiveIndex(i)}
+                      />
+                    ))}
+                  </div>
+                )}
+              >
+                <div className="relative ">
+                  <img
+                    className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover"
+                    src={pdetail?.images[0].url}
+                    alt="image 1"
                   />
-                ))}
+                </div>
+                <div className="relative">
+                  <img
+                    className="h-[450px] w-[506px]  sm:w-full sm:h-[277px]  object-cover"
+                    src={product2}
+                    alt="image 2"
+                  />
+                </div>
+              </Carousel>
+              <div className="flex flex-row gap-[19px]">
+                <img
+                  className="w-[100px] h-[75px] object-cover"
+                  src={product1}
+                  alt="small image 1"
+                />
+                <img
+                  className="w-[100px] h-[75px] object-cover"
+                  src={product2}
+                  alt="small image 2"
+                />
               </div>
-            )}
-          >
-            <div className="relative ">
-              <img
-                className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover"
-                src={pro?.images[0].url}
-                alt="image 1"
-              />
             </div>
-            <div className="relative">
-              <img
-                className="h-[450px] w-[506px]  sm:w-full sm:h-[277px]  object-cover"
-                src={product2}
-                alt="image 2"
-              />
-            </div>
-          </Carousel>
-          <div className="flex flex-row gap-[19px]">
-            <img
-              className="w-[100px] h-[75px] object-cover"
-              src={product1}
-              alt="small image 1"
-            />
-            <img
-              className="w-[100px] h-[75px] object-cover"
-              src={product2}
-              alt="small image 2"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col gap-[15px] w-[510px] p-5 ">
-          <div>
-            <h4 className="text-[20px] text-[#252B42] leading-[30px]">
-              {" "}
-              {pro?.name}{" "}
-            </h4>
-          </div>
-          <div className="flex flex-row items-center gap-[10px]">
-            <div className="flex flex-row text-[#ffd700] gap-[5px] ">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaRegStarHalfStroke />
-            </div>
-            <span className="text-[#737373] text-[14px] leading-6">
-              {pro?.rating} Reviews
-            </span>
-          </div>
-          <div>
-            <span className="text-[#252B42] text-2xl font-bold  ">
-              ${pro?.price}
-            </span>
-          </div>
-          <div className="flex flex-row gap-[5px] text-[14px] leading-6 font-bold">
-            <span className="text-[#737373]">Availability :</span>
-            <span className="text-[#23A6F0]"> {pro?.stock} </span>
-          </div>
-          <div>
-            <p className="text-[#858585] text-[14px] leading-5 ">
-              {pro?.description}
-            </p>
-          </div>
+            <div className="flex flex-col gap-[15px] w-[510px] p-5 ">
+              <div>
+                <h4 className="text-[20px] text-[#252B42] leading-[30px]">
+                  {" "}
+                  {pdetail?.name}{" "}
+                </h4>
+              </div>
+              <div className="flex flex-row items-center gap-[10px]">
+                <div className="flex flex-row text-[#ffd700] gap-[5px] ">
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaRegStarHalfStroke />
+                </div>
+                <span className="text-[#737373] text-[14px] leading-6">
+                  {pdetail?.rating} Reviews
+                </span>
+              </div>
+              <div>
+                <span className="text-[#252B42] text-2xl font-bold  ">
+                  ${pdetail?.price}
+                </span>
+              </div>
+              <div className="flex flex-row gap-[5px] text-[14px] leading-6 font-bold">
+                <span className="text-[#737373]">Availability :</span>
+                <span className="text-[#23A6F0]"> {pdetail?.stock} </span>
+              </div>
+              <div>
+                <p className="text-[#858585] text-[14px] leading-5 ">
+                  {pdetail?.description}
+                </p>
+              </div>
 
-          <hr />
+              <hr />
 
-          <div className="flex flex-row gap-[10px]">
-            <div className="rounded-full h-[30px] w-[30px] bg-[#23A6F0]"></div>
-            <div className="rounded-full h-[30px] w-[30px] bg-[#2DC071]"></div>
-            <div className="rounded-full h-[30px] w-[30px] bg-[#E77C40]"></div>
-            <div className="rounded-full h-[30px] w-[30px] bg-[#252B42]"></div>
+              <div className="flex flex-row gap-[10px]">
+                <div className="rounded-full h-[30px] w-[30px] bg-[#23A6F0]"></div>
+                <div className="rounded-full h-[30px] w-[30px] bg-[#2DC071]"></div>
+                <div className="rounded-full h-[30px] w-[30px] bg-[#E77C40]"></div>
+                <div className="rounded-full h-[30px] w-[30px] bg-[#252B42]"></div>
+              </div>
+              <div className="flex flex-row gap-[10px] pt-20">
+                <button className="bg-[#23A6F0] hover:bg-[#1c96dd] shadow-lg rounded-md py-[10px] px-[20px] ">
+                  <span className="text-[14px] leading-6 text-white font-bold tracking-wider">
+                    Select Options
+                  </span>
+                </button>
+                <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
+                  <FaRegHeart className="text-[20px]" />
+                </button>
+                <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
+                  <BsCart className="text-[20px]" />
+                </button>
+                <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
+                  <IoMdEye className="text-[20px]" />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-row gap-[10px] pt-20">
-            <button className="bg-[#23A6F0] hover:bg-[#1c96dd] shadow-lg rounded-md py-[10px] px-[20px] ">
-              <span className="text-[14px] leading-6 text-white font-bold tracking-wider">
-                Select Options
-              </span>
-            </button>
-            <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
-              <FaRegHeart className="text-[20px]" />
-            </button>
-            <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
-              <BsCart className="text-[20px]" />
-            </button>
-            <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
-              <IoMdEye className="text-[20px]" />
-            </button>
-          </div>
-        </div>
-      </div>
+        ))}
       <div className="flex flex-col items-center bg-white w-full">
         <div className="flex flex-col w-4/5">
           <div className="flex flex-row justify-center">
