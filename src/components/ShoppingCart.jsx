@@ -7,7 +7,7 @@ export default function ShoppingCart() {
   return (
     <div className="blackborder   flex flex-col items-center justify-center gap-6 py-2 bg-white text-black shadow-lg rounded px-1">
       <div>
-        <span>Sepetim ({cart.length} Ürün) </span>
+        <span> MyCart ({cart.length} Qty) </span>
       </div>
       <div className="flex flex-col gap-2 ">
         {cart.map((car) => (
@@ -38,11 +38,11 @@ export default function ShoppingCart() {
       <div className="flex flex-row gap-1">
         <Link to="/cart">
           <button className="border border-black bg-blue-gray-100 px-1 py-2 rounded hover:bg-blue-gray-500">
-            <span>Sepete Git</span>
+            <span className="text-sm">Go to Cart</span>
           </button>
         </Link>
         <button className="border border-black bg-blue-400 hover:bg-blue-700 px-1 py-2 rounded">
-          <span className="text-white">Siparişi Tamamla</span>
+          <span className="text-white text-sm">Complete Order</span>
         </button>
       </div>
     </div>

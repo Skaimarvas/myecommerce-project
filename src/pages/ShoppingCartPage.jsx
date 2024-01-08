@@ -1,21 +1,29 @@
 import React from "react";
 
+//Actions
+import {
+  addProductToCart,
+  decreaseProduct,
+  deleteProduct,
+  increaseProduct,
+} from "../store/actions/shoppingCartActions";
 //Icons
 import { Icon } from "@iconify/react";
 //Hooks
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ShoppingCartPage() {
   const { cart } = useSelector((store) => store.shopping);
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center gap-5">
-      <h3 className="text-2xl font-bold">My Cart ( 2 products )</h3>
+      <h3 className="text-2xl font-bold">My Cart ( {cart.length} products )</h3>
       <div className="flex flex-wrap justify-center gap-10 w-full px-10">
         <div className="flex flex-col gap-2">
-          {cart.map((car) => (
+          {cart.map((car, index) => (
             <>
               <div
-                key={car.product.id}
+                key={index}
                 className="blackborder flex flex-row justify-between items-center px-3 py-2  gap-2"
               >
                 <div>
@@ -36,12 +44,18 @@ export default function ShoppingCartPage() {
                 </div>
                 <div className="flex flex-row items-center gap-5">
                   <div className="flex flex-row items-center gap-2  ">
-                    <button className="px-5 py-2 bg-blue-700 hover:bg-blue-400 rounded shadow  ">
+                    <button
+                      onClick={() => dispatch(increaseProduct(car.product.id))}
+                      className="px-5 py-2 bg-blue-700 hover:bg-blue-400 rounded shadow  "
+                    >
                       {" "}
                       <span className="text-white">+</span>{" "}
                     </button>
                     <span className="text-[20px]"> Quantity: {car.count} </span>{" "}
-                    <button className="px-5 py-2 bg-blue-700 hover:bg-blue-400 rounded shadow">
+                    <button
+                      onClick={() => dispatch(decreaseProduct(car.product.id))}
+                      className="px-5 py-2 bg-blue-700 hover:bg-blue-400 rounded shadow"
+                    >
                       {" "}
                       <span className="text-white">-</span>{" "}
                     </button>
@@ -53,8 +67,10 @@ export default function ShoppingCartPage() {
                     </span>
                   </div>
                   <div className="w-[150px]">
-                    <button>
-                      <Icon icon="ri:delete-bin-line" />
+                    <button
+                      onClick={() => dispatch(deleteProduct(car.product.id))}
+                    >
+                      <Icon icon="ri:delete-bin-line" className="text-[30px]" />
                     </button>
                   </div>
                 </div>
