@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Carousel } from "@material-tailwind/react";
 
 //Icons
+import { Icon } from "@iconify/react";
 import { MdNavigateNext } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
@@ -36,7 +37,7 @@ export default function Product() {
 
   return (
     <div className="flex flex-col items-center tracking-wider bg-[#FAFAFA]">
-      <div className="flex flex-wrap justify-between items-center w-4/5  py-[24px] sm:justify-center ">
+      <div className="flex flex-wrap sm:flex-col justify-between items-center w-4/5 gap-3  py-[24px] sm:justify-center ">
         <div className="flex flex-row gap-[15px] items-center py-[15px]  ">
           <Link to="/">
             {" "}
@@ -49,6 +50,9 @@ export default function Product() {
             Shop
           </span>
         </div>
+        <button className="px-5 py-2" onClick={() => window.history.back()}>
+          <Icon icon="pajamas:go-back" className="text-[50px]" />
+        </button>
       </div>
       {(detailstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
         (pdetail && (

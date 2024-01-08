@@ -7,7 +7,8 @@ import { addProductToCart } from "../store/actions/shoppingCartActions";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { toast } from "react-toastify";
 export default function ProductCard(props) {
-  const { description, name, price, images, product } = props;
+  const { product } = props;
+  const { description, name, price, images } = product;
   const dispatch = useDispatch();
 
   const addCart = (e) => {
