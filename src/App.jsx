@@ -8,8 +8,8 @@ import "./App.css";
 import ScrollToUpButton from "./components/ScrollToUpButton";
 import Confirm from "./components/Confirm";
 //Layout
-import Header from "./layouts/Header";
-import Footer from "./layouts/Footer";
+import Header from "./layouts/header";
+import Footer from "./layouts/footer";
 import PageContent from "./layouts/PageContent";
 
 //Hooks
