@@ -11,7 +11,7 @@ import { globalReducer } from "./reducers/globalReducer";
 import { userReducer } from "./reducers/userReducer";
 import { productReducer } from "./reducers/productReducer";
 import { shoppingCartReducer } from "./reducers/shoppingCartReducer";
-import { storeReducer } from "./reducers/storeReducer";
+import { storeReducer } from "./reducers/StoreReducer";
 
 const reducers = combineReducers({
   global: globalReducer,
