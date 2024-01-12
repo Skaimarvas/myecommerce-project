@@ -6,10 +6,17 @@ export default function ShoppingCart() {
   const { cart } = useSelector((store) => store.shopping);
   return (
     <div className="blackborder   flex flex-col items-center justify-center gap-6 py-2 bg-white text-black shadow-lg rounded px-1">
-      <div>
-        <span> MyCart ({cart.length} Qty) </span>
+      <div className="flex justify-center items-center">
+        {cart.length > 0 ? (
+          <span> MyCart ({cart.length} Qty) </span>
+        ) : (
+          <span className="text-center">
+            {" "}
+            You don't have any product in your cart{" "}
+          </span>
+        )}
       </div>
-      <div className="flex flex-col gap-2 ">
+      <div className="flex flex-col gap-2">
         {cart.map((car) => (
           <>
             <div

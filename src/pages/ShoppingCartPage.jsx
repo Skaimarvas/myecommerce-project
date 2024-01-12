@@ -16,7 +16,7 @@ export default function ShoppingCartPage() {
   const { cart } = useSelector((store) => store.shopping);
   const dispatch = useDispatch();
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-5 p-10 bg-gray-100">
       <h3 className="text-2xl font-bold">My Cart ( {cart.length} products )</h3>
       <div className="flex flex-wrap justify-center gap-10 w-full px-10">
         <div className="flex flex-col gap-2">
@@ -24,7 +24,7 @@ export default function ShoppingCartPage() {
             <>
               <div
                 key={index}
-                className="blackborder flex flex-row justify-between items-center px-3 py-2  gap-2"
+                className="flex flex-row justify-between items-center px-3 py-2  gap-2 bg-white rounded-sm shadow-md"
               >
                 <div>
                   <form>
