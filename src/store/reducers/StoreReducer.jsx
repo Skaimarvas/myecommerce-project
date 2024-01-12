@@ -4,7 +4,7 @@ const initialState = {
   store: [],
 };
 
-export const storeReducer = (state = initialState, action) => {
+export const StoreReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_STORE:
       const storeSec = {
