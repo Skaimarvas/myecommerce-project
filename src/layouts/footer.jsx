@@ -1,7 +1,5 @@
 import React from "react";
-// import { FaFacebook } from "react-icons/fa";
-// import { FaInstagram } from "react-icons/fa";
-// import { FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -12,9 +10,9 @@ export default function Footer() {
             <h3 className=" text-[#252B42] text-2xl font-bold ">Bandage</h3>
           </div>
           <div className=" flex flex-row gap-[20px] text-[#23A6F0] text-[24px]">
-            {/* <FaFacebook />
+            <FaFacebook />
             <FaInstagram />
-            <FaTwitter /> */}
+            <FaTwitter />
           </div>
         </div>
       </div>
