@@ -1,7 +1,7 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
-function Footer() {
+export default function Footer() {
   return (
     <div className="flex flex-col items-center tracking-wider ">
       <div className="flex justify-center bg-[#FAFAFA] w-full">
@@ -136,5 +136,3 @@ function Footer() {
     </div>
   );
 }
-
-export default Footer;
