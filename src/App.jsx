@@ -10,7 +10,7 @@ import Confirm from "./components/Confirm";
 //Layout
 import Header from "./layouts/header";
 import Footer from "./layouts/footer";
-import PageContent from "./layouts/PageContent";
+import PageContent from "./layouts/pagecontent";
 
 //Hooks
 import { useDispatch } from "react-redux";
