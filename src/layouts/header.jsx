@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-export default function Header(props) {
+function Header(props) {
   const { setConfirm } = props;
   return (
     <div>
@@ -8,3 +8,5 @@ export default function Header(props) {
     </div>
   );
 }
+
+export default Header;
