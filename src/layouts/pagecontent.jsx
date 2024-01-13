@@ -1,17 +1,17 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 //Pages
-import Home from "../pages/home";
-import ProductList from "../pages/productlist";
-import Product from "../pages/product";
-import About from "../pages/about";
-import Team from "../pages/team";
-import Contact from "../pages/contact";
-import ProductSlider from "../components/productslider";
-import SignUp from "../pages/signUp";
-import Login from "../pages/login";
-import NotFoundPage from "../pages/notfoundpage";
-import ShoppingCartPage from "../pages/shoppingcartpage";
+import Home from "../pages/Home";
+import ProductList from "../pages/ProductList";
+import Product from "../pages/Product";
+import About from "../pages/About";
+import Team from "../pages/Team";
+import Contact from "../pages/Contact";
+import ProductSlider from "../components/ProductSlider";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
+import NotFoundPage from "../pages/NotFoundPage";
+import ShoppingCartPage from "../pages/ShoppingCartPage";
 
 export default function PageContent() {
   return (

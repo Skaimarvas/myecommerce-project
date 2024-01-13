@@ -1,5 +1,6 @@
 import {
   ADD_PRODUCT_TO_CART,
+  CHECKED_PRODUCT,
   DECREASE_PRODUCT_FROM_CART,
   DELETE_PRODUCT_FROM_CART,
   INCREASE_PRODUCT_FROM_CART,
@@ -66,6 +67,18 @@ export const shoppingCartReducer = (state = initialState, action) => {
           ...state,
           cart: updatedCart,
         };
+      }
+    case CHECKED_PRODUCT:
+      const checkedProduct = state.cart.findIndex(
+        (item) => item.product.id === action.payload
+      );
+
+      if (checkedProduct != -1) {
+        const copyCat = [...state.cart];
+        copyCat[checkedProduct].checked = !copyCat[checkedProduct].checked;
+        return { ...state, cart: copyCat };
+      } else {
+        return { ...state };
       }
     default:
       return state;

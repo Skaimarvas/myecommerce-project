@@ -1,7 +1,6 @@
-import React from "react";
-
 //Actions
 import {
+  checkedProduct,
   addProductToCart,
   decreaseProduct,
   deleteProduct,
@@ -11,25 +10,38 @@ import {
 import { Icon } from "@iconify/react";
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
 export default function ShoppingCartPage() {
-  const { cart } = useSelector((store) => store.shopping);
   const dispatch = useDispatch();
+  const { cart } = useSelector((store) => store.shopping);
+
+  const orderTotal = cart.reduce((total, pro) => {
+    return pro.checked ? total + pro.count * pro.product.price : total;
+  }, 0);
+
+  useEffect(() => {}, [orderTotal]);
+
   return (
     <div className="flex flex-col items-center gap-5 p-10 bg-gray-100">
       <h3 className="text-2xl font-bold">My Cart ( {cart.length} products )</h3>
       <div className="flex flex-wrap justify-center gap-10 w-full px-10">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ">
           {cart.map((car, index) => (
             <>
               <div
                 key={index}
-                className="flex flex-row justify-between items-center px-3 py-2  gap-2 bg-white rounded-sm shadow-md"
+                className="flex flex-row justify-between items-center px-3 py-2  gap-2 bg-white rounded-md shadow-md border-blue-900 border"
               >
                 <div>
                   <form>
                     <label>
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onClick={() => {
+                          dispatch(checkedProduct(car.product.id));
+                        }}
+                      />
                     </label>
                   </form>
                 </div>
@@ -39,8 +51,11 @@ export default function ShoppingCartPage() {
                   alt=""
                 />
 
-                <div className="w-[150px]">
-                  <span className="text-[20px]"> {car.product.name} </span>
+                <div className="flex flex-row justify-center w-[150px]">
+                  <span className="text-[20px] text-center">
+                    {" "}
+                    {car.product.name}{" "}
+                  </span>
                 </div>
                 <div className="flex flex-row items-center gap-5">
                   <div className="flex flex-row items-center gap-2  ">
@@ -60,13 +75,13 @@ export default function ShoppingCartPage() {
                       <span className="text-white">-</span>{" "}
                     </button>
                   </div>
-                  <div className="w-[150px]">
+                  <div className="flex flex-row justify-center  w-[150px] ">
                     <span className="text-[20px] text-[#23A6F0] font-bold">
                       {" "}
                       ${(car.product.price * car.count).toFixed(2)}
                     </span>
                   </div>
-                  <div className="w-[150px]">
+                  <div className="flex flex-row justify-center w-[150px]">
                     <button
                       onClick={() => dispatch(deleteProduct(car.product.id))}
                     >
@@ -78,19 +93,42 @@ export default function ShoppingCartPage() {
             </>
           ))}
         </div>
-        <div className="blackborder flex flex-col">
-          <h4 className="text-center">Order Summary</h4>
-
-          <div className="flex flex-row">
-            <span>Order Total:</span>
-          </div>
-          <div className="flex flex-row">
-            <span>Tax:</span>
-          </div>
-          <div className="flex flex-row">
+        <div className="bg-white flex flex-col justify-center items-center p-5 gap-5 rounded-md shadow-md h-[300px] w-[300px]">
+          <h4 className="text-center">
             {" "}
-            <span>Total:</span>{" "}
+            <b> Order Summary </b>
+          </h4>
+          <div className="flex flex-col gap-5 w-full">
+            <div className="flex flex-row justify-between ">
+              <span>
+                {" "}
+                <b> Order Total: </b>
+              </span>{" "}
+              <span> ${orderTotal.toFixed(2)} </span>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <span>
+                <b> Tax: </b>
+              </span>
+              <span>${(orderTotal * 0.1).toFixed(2)} </span>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <span>
+                <b> Shipping Cost: </b>
+              </span>
+              <span>$25.00 </span>
+            </div>
+            <div className="flex flex-row justify-between ">
+              {" "}
+              <span>
+                <b> Total: </b>
+              </span>{" "}
+              <span> ${(orderTotal * 1.1).toFixed(2)} </span>
+            </div>
           </div>
+          <button className=" px-4 py-2 w-full bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8] ">
+            <span className="text-white">Confirm Order</span>
+          </button>
         </div>
       </div>
     </div>
