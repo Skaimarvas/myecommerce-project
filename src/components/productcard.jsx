@@ -1,14 +1,19 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-toastify";
 //Hooks
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //Actions
 import { addProductToCart } from "../store/actions/shoppingCartActions";
-//
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { toast } from "react-toastify";
+//Icons and Pngs
+import bestseller from "../assets/productcard/bseller.png";
+import free from "../assets/productcard/free.png";
+import fastship from "../assets/productcard/fastship.png";
+import { rating } from "@material-tailwind/react";
+
 export default function ProductCard(props) {
   const { product } = props;
-  const { description, name, price, images } = product;
+  const { description, name, price, images, sell_count, rating } = product;
   const dispatch = useDispatch();
 
   const addCart = (e) => {
@@ -23,12 +28,28 @@ export default function ProductCard(props) {
   };
 
   return (
-    <div className="flex flex-col sm:w-full w-[239px] shadow-lg transition-transform hover:scale-[1.05]">
-      <img
-        src={images[0].url}
-        alt="bs image 1"
-        className="h-[427px] w-full object-cover"
-      />
+    <div className=" flex flex-col sm:w-full w-[239px] shadow-lg transition-transform hover:scale-[1.05]">
+      <div className="relative">
+        <img
+          src={images[0].url}
+          alt="bs image 1"
+          className=" h-[427px] w-full object-cover"
+        />
+        {price > 100 && (
+          <img
+            src={free}
+            className="  absolute inset-x-[4%] inset-y-[4%] w-9 h-9 inset"
+            alt=""
+          />
+        )}
+        {sell_count > 200 && (
+          <img
+            src={bestseller}
+            className="absolute inset-x-[80%] inset-y-[4%] w-9 h-9"
+            alt=""
+          />
+        )}
+      </div>
       <div className="flex flex-col items-center gap-[10px] p-[25px]">
         <h5 className="text-center text-[#252B42] text-base font-bold ">
           {name}
