@@ -5,9 +5,7 @@ import { Carousel } from "@material-tailwind/react";
 //Icons
 import { Icon } from "@iconify/react";
 import { MdNavigateNext } from "react-icons/md";
-import { FaStar } from "react-icons/fa6";
-import { FaRegStar } from "react-icons/fa6";
-import { FaRegStarHalfStroke } from "react-icons/fa6";
+
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
 import { IoMdEye } from "react-icons/io";
@@ -18,6 +16,7 @@ import product3 from "../assets/product3.jpeg";
 //Components
 import BestsellerProduct from "../components/BestsellerProduct";
 import Brands from "../components/Brands";
+import RatingStar from "../components/RatingStar";
 //Hooks
 import { useParams } from "react-router-dom/";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,15 +29,7 @@ export default function Product() {
   const { pdetail, detailstate } = useSelector((store) => store.product);
 
   //Bu yıldız işlemleri için ayrı bir componenet oluştur. Compenentleri daima sade bırak.
-  const fullStar = Math.floor(pdetail.rating);
-  const halfStar = pdetail.rating % 1 !== 0 ? <FaRegStarHalfStroke /> : "";
-  const fullStarArray = Array.from({ length: fullStar }, (_, index) => (
-    <FaStar key={index} />
-  ));
-  const emptyStarArray = Array.from(
-    { length: 5 - fullStar - (halfStar ? 1 : 0) },
-    (_, index) => <FaRegStar key={index} />
-  );
+
   const specPro = useParams();
   console.log("SPECPRO", specPro);
 
@@ -123,11 +114,7 @@ export default function Product() {
                 </h4>
               </div>
               <div className="flex flex-row items-center gap-[10px]">
-                <div className="flex flex-row text-[#ffd700] gap-[5px] ">
-                  {fullStarArray}
-                  {halfStar}
-                  {emptyStarArray}
-                </div>
+                <RatingStar rating={pdetail?.rating} />
                 <span className="text-[#737373] text-[14px] leading-6">
                   {pdetail?.rating} Reviews
                 </span>

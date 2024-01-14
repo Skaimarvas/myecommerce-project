@@ -4,7 +4,7 @@ import shopcard1 from "../assets/shopcard1.jpeg";
 export default function ShopCard(props) {
   const { img, title, gender } = props;
   return (
-    <div className="relative shadow-lg transition-transform hover:scale-[1.05]">
+    <div className="relative shadow-lg transition-transform hover:scale-[1.05] ">
       <img
         src={img}
         alt="image 1"

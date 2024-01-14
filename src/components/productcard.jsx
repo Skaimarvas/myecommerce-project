@@ -8,8 +8,6 @@ import { addProductToCart } from "../store/actions/shoppingCartActions";
 //Icons and Pngs
 import bestseller from "../assets/productcard/bseller.png";
 import free from "../assets/productcard/free.png";
-import fastship from "../assets/productcard/fastship.png";
-import { rating } from "@material-tailwind/react";
 
 export default function ProductCard(props) {
   const { product } = props;
@@ -20,7 +18,7 @@ export default function ProductCard(props) {
     e.preventDefault();
     const cartProduct = {
       count: 1,
-      checked: false,
+      checked: true,
       product,
     };
     dispatch(addProductToCart(cartProduct));
@@ -28,7 +26,7 @@ export default function ProductCard(props) {
   };
 
   return (
-    <div className=" flex flex-col sm:w-full w-[239px] shadow-lg transition-transform hover:scale-[1.05]">
+    <div className="flex flex-col sm:w-[350px] w-[239px] shadow-lg transition-transform hover:scale-[1.05]">
       <div className="relative">
         <img
           src={images[0].url}
@@ -38,11 +36,11 @@ export default function ProductCard(props) {
         {price > 100 && (
           <img
             src={free}
-            className="  absolute inset-x-[4%] inset-y-[4%] w-9 h-9 inset"
+            className="absolute inset-x-[4%] inset-y-[4%] w-9 h-9 inset"
             alt=""
           />
         )}
-        {sell_count > 200 && (
+        {sell_count > 500 && (
           <img
             src={bestseller}
             className="absolute inset-x-[80%] inset-y-[4%] w-9 h-9"
@@ -51,12 +49,17 @@ export default function ProductCard(props) {
         )}
       </div>
       <div className="flex flex-col items-center gap-[10px] p-[25px]">
-        <h5 className="text-center text-[#252B42] text-base font-bold ">
+        <h5 className="text-center text-[#252B42] text-base font-bold truncate ">
           {name}
         </h5>
-        <h4 className="text-center text-[#737373] text-[14px] leading-6  font-bold ">
-          {description}
-        </h4>
+        <div className="h-5 w-full ">
+          <h4
+            className="text-center text-[#737373] text-[14px] leading-6  font-bold truncate"
+            title={description}
+          >
+            {description}
+          </h4>{" "}
+        </div>
         <div className="flex flex-row gap-[5px] px-[3px] py-[5px]">
           <span className="text-[#BDBDBD] text-center text-base font-bold ">
             ${price}
@@ -76,7 +79,7 @@ export default function ProductCard(props) {
             onClick={(e) => addCart(e)}
             className="py-2 px-2 bg-blue-400 hover:bg-blue-700 rounded-md shadow-lg"
           >
-            <span className="text-white">Sepete Ekle</span>
+            <span className="text-white text-sm">Add Cart</span>
           </button>
           <Link
             to={`/shopping/${
@@ -97,7 +100,7 @@ export default function ProductCard(props) {
               onClick={(e) => preventDefault()}
               className="py-2 px-2 bg-blue-400 hover:bg-blue-700 rounded-md shadow-lg"
             >
-              <span className="text-white">Ürünü İncele</span>
+              <span className="text-white text-sm">View Product</span>
             </button>
           </Link>
         </div>
