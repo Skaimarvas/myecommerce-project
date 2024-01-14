@@ -20,7 +20,7 @@ export default function ShoppingCartPage() {
     return pro.checked ? total + pro.count * pro.product.price : total;
   }, 0);
 
-  useEffect(() => {}, [orderTotal]);
+  useEffect(() => {}, [orderTotal, cart]);
 
   return (
     <div className="flex flex-col items-center gap-5 p-10 bg-gray-100">
@@ -38,6 +38,7 @@ export default function ShoppingCartPage() {
                     <label>
                       <input
                         type="checkbox"
+                        checked={car.checked}
                         onClick={() => {
                           dispatch(checkedProduct(car.product.id));
                         }}

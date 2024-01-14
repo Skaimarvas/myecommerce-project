@@ -58,9 +58,19 @@ export default function ProductCard(props) {
             <span className="text-white">Sepete Ekle</span>
           </button>
           <Link
-            to={`/shopping/${product?.category_id}/${
-              product?.id
-            }/${product?.name.toLowerCase()}`}
+            to={`/shopping/${
+              product?.category_id === 1
+                ? "t-shirt"
+                : 2
+                ? "ayakkabı"
+                : 3
+                ? "ceket"
+                : 4
+                ? "elbise"
+                : ""
+            }/${product?.id}/${product?.name
+              .replaceAll(" ", "-")
+              .toLowerCase()}`}
           >
             <button
               onClick={(e) => preventDefault()}

@@ -1,6 +1,6 @@
 //Components
 import ShopCard from "../components/ShopCard";
-import ProductCard from "../components/productcard";
+import ProductCard from "../components/ProductCard";
 import Brands from "../components/Brands";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SpiningAnimation from "../components/SpiningAnimation";
@@ -103,7 +103,12 @@ export default function ProductList() {
         <div className="flex flex-wrap justify-around  w-4/5 pb-[48px] sm:flex-col sm:items-center sm:gap-[15px] ">
           {(cfetchstate === FETCH_STATES.fetching && <SpiningAnimation />) ||
             topCategories?.map((cat, index) => (
-              <Link key={index} to={`/shopping/${cat.gender}/${cat.title}`}>
+              <Link
+                key={index}
+                to={`/shopping/${
+                  cat.gender === "e" ? "erkek" : "kadin"
+                }/${cat.title.toLowerCase()}`}
+              >
                 {" "}
                 <ShopCard
                   img={cat.img}
