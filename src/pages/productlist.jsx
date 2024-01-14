@@ -167,9 +167,9 @@ export default function ProductList() {
                   >
                     <Option value="">All</Option>
                     <Option value="1">T-Shirt</Option>
-                    <Option value={2}>Shoes</Option>
-                    <Option value={3}>Jacket</Option>
-                    <Option value={4}>Dress</Option>
+                    <Option value="2">Shoes</Option>
+                    <Option value="3">Jacket</Option>
+                    <Option value="4">Dress</Option>
                   </Select>
                 )}
               />
