@@ -26,6 +26,10 @@ export default function NavbarLight(props) {
   const { cart } = useSelector((store) => store.shopping);
   const { email, name } = useSelector((store) => store.userData.user);
 
+  const handleCartToggle = () => {
+    setShowCart((prev) => !prev);
+  };
+
   const confirmHandler = () => {
     setConfirm(true);
   };
@@ -77,34 +81,33 @@ export default function NavbarLight(props) {
             </button>
           </Link>
         )}
-        {tokenValue && (
-          <div className="flex items-center sm:hidden">
-            <div className="p-[15px]">
-              <BsSearch className="text-[20px]" />
-            </div>
-            <div className="p-[15px]">
-              {" "}
-              <div className="flex flex-col items-center gap-[5px]">
-                <button
-                  onClick={() => setShowCart(!showCart)}
-                  className="flex flex-row gap-[5px]"
-                >
-                  <BsCart className="text-[20px]" />
-                  <span> {cart.length} </span>
-                </button>
-                <div className="absolute mt-10 z-50">
-                  {showCart && <ShoppingCart />}
-                </div>
-              </div>
-            </div>
-            <div className="p-[15px]">
-              <div className="flex items-center gap-[5px]">
-                <FaRegHeart className="text-[20px]" />
-                <span>1</span>
+
+        <div className="flex items-center sm:hidden">
+          <div className="p-[15px]">
+            <BsSearch className="text-[20px]" />
+          </div>
+          <div className="p-[15px]">
+            {" "}
+            <div className="flex flex-col items-center gap-[5px]">
+              <button
+                onClick={() => setShowCart(!showCart)}
+                className="flex flex-row gap-[5px] transition-transform hover:scale-[1.10] hover:text-blue-900"
+              >
+                <BsCart className="text-[20px] " />
+                <span> {cart.length} </span>
+              </button>
+              <div className="absolute mt-10 right-4 z-50">
+                {showCart && <ShoppingCart isVisible={showCart} />}
               </div>
             </div>
           </div>
-        )}
+          <div className="p-[15px]">
+            <div className="flex items-center gap-[5px]">
+              <FaRegHeart className="text-[20px]" />
+              <span>1</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
