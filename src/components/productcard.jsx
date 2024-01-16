@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { toast } from "react-toastify";
 //Hooks
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 //Actions
 import { addProductToCart } from "../store/actions/shoppingCartActions";
 //Icons and Pngs
@@ -22,7 +21,7 @@ export default function ProductCard(props) {
       product,
     };
     dispatch(addProductToCart(cartProduct));
-    toast.success("Ürün Sepete Eklendi");
+    toast.success("Product Added to Cart");
   };
 
   return (
