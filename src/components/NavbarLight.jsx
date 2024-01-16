@@ -9,15 +9,17 @@ import { BsCart } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //Actions
 import { logoutUser, setUserFetchState } from "../store/actions/userActions";
 import { FETCH_STATES } from "../store/actions/globalActions";
 //Components
 import NavbarMenu from "./NavbarMenu";
 import ShoppingCart from "./ShoppingCart";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function NavbarLight(props) {
+  const location = useLocation();
   const { setConfirm } = props;
   const [showCart, setShowCart] = useState(false);
 
@@ -33,6 +35,12 @@ export default function NavbarLight(props) {
   const confirmHandler = () => {
     setConfirm(true);
   };
+
+  console.log("LOCATION", location.pathname);
+
+  useEffect(() => {
+    setShowCart(false);
+  }, [location.pathname]);
 
   return (
     <div className="flex flex-wrap  justify-between  md:justify-center items-center sm:flex-col tracking-wider px-[10px] ">

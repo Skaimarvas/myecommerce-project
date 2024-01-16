@@ -25,13 +25,11 @@ export default function NavbarMenu(props) {
         <NavbarMenuItem
           path="/"
           name="Home"
-          icon={<Icon icon="bxs:home" />}
           className="hover:border-b-2 border-black"
         />
         <NavbarMenuItem
           path="/shopping"
           name="Shop"
-          icon={<Icon icon="bi:shop" />}
           setOpen={setOpenMenu}
           img={vector}
           className="hover:border-b-2 border-black"
@@ -92,19 +90,16 @@ export default function NavbarMenu(props) {
           className="hover:border-b-2 border-black"
           path="/about"
           name="About"
-          icon={<Icon icon="mdi:about-circle-outline" />}
         />
         <NavbarMenuItem
           className="hover:border-b-2 border-black"
           path=""
           name="Blog"
-          icon={<Icon icon="mdi:blog" />}
         />
         <NavbarMenuItem
           className="hover:border-b-2 border-black"
           path="/contact"
           name="Contact"
-          icon={<Icon icon="ic:round-contact-phone" />}
         />
       </ul>
     </nav>
