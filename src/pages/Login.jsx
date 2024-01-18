@@ -24,6 +24,8 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
+  const from = history.location.state?.from || "/";
+
   const onSubmit = (data) => {
     setLoading(true);
     const { email, password } = data;
@@ -31,7 +33,7 @@ export default function Login() {
     dispatch(postLogin(data)).then(() => {
       setTimeout(() => {
         setLoading(false);
-        history.push("/");
+        history.push(from);
         reset();
       }, 1000);
     });

@@ -6,12 +6,14 @@ import {
 } from "../store/actions/shoppingCartActions";
 //Icons
 import { Icon } from "@iconify/react";
+import free from "../assets/productcard/free.png";
 //Hooks
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 //Components
 import Checkbox from "../components/Checkbox";
 import Input from "../components/Input";
+import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ShoppingCartPage() {
   const [discount, setDiscount] = useState();
@@ -30,8 +32,14 @@ export default function ShoppingCartPage() {
 
   return (
     <div className="flex flex-col items-center gap-5 p-10 bg-gray-100">
-      <div className="flex justify-center bg-white  px-10 py-5 rounded shadow-md w-[90%] uppercase">
-        <h3 className="text-2xl font-bold">My Cart ({cart.length})</h3>
+      <div className="flex justify-between bg-white  px-10 py-5 rounded shadow-md w-[87%] ">
+        <h3 className="text-2xl font-bold uppercase">
+          My Cart ({cart.length})
+        </h3>
+        <div className="flex flex-row justify-between items-center gap-2">
+          <span className="text-sm">Free shipping on orders over $100!</span>
+          <img src={free} alt="" className="w-10 h-10" />
+        </div>
       </div>
       <div className="flex flex-wrap justify-center gap-10 w-full px-10">
         <div className="flex flex-col gap-5 ">
@@ -139,7 +147,10 @@ export default function ShoppingCartPage() {
               </div>
             )}
 
-            <Input label="Discount Code" setDiscount={setDiscount} />
+            <Input
+              label=" + Enter Your Discount Code"
+              setDiscount={setDiscount}
+            />
             <hr />
             <div className="flex flex-row justify-between ">
               {" "}
@@ -152,10 +163,11 @@ export default function ShoppingCartPage() {
               </span>
             </div>
           </div>
-
-          <button className=" px-4 py-2 w-full bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8] ">
-            <span className="text-white">Chect Out</span>
-          </button>
+          <Link to="/adress">
+            <button className=" px-4 py-2 w-full bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8] ">
+              <span className="text-white">Chect Out</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

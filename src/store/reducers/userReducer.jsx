@@ -2,6 +2,8 @@ import { toast } from "react-toastify";
 
 import { FETCH_STATES } from "../actions/globalActions";
 import {
+  GET_ADDRESS,
+  POST_ADDRESS,
   LOGOUT_USER,
   POST_SIGNUP_DATA_TO_API,
   SET_USER_FETCH_STATE,
@@ -12,6 +14,7 @@ import { POST_LOGIN_DATA_TO_API } from "../actions/userActions";
 const initialState = {
   newUsers: [],
   user: {},
+  address: [],
   userfetchstate: FETCH_STATES.notFetched,
 };
 
@@ -51,7 +54,18 @@ export const userReducer = (state = initialState, action) => {
         user: action.payload,
       };
       return verifyUser;
-
+    case GET_ADDRESS:
+      const address = {
+        ...state,
+        address: [...state.address, ...action.payload],
+      };
+      return address;
+    case POST_ADDRESS:
+      const postaddress = {
+        ...state,
+        address: [...state.address, ...action.payload],
+      };
+      return postaddress;
     default:
       return state;
   }

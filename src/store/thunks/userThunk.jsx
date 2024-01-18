@@ -3,9 +3,29 @@ import { toast } from "react-toastify";
 import {
   postSignupDataToApi,
   postLoginDataToApi,
+  getAddressData,
+  postAddressData,
 } from "../actions/userActions";
 import { FETCH_STATES } from "../actions/globalActions";
 import { setUserFetchState, verifyUserToken } from "../actions/userActions";
+
+export const getAddress = () => {
+  return (dispatch, getState) => {
+    axiosInstance
+      .get("/user/address")
+      .then((res) => dispatch(getAddressData(res.data)))
+      .catch((err) => console.log("Hata"));
+  };
+};
+
+export const postAdress = (address) => {
+  return (dispatch, getState) => {
+    axiosInstance
+      .post("/user/address", address)
+      .then((res) => dispatch(postAddressData(address)))
+      .catch((err) => console.log("POST DATA", err));
+  };
+};
 
 export const postSignup = (data) => {
   return (dispatch, getState) => {

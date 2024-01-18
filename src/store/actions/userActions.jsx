@@ -3,11 +3,27 @@ export const POST_LOGIN_DATA_TO_API = "POST_LOGIN_DATA_TO_API";
 export const LOGOUT_USER = "LOGOUT_USER ";
 export const SET_USER_FETCH_STATE = "SET_USER_FETCH_STATE";
 export const VERIFY_TOKEN = "VERIFY_TOKEN";
+export const GET_ADDRESS = "GET_ADDRESS";
+export const POST_ADDRESS = "POST_ADDRESS";
 
 export const postSignupDataToApi = (sign) => {
   return {
     type: POST_SIGNUP_DATA_TO_API,
     payload: sign,
+  };
+};
+
+export const getAddressData = (adress) => {
+  return {
+    type: GET_ADDRESS,
+    payload: adress,
+  };
+};
+
+export const postAddressData = (adress) => {
+  return {
+    type: POST_ADDRESS,
+    payload: adress,
   };
 };
 
