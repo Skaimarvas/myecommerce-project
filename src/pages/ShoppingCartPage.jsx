@@ -31,23 +31,25 @@ export default function ShoppingCartPage() {
   useEffect(() => {}, [orderTotal]);
 
   return (
-    <div className="flex flex-col items-center gap-5 p-10 bg-gray-100">
-      <div className="flex justify-between bg-white  px-10 py-5 rounded shadow-md w-[87%] ">
-        <h3 className="text-2xl font-bold uppercase">
-          My Cart ({cart.length})
-        </h3>
-        <div className="flex flex-row justify-between items-center gap-2">
-          <span className="text-sm">Free shipping on orders over $100!</span>
-          <img src={free} alt="" className="w-10 h-10" />
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-center gap-10 w-full px-10">
+    <div className="flex items-center p-2 bg-gray-100 w-full">
+      <div className="flex flex-wrap justify-center gap-5 w-full ">
         <div className="flex flex-col gap-5 ">
+          <div className="flex justify-between bg-white  px-10 py-5 rounded shadow-md  ">
+            <h3 className="text-2xl font-bold uppercase">
+              My Cart ({cart.length})
+            </h3>
+            <div className="flex flex-row justify-between items-center gap-2">
+              <span className="text-sm">
+                Free shipping on orders over $100!
+              </span>
+              <img src={free} alt="" className="w-10 h-10" />
+            </div>
+          </div>
           {cart.map((car, index) => (
             <>
               <div
                 key={index}
-                className="flex flex-row justify-between items-center px-3 py-3  gap-2 bg-white rounded-md shadow-md "
+                className="flex flex-wrap justify-between items-center px-3 py-3  gap-2 bg-white rounded-md shadow-md "
               >
                 <div>
                   <form>
@@ -56,7 +58,7 @@ export default function ShoppingCartPage() {
                 </div>
                 <img
                   src={car.product.images[0].url}
-                  className="w-[150px] h-[150px]  rounded shadow-lg object-cover object-top "
+                  className="w-[150px] h-[150px]  rounded border border-gray-600 object-cover object-top "
                   alt=""
                 />
 

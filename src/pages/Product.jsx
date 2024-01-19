@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "@material-tailwind/react";
+import { toast } from "react-toastify";
 
 //Icons
 import { Icon } from "@iconify/react";
 import { MdNavigateNext } from "react-icons/md";
-
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
 import { IoMdEye } from "react-icons/io";
@@ -13,25 +13,40 @@ import { IoMdEye } from "react-icons/io";
 import product1 from "../assets/product1.jpeg";
 import product2 from "../assets/product2.jpeg";
 import product3 from "../assets/product3.jpeg";
+import bestseller from "../assets/productcard/bseller.png";
+import free from "../assets/productcard/free.png";
 //Components
 import BestsellerProduct from "../components/BestsellerProduct";
 import Brands from "../components/Brands";
 import RatingStar from "../components/RatingStar";
+import SpiningAnimation from "../components/SpiningAnimation";
 //Hooks
 import { useParams } from "react-router-dom/";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../store/thunks/productThunk";
+//Actions
 import { FETCH_STATES } from "../store/actions/globalActions";
-import SpiningAnimation from "../components/SpiningAnimation";
-
+//Thunk
+import { getDetail } from "../store/thunks/productThunk";
+import { addProductToCart } from "../store/actions/shoppingCartActions";
 export default function Product() {
   const dispatch = useDispatch();
   const { pdetail, detailstate } = useSelector((store) => store.product);
 
-  //Bu yıldız işlemleri için ayrı bir componenet oluştur. Compenentleri daima sade bırak.
-
   const specPro = useParams();
-  console.log("SPECPRO", specPro);
+  console.log("PDETAIL", pdetail);
+
+  const addCart = (e) => {
+    e.preventDefault();
+    const cartProduct = {
+      count: 1,
+      checked: true,
+      product: pdetail,
+    };
+    console.log("CARTPRODUCT", cartProduct);
+    dispatch(addProductToCart(cartProduct));
+
+    toast.success("Product Added to Cart");
+  };
 
   useEffect(() => {
     dispatch(getDetail(`/${specPro.id}`));
@@ -80,10 +95,24 @@ export default function Product() {
               >
                 <div className="relative ">
                   <img
-                    className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover"
+                    className="h-[450px] w-[506px] sm:w-full sm:h-[277px] object-cover object-top"
                     src={pdetail?.images[0].url}
                     alt="image 1"
                   />
+                  {pdetail.price > 100 && (
+                    <img
+                      src={free}
+                      className="absolute inset-x-[4%] inset-y-[4%] w-9 h-9 inset"
+                      alt=""
+                    />
+                  )}
+                  {pdetail.sell_count > 500 && (
+                    <img
+                      src={bestseller}
+                      className="absolute inset-x-[88%] inset-y-[4%] w-9 h-9"
+                      alt=""
+                    />
+                  )}
                 </div>
                 <div className="relative">
                   <img
@@ -151,7 +180,10 @@ export default function Product() {
                 <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
                   <FaRegHeart className="text-[20px]" />
                 </button>
-                <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
+                <button
+                  onClick={(e) => addCart(e)}
+                  className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8] transition-transform hover:scale-[1.10] hover:text-blue-900 "
+                >
                   <BsCart className="text-[20px]" />
                 </button>
                 <button className="flex justify-center items-center rounded-full h-[40px] w-[40px] border border-[#E8E8E8]  ">
