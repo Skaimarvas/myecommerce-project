@@ -5,9 +5,30 @@ import {
   postLoginDataToApi,
   getAddressData,
   postAddressData,
+  getPaymentData,
+  postPaymentData,
 } from "../actions/userActions";
 import { FETCH_STATES } from "../actions/globalActions";
 import { setUserFetchState, verifyUserToken } from "../actions/userActions";
+
+export const getPayment = () => {
+  return (dispatch, getState) => {
+    axiosInstance
+      .get("/user/card")
+      .then((res) => dispatch(getPaymentData(res.data)))
+      .catch((err) => console.log("PAYMENT ERROR"));
+  };
+};
+
+export const postPayment = (payment) => {
+  console.log("POST PAYMENT DATA", payment);
+  return (dispatch, getState) => {
+    axiosInstance
+      .post("/user/card", payment)
+      .then((res) => dispatch(postPaymentData(res.data)))
+      .catch((err) => console.log("POST PAYMENT ERROR"));
+  };
+};
 
 export const getAddress = () => {
   return (dispatch, getState) => {

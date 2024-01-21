@@ -45,7 +45,11 @@ export default function OrderSummoryBox() {
           </div>
         )}
 
-        <Input label=" + Enter Your Discount Code" setDiscount={setDiscount} />
+        <Input
+          label=" + Enter Your Discount Code"
+          name="discount"
+          setDiscount={setDiscount}
+        />
         <hr />
         <div className="flex flex-row justify-between ">
           {" "}
