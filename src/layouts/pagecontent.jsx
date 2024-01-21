@@ -12,18 +12,14 @@ import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import NotFoundPage from "../pages/NotFoundPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
-import Adress from "../pages/Adress";
-import PrivateRoute from "../components/PrivateRoute";
-import DeliveryAddress from "../components/DeliveryAddress";
+import PrivateRoute from "./PrivateRoute";
+import PaymentOptions from "../components/PaymentOptions";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
-        <Route path="/delivery" exact>
-          <DeliveryAddress />
-        </Route>
-        <PrivateRoute path="/adress" component={() => <Adress />} />
+        <PrivateRoute path="/payment" component={() => <PaymentOptions />} />
         <Route path="/cart" exact>
           <ShoppingCartPage />
         </Route>

@@ -63,7 +63,7 @@ export const userReducer = (state = initialState, action) => {
     case POST_ADDRESS:
       const postaddress = {
         ...state,
-        address: [...state.address, ...action.payload],
+        address: [...state.address, { ...action.payload }],
       };
       return postaddress;
     default:

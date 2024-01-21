@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAddress } from "../store/thunks/userThunk";
 import { postAdress } from "../store/thunks/userThunk";
 
-export default function Adress() {
+export default function Address(props) {
+  // const { address } = useSelector((store) => store.userData);
+  const { isOpen, setClose } = props;
+  if (!isOpen) return null;
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm({
@@ -13,25 +16,26 @@ export default function Adress() {
 
   const dataHandle = (data) => {
     console.log("DATA", data);
+    dispatch(postAdress(data));
   };
 
-  useEffect(() => {
-    dispatch(getAddress());
-  }, []);
-
   return (
-    <div className="flex justify-center items-center p-10 bg-gray-100">
+    <div className="fixed inset-0 flex flex-col justify-center items-center p-10 bg-gray-800 bg-opacity-50">
       <form onSubmit={handleSubmit(dataHandle)}>
         <div className=" blackborder flex flex-col p-5 bg-white rounded-md shadow-md">
-          <div className="flex flex-col p-2">
-            <label htmlFor="title">Adress Title </label>
-            <input
-              id="title"
-              className="blackborder"
-              {...register("title")}
-              type="text"
-            />
+          <div className="flex flex-row justify-between">
+            <div>
+              {" "}
+              <h3>Add Address</h3>{" "}
+            </div>
+            <div>
+              {" "}
+              <button onClick={() => setClose(false)}>
+                <span>x</span>
+              </button>{" "}
+            </div>
           </div>
+          <hr />
           <div className="flex flex-wrap gap-2">
             <div className="flex flex-col p-2">
               <label htmlFor="name">Name </label>
@@ -96,6 +100,15 @@ export default function Adress() {
               id="address"
               className="blackborder"
               {...register("address")}
+              type="text"
+            />
+          </div>
+          <div className="flex flex-col p-2">
+            <label htmlFor="title">Adress Title </label>
+            <input
+              id="title"
+              className="blackborder"
+              {...register("title")}
               type="text"
             />
           </div>

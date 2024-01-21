@@ -26,12 +26,9 @@ export default function ShoppingCart({ isVisible }) {
           showScroll ? "overflow-y-auto max-h-96 h-[250px] " : ""
         } `}
       >
-        {cart.map((car) => (
+        {cart.map((car, index) => (
           <>
-            <div
-              key={car.product.id}
-              className=" flex flex-row items-center gap-2 "
-            >
+            <div key={index} className=" flex flex-row items-center gap-2 ">
               <div className="flex justify-center items-center w-[100px] h-[70px] border border-gray-400 rounded shadow-md">
                 <img
                   src={car.product.images[0].url}
