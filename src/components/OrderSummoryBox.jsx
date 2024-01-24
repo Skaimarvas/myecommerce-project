@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "../components/Input";
 import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function OrderSummoryBox() {
+export default function OrderSummoryBox(props) {
+  const { ordersHandler } = props;
   const [discount, setDiscount] = useState();
   const { cart } = useSelector((store) => store.shopping);
 
@@ -17,6 +18,12 @@ export default function OrderSummoryBox() {
       : (orderTotal * 1.1 * applyDiscount + 25).toFixed(2);
 
   useEffect(() => {}, [orderTotal]);
+
+  /**NOTLAR:
+   * Link to="/payment" koymak çok mantıklı gelmedi. Başka bir yolu olabilir
+   *
+   *
+   */
 
   return (
     <div className="flex flex-col justify-center items-center p-5 gap-5 rounded-md shadow-md h-[400px] w-[300px] bg-white">
@@ -62,8 +69,12 @@ export default function OrderSummoryBox() {
           </span>
         </div>
       </div>
+
       <Link to="/payment">
-        <button className=" px-4 py-2 w-full bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8] ">
+        <button
+          onClick={ordersHandler}
+          className=" px-4 py-2 w-full bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8] "
+        >
           <span className="text-white">Chect Out</span>
         </button>
       </Link>

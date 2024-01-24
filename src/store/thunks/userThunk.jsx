@@ -3,50 +3,10 @@ import { toast } from "react-toastify";
 import {
   postSignupDataToApi,
   postLoginDataToApi,
-  getAddressData,
-  postAddressData,
-  getPaymentData,
-  postPaymentData,
+  setUserFetchState,
+  verifyUserToken,
 } from "../actions/userActions";
 import { FETCH_STATES } from "../actions/globalActions";
-import { setUserFetchState, verifyUserToken } from "../actions/userActions";
-
-export const getPayment = () => {
-  return (dispatch, getState) => {
-    axiosInstance
-      .get("/user/card")
-      .then((res) => dispatch(getPaymentData(res.data)))
-      .catch((err) => console.log("PAYMENT ERROR"));
-  };
-};
-
-export const postPayment = (payment) => {
-  console.log("POST PAYMENT DATA", payment);
-  return (dispatch, getState) => {
-    axiosInstance
-      .post("/user/card", payment)
-      .then((res) => dispatch(postPaymentData(res.data)))
-      .catch((err) => console.log("POST PAYMENT ERROR"));
-  };
-};
-
-export const getAddress = () => {
-  return (dispatch, getState) => {
-    axiosInstance
-      .get("/user/address")
-      .then((res) => dispatch(getAddressData(res.data)))
-      .catch((err) => console.log("Hata"));
-  };
-};
-
-export const postAdress = (address) => {
-  return (dispatch, getState) => {
-    axiosInstance
-      .post("/user/address", address)
-      .then((res) => dispatch(postAddressData(address)))
-      .catch((err) => console.log("POST DATA", err));
-  };
-};
 
 export const postSignup = (data) => {
   return (dispatch, getState) => {
@@ -61,7 +21,6 @@ export const postSignup = (data) => {
       });
   };
 };
-
 export const postLogin = (data) => {
   return (dispatch, getState) => {
     dispatch(setUserFetchState(FETCH_STATES.fetching));
@@ -83,7 +42,6 @@ export const postLogin = (data) => {
       });
   };
 };
-
 export const verifyToken = (data) => {
   return (dispatch, getState) => {
     dispatch(setUserFetchState(FETCH_STATES.fetching));

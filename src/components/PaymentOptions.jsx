@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAddress } from "../store/thunks/userThunk";
-import OrderSummoryBox from "./OrderSummoryBox";
-import PaymentOptionsTitle from "./PaymentOptionsTitle";
-import Address from "./Address";
-import Radio from "./Radio";
+//Thunk
+import { getAddress, postOrders } from "../store/thunks/shoppingCartThunk";
 //Icons
 import { Icon } from "@iconify/react";
+//Components
 import Checkbox from "./Checkbox";
 import Payment from "./Payment";
+import Radio from "./Radio";
+import Address from "./Address";
+import OrderSummoryBox from "./OrderSummoryBox";
+import PaymentOptionsTitle from "./PaymentOptionsTitle";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PaymentOptions() {
+  const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [option, setOption] = useState(true);
 
@@ -21,13 +25,43 @@ export default function PaymentOptions() {
   const closeModal = () => setIsModalOpen(false);
 
   const dispatch = useDispatch();
-  const { address } = useSelector((store) => store.userData);
+  const { address } = useSelector((store) => store.shopping);
+  console.log("LOCATION IN PAYMENT", location.pathname);
+  const ordersHandler = () => {
+    const orderSample = {
+      address_id: 1,
+      order_date: "2024-01-10T14:18:30",
+      card_no: 1234123412341234,
+      card_name: "Ali Baş",
+      card_expire_month: 12,
+      card_expire_year: 2025,
+      card_ccv: 321,
+      price: 1919,
+      products: [
+        {
+          product_id: 12,
+          count: 1,
+          detail: "açık mavi - xl",
+        },
+        {
+          product_id: 13,
+          count: 2,
+          detail: "siyah - lg",
+        },
+      ],
+    };
+
+    //Geçerli Adres ve card bilgileri yoksa post etmeye izin verme!
+    if ((location.pathname = "/payment")) {
+      dispatch(postOrders(orderSample));
+    }
+  };
+
   useEffect(() => {
     if (address.length === 0) {
       dispatch(getAddress());
     }
   }, []);
-  console.log("PAYMENTOPTIONS", address);
   return (
     <div className="flex flex-wrap justify-center gap-5 bg-gray-100 p-2   w-full">
       <div className="flex flex-col items-start gap-5  w-3/5">
@@ -59,10 +93,10 @@ export default function PaymentOptions() {
                 </button>
               </div>
               {address &&
-                address.map((add, index) => (
+                address.map((add) => (
                   <>
                     {" "}
-                    <div key={index} className="flex flex-col gap-2 w-[400px]">
+                    <div key={add.id} className="flex flex-col gap-2 w-[400px]">
                       <div className="flex flex-row justify-between items-center">
                         <Radio label={add.title} id={add.id} />
 
@@ -124,7 +158,7 @@ export default function PaymentOptions() {
         {!option && <Payment />}
       </div>
 
-      <OrderSummoryBox />
+      <OrderSummoryBox ordersHandler={ordersHandler} />
       <Address isOpen={isModalOpen} setClose={closeModal} />
     </div>
   );

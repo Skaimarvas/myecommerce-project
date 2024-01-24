@@ -2,22 +2,18 @@ import { toast } from "react-toastify";
 
 import { FETCH_STATES } from "../actions/globalActions";
 import {
-  GET_ADDRESS,
-  POST_ADDRESS,
   LOGOUT_USER,
   POST_SIGNUP_DATA_TO_API,
+  POST_LOGIN_DATA_TO_API,
   SET_USER_FETCH_STATE,
   VERIFY_TOKEN,
-  GET_PAYMENT,
-  POST_PAYMENT,
 } from "../actions/userActions";
-import { POST_LOGIN_DATA_TO_API } from "../actions/userActions";
 
 const initialState = {
   newUsers: [],
   user: {},
-  address: [],
-  payment: [],
+  address: {},
+  payment: {},
   userfetchstate: FETCH_STATES.notFetched,
 };
 
@@ -57,30 +53,6 @@ export const userReducer = (state = initialState, action) => {
         user: action.payload,
       };
       return verifyUser;
-    case GET_ADDRESS:
-      const address = {
-        ...state,
-        address: [...state.address, ...action.payload],
-      };
-      return address;
-    case POST_ADDRESS:
-      const postaddress = {
-        ...state,
-        address: [...state.address, { ...action.payload }],
-      };
-      return postaddress;
-    case GET_PAYMENT:
-      const getpayment = {
-        ...state,
-        payment: [...state.payment, ...action.payload],
-      };
-      return getpayment;
-    case POST_PAYMENT:
-      const postpayment = {
-        ...state,
-        payment: [...state.payment, { ...action.payload }],
-      };
-      return postpayment;
     default:
       return state;
   }

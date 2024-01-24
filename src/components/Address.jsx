@@ -1,22 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { getAddress } from "../store/thunks/userThunk";
-import { postAdress } from "../store/thunks/userThunk";
+import { useDispatch } from "react-redux";
+import { postAddress } from "../store/thunks/shoppingCartThunk";
 
 export default function Address(props) {
-  // const { address } = useSelector((store) => store.userData);
   const { isOpen, setClose } = props;
   if (!isOpen) return null;
   const dispatch = useDispatch();
-
   const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
 
   const dataHandle = (data) => {
     console.log("DATA", data);
-    dispatch(postAdress(data));
+    dispatch(postAddress(data));
   };
 
   return (

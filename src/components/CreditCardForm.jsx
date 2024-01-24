@@ -3,7 +3,8 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Select, Option } from "@material-tailwind/react";
 import { useDispatch } from "react-redux";
-import { postPayment } from "../store/thunks/userThunk";
+//Thunk
+import { postPayment } from "../store/thunks/shoppingCartThunk";
 
 const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 const years = [
