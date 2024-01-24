@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //CSS
 import "./App.css";
@@ -32,7 +32,7 @@ function App() {
       <Footer />
       <ToastContainer />
       <ScrollToUpButton />
-      {confirm && <Confirm setConfirm={setConfirm} />}
+      {confirm && <Confirm confirm={confirm} setConfirm={setConfirm} />}
     </>
   );
 }

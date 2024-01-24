@@ -7,6 +7,7 @@ import {
   POST_LOGIN_DATA_TO_API,
   SET_USER_FETCH_STATE,
   VERIFY_TOKEN,
+  GET_ORDERS,
 } from "../actions/userActions";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   user: {},
   address: {},
   payment: {},
+  orders: [],
   userfetchstate: FETCH_STATES.notFetched,
 };
 
@@ -53,6 +55,12 @@ export const userReducer = (state = initialState, action) => {
         user: action.payload,
       };
       return verifyUser;
+    case GET_ORDERS:
+      const getorders = {
+        ...state,
+        orders: [...state.orders, ...action.payload],
+      };
+      return getorders;
     default:
       return state;
   }

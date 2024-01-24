@@ -14,12 +14,16 @@ import NotFoundPage from "../pages/NotFoundPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
 import PrivateRoute from "./PrivateRoute";
 import PaymentOptions from "../components/PaymentOptions";
+import OrdersPage from "../pages/OrdersPage";
 
 export default function PageContent() {
   return (
     <div>
       <Switch>
         <PrivateRoute path="/payment" component={() => <PaymentOptions />} />
+        <Route path="/orders" exact>
+          <OrdersPage />
+        </Route>
         <Route path="/cart" exact>
           <ShoppingCartPage />
         </Route>

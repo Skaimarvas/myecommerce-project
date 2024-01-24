@@ -3,7 +3,14 @@ export const POST_LOGIN_DATA_TO_API = "POST_LOGIN_DATA_TO_API";
 export const LOGOUT_USER = "LOGOUT_USER ";
 export const SET_USER_FETCH_STATE = "SET_USER_FETCH_STATE";
 export const VERIFY_TOKEN = "VERIFY_TOKEN";
+export const GET_ORDERS = "GET_ORDERS";
 
+export const getOrdersData = (orders) => {
+  return {
+    type: GET_ORDERS,
+    payload: orders,
+  };
+};
 export const postSignupDataToApi = (sign) => {
   return {
     type: POST_SIGNUP_DATA_TO_API,
