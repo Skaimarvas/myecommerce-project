@@ -25,6 +25,11 @@ function App() {
   useEffect(() => {
     dispatch(verifyToken());
   }, []);
+
+  /**
+   * Header'a setConfirm'i prob olarak başka nasıl gönderebiliriz? Context Api'yi sadece 1 prob için yüklemek istemedim.
+   */
+
   return (
     <>
       <Header setConfirm={setConfirm} />

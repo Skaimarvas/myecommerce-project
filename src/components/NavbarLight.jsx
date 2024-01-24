@@ -11,8 +11,6 @@ import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 //Actions
-import { logoutUser, setUserFetchState } from "../store/actions/userActions";
-import { FETCH_STATES } from "../store/actions/globalActions";
 //Components
 import NavbarMenu from "./NavbarMenu";
 import ShoppingCart from "./ShoppingCart";
@@ -22,20 +20,14 @@ export default function NavbarLight(props) {
   const location = useLocation();
   const { setConfirm } = props;
   const [showCart, setShowCart] = useState(false);
-
   const dispatch = useDispatch();
   const tokenValue = localStorage.getItem("token");
   const { cart } = useSelector((store) => store.shopping);
   const { email, name } = useSelector((store) => store.userData.user);
 
-  const handleCartToggle = () => {
-    setShowCart((prev) => !prev);
-  };
-
   const confirmHandler = () => {
     setConfirm(true);
   };
-
   console.log("LOCATION", location.pathname);
 
   useEffect(() => {

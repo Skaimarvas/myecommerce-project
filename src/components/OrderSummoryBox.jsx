@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Input from "../components/Input";
-import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function OrderSummoryBox(props) {
   const { ordersHandler } = props;
@@ -26,7 +26,7 @@ export default function OrderSummoryBox(props) {
    */
 
   return (
-    <div className="flex flex-col justify-center items-center p-5 gap-5 rounded-md shadow-md h-[400px] w-[300px] bg-white">
+    <div className="flex flex-col justify-center items-center p-5 gap-5 rounded-md shadow-md h-[400px] w-[300px] bg-white sticky top-0 ">
       <h4 className="text-center">
         {" "}
         <b> Order Summary </b>

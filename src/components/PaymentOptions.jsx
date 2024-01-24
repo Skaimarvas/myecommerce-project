@@ -52,7 +52,7 @@ export default function PaymentOptions() {
     };
 
     //Geçerli Adres ve card bilgileri yoksa post etmeye izin verme!
-    if ((location.pathname = "/payment")) {
+    if (location.pathname === "/payment") {
       dispatch(postOrders(orderSample));
     }
   };
@@ -63,8 +63,8 @@ export default function PaymentOptions() {
     }
   }, []);
   return (
-    <div className="flex flex-wrap justify-center gap-5 bg-gray-100 p-2   w-full">
-      <div className="flex flex-col items-start gap-5  w-3/5">
+    <div className="relative flex flex-wrap justify-center gap-5 bg-gray-100 p-2 w-full">
+      <div className="flex flex-col items-start gap-5 w-3/5">
         <PaymentOptionsTitle open={option} setOpen={setOption} />
         {option && (
           <div className="bg-white rounded-md shadow-md">
@@ -80,7 +80,7 @@ export default function PaymentOptions() {
               </div>
             </div>
             <hr />
-            <form className="flex flex-wrap  justify-start px-5 py-8  gap-5">
+            <form className="flex flex-wrap justify-start px-5 py-8  gap-5">
               <div className="flex items-end">
                 <button
                   onClick={(e) => openModal(e)}
@@ -94,63 +94,60 @@ export default function PaymentOptions() {
               </div>
               {address &&
                 address.map((add) => (
-                  <>
-                    {" "}
-                    <div key={add.id} className="flex flex-col gap-2 w-[400px]">
-                      <div className="flex flex-row justify-between items-center">
-                        <Radio label={add.title} id={add.id} />
+                  <div key={add.id} className="flex flex-col gap-2 w-[400px]">
+                    <div className="flex flex-row justify-between items-center">
+                      <Radio label={add.title} id={add.id} />
 
-                        <div className="flex">
-                          <button className="hover:underline">
-                            <span className="text-sm"> Edit </span>{" "}
-                          </button>
-                        </div>
+                      <div className="flex">
+                        <button className="hover:underline">
+                          <span className="text-sm"> Edit </span>{" "}
+                        </button>
                       </div>
-                      <label
-                        className="cursor-pointer"
-                        htmlFor={`radio-${add.id}`}
-                      >
-                        <div className="flex flex-col border border-gray-500 bg-gray-100 p-3 rounded-md font-bold gap-4 ">
-                          <div className="flex flex-row justify-between font-normal text-gray-800 text-sm ">
-                            <div className="flex items-center gap-1">
-                              <Icon icon="iconamoon:profile-fill" />
-                              <span> {add.name + " " + add.surname} </span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Icon icon="gridicons:phone" />
-                              <span> {add.phone} </span>
-                            </div>
-                          </div>
-                          <div>
-                            <p
-                              className=" truncate"
-                              title={
-                                add.address +
-                                " " +
-                                add.neighborhood +
-                                " " +
-                                add.district +
-                                "/" +
-                                add.city
-                              }
-                            >
-                              {" "}
-                              {add.address +
-                                " " +
-                                add.neighborhood +
-                                " " +
-                                add.district +
-                                "/" +
-                                add.city}{" "}
-                            </p>
-                          </div>
-                          <div>
-                            <span> {add.district + "/" + add.city} </span>
-                          </div>
-                        </div>{" "}
-                      </label>
                     </div>
-                  </>
+                    <label
+                      className="cursor-pointer"
+                      htmlFor={`radio-${add.id}`}
+                    >
+                      <div className="flex flex-col border border-gray-500 bg-gray-100 p-3 rounded-md font-bold gap-4 ">
+                        <div className="flex flex-row justify-between font-normal text-gray-800 text-sm ">
+                          <div className="flex items-center gap-1">
+                            <Icon icon="iconamoon:profile-fill" />
+                            <span> {add.name + " " + add.surname} </span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Icon icon="gridicons:phone" />
+                            <span> {add.phone} </span>
+                          </div>
+                        </div>
+                        <div>
+                          <p
+                            className=" truncate"
+                            title={
+                              add.address +
+                              " " +
+                              add.neighborhood +
+                              " " +
+                              add.district +
+                              "/" +
+                              add.city
+                            }
+                          >
+                            {" "}
+                            {add.address +
+                              " " +
+                              add.neighborhood +
+                              " " +
+                              add.district +
+                              "/" +
+                              add.city}{" "}
+                          </p>
+                        </div>
+                        <div>
+                          <span> {add.district + "/" + add.city} </span>
+                        </div>
+                      </div>{" "}
+                    </label>
+                  </div>
                 ))}
             </form>
           </div>
