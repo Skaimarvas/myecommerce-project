@@ -28,7 +28,7 @@ export default function NavbarMenu(props) {
 
   return (
     <nav>
-      <ul className="flex flex-wrap sm:flex-col text-[18px] sm:text-[30px] font-bold sm:font-normal text-[#737373] leading-6 sm:leading-[45px] justify-center items-center gap-[15px]  sm:py-[30px]">
+      <ul className="flex flex-wrap sm:flex-col text-[18px] sm:text-[30px] font-bold sm:font-normal text-[#737373] leading-6 sm:leading-[45px] justify-center items-center gap-[30px]  sm:py-[30px]">
         <NavbarMenuItem path="/" name="Home" className=" border-black" />
         <NavbarMenuItem
           path="/shopping"
@@ -40,7 +40,7 @@ export default function NavbarMenu(props) {
           {openMenu && (
             <>
               {" "}
-              <DropdownMenu className="left-[34%] p-2 sm:hidden">
+              <DropdownMenu className="left-[33%] p-2 sm:hidden">
                 <NavbarMenuItem
                   path="/shopping"
                   className="p-2 hover:bg-blue-gray-50"

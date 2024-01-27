@@ -8,6 +8,8 @@ import {
   SET_USER_FETCH_STATE,
   VERIFY_TOKEN,
   GET_ORDERS,
+  GET_USER_ADDRESS,
+  GET_USER_PAYMENT,
 } from "../actions/userActions";
 
 const initialState = {
@@ -61,6 +63,18 @@ export const userReducer = (state = initialState, action) => {
         orders: [...state.orders, ...action.payload],
       };
       return getorders;
+    case GET_USER_ADDRESS:
+      const getUserAdress = {
+        ...state,
+        address: action.payload,
+      };
+      return getUserAdress;
+    case GET_USER_PAYMENT:
+      const getUserPayment = {
+        ...state,
+        payment: action.payload,
+      };
+      return getUserPayment;
     default:
       return state;
   }

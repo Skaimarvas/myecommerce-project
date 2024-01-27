@@ -4,7 +4,22 @@ export const LOGOUT_USER = "LOGOUT_USER ";
 export const SET_USER_FETCH_STATE = "SET_USER_FETCH_STATE";
 export const VERIFY_TOKEN = "VERIFY_TOKEN";
 export const GET_ORDERS = "GET_ORDERS";
+export const GET_USER_ADDRESS = "GET_USER_ADDRESS";
+export const GET_USER_PAYMENT = "GET_USER_PAYMENT";
 
+export const getUserPaymentData = (payment) => {
+  return {
+    type: GET_USER_PAYMENT,
+    payload: payment,
+  };
+};
+
+export const getUserAddressData = (address) => {
+  return {
+    type: GET_USER_ADDRESS,
+    payload: address,
+  };
+};
 export const getOrdersData = (orders) => {
   return {
     type: GET_ORDERS,

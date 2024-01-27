@@ -40,10 +40,10 @@ export default function CreditCardForm() {
   };
 
   return (
-    <div>
+    <div className="bg-white w-[500px] p-2">
       <form onSubmit={handleSubmit(cardDataHandle)}>
         <div className="flex flex-col gap-4">
-          <div className="relative w-full h-10">
+          <div className="relative w-full">
             <input
               type="text"
               placeholder="Card Number"
@@ -66,9 +66,10 @@ export default function CreditCardForm() {
             </label>
           </div>
           <div className="flex flex-row items-center gap-3">
-            <div className="flex flex-row items-center">
-              <div className=" h-10">
+            <div className="flex flex-row  items-center">
+              <div>
                 <Controller
+                  className="blackborder"
                   name="expire_month"
                   control={control}
                   render={({ field }) => (

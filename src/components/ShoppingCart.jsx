@@ -29,10 +29,10 @@ export default function ShoppingCart({ isVisible }) {
         {cart.map((car, index) => (
           <>
             <div key={index} className=" flex flex-row items-center gap-2 ">
-              <div className="flex justify-center items-center w-[100px] h-[70px] border border-gray-400 rounded shadow-md">
+              <div className="flex justify-center items-center w-[80px] h-[70px] border border-gray-400 rounded">
                 <img
                   src={car.product.images[0].url}
-                  className="w-[60px] h-[60px]  rounded shadow-sm object-fit "
+                  className="w-[40px] h-[60px]  rounded  object-fit "
                   alt=""
                 />
               </div>

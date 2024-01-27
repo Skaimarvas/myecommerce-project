@@ -25,6 +25,7 @@ export const getAddress = () => {
   };
 };
 export const postAddress = (address) => {
+  console.log("POST ADRESS DATA", address);
   return (dispatch, getState) => {
     axiosInstance
       .post("/user/address", address)

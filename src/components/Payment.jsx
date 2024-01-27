@@ -8,25 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPayment } from "../store/thunks/shoppingCartThunk";
 import Radio from "./Radio";
 
-export default function Payment() {
+export default function Payment(props) {
   const dispatch = useDispatch();
+  const { set } = props;
   const { payment } = useSelector((store) => store.shopping);
 
-  useEffect(() => {
-    if (payment.length === 0) dispatch(getPayment());
-  }, []);
+  useEffect(() => {}, [payment]);
 
   return (
-    <div className="bg-white p-5">
+    <div className="flex flex-col items-center gap-10 bg-white p-5 w-full rounded shadow border border-gray-400">
       <CreditCardForm />
-      <form action="">
-        <div className="flex flex-wrap gap-3 p-2 bg-white ">
+
+      <form>
+        <div className="flex flex-wrap justify-center gap-3 p-2 bg-white ">
           {payment &&
             payment.map((pay) => (
               <div key={pay.id} className=" w-[300px] ">
                 {" "}
                 <div className="flex flex-row justify-between items-center">
-                  <Radio label={pay.name_on_card} id={pay.id} />
+                  <Radio label={pay.name_on_card} id={pay.id} set={set} />
                 </div>
                 <label htmlFor={`radio-${pay.id}`}>
                   <div className="flex flex-col gap-2 p-2 border border-gray-700 bg-gray-400 rounded-md shadow-md">
