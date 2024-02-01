@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 //Icons and Pngs
 import citi from "../assets/cardlogos/citi.png";
 import mastercard from "../assets/cardlogos/mastercard48.png";
@@ -9,6 +10,7 @@ import { getPayment } from "../store/thunks/shoppingCartThunk";
 import Radio from "./Radio";
 
 export default function Payment(props) {
+  const { register, watch } = useForm();
   const dispatch = useDispatch();
   const { set } = props;
   const { payments } = useSelector((store) => store.shopping);
@@ -28,7 +30,15 @@ export default function Payment(props) {
               <div key={pay.id} className=" w-[300px] ">
                 {" "}
                 <div className="flex flex-row justify-between items-center">
-                  <Radio label={pay.name_on_card} id={pay.id} set={set} />
+                  <div className="inline-flex items-center gap-1">
+                    {" "}
+                    <input
+                      type="radio"
+                      {...register("payment")}
+                      id={pay.id}
+                    />{" "}
+                    <label htmlFor={pay.id}> {pay.name_on_card} </label>
+                  </div>
                 </div>
                 <label htmlFor={`radio-${pay.id}`}>
                   <div className="flex flex-col gap-2 p-2 border border-gray-700 bg-gray-400 rounded-md shadow-md">
