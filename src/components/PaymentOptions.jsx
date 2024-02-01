@@ -21,14 +21,15 @@ import { getPayment } from "../store/thunks/shoppingCartThunk";
 
 export default function PaymentOptions() {
   const dispatch = useDispatch();
-  const { address, payment } = useSelector((store) => store.shopping);
+  const { address, payment } = useSelector((store) => store.userData);
+  const { addresses, payments } = useSelector((store) => store.shopping);
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [option, setOption] = useState(true);
   const [addressID, setAddressID] = useState();
   const [paymentID, setPaymentID] = useState();
   const [total, setTotal] = useState();
-  console.log("PAYMENT SHOW", payment);
+  console.log("PAYMENT SHOW", payments);
   console.log(
     "ORDER DATE",
     new Date(new Date().toString().split("GMT")[0] + " UTC")
@@ -41,9 +42,9 @@ export default function PaymentOptions() {
   };
   const closeModal = () => setIsModalOpen(false);
 
-  const userAddress = address.find((add) => add.id == addressID);
-  const userPayment = payment.find((pay) => pay.id == paymentID);
-  console.log("userAdressfilter", address);
+  const userAddress = addresses.find((add) => add.id == addressID);
+  const userPayment = payments.find((pay) => pay.id == paymentID);
+  console.log("userAddressfilter", addresses);
 
   console.log("LOCATION IN PAYMENT", location.pathname);
   const ordersHandler = () => {
@@ -77,11 +78,11 @@ export default function PaymentOptions() {
   };
 
   useEffect(() => {
-    if (address.length === 0) {
+    if (addresses.length === 0) {
       dispatch(getAddress());
     }
 
-    if (payment.length === 0) dispatch(getPayment());
+    if (payments.length === 0) dispatch(getPayment());
 
     if (userAddress) dispatch(getUserAddressData(userAddress));
     if (userPayment) dispatch(getUserPaymentData(userPayment));
@@ -91,7 +92,7 @@ export default function PaymentOptions() {
       <div className="flex flex-col items-start gap-5 w-4/6">
         <PaymentOptionsTitle open={option} setOpen={setOption} />
         {option && (
-          <div className=" bg-white rounded-md shadow-md">
+          <div className=" bg-white rounded-md shadow-md w-full">
             <div className="flex flex-wrap  justify-between px-5 py-4 w-full">
               <div>
                 <h3 className="text-2xl font-bold">Delivery Address</h3>
@@ -117,14 +118,14 @@ export default function PaymentOptions() {
                     <span>Add New Address</span>
                   </button>
                 </div>
-                {address &&
-                  address.map((add) => (
+                {addresses &&
+                  addresses.map((add) => (
                     <div key={add.id} className="flex flex-col gap-2 w-[400px]">
                       <div className="flex flex-row justify-between items-center">
                         <Radio
                           label={add.title}
                           id={add.id}
-                          value="adress"
+                          value="address"
                           set={setAddressID}
                         />
 

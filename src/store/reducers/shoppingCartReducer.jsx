@@ -12,8 +12,8 @@ import {
 
 const initialState = {
   cart: [],
-  payment: [],
-  address: [],
+  payments: [],
+  addresses: [],
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -87,25 +87,25 @@ export const shoppingCartReducer = (state = initialState, action) => {
     case GET_ADDRESS:
       const address = {
         ...state,
-        address: [...state.address, ...action.payload],
+        addresses: [...state.addresses, ...action.payload],
       };
       return address;
     case POST_ADDRESS:
       const postaddress = {
         ...state,
-        address: [...state.address, { ...action.payload }],
+        addresses: [...state.addresses, { ...action.payload }],
       };
       return postaddress;
     case GET_PAYMENT:
       const getpayment = {
         ...state,
-        payment: [...state.payment, ...action.payload],
+        payments: [...state.payments, ...action.payload],
       };
       return getpayment;
     case POST_PAYMENT:
       const postpayment = {
         ...state,
-        payment: [...state.payment, action.payload],
+        payments: [...state.payments, action.payload],
       };
       return postpayment;
     default:
