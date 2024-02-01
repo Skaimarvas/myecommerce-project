@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Input from "../components/Input";
-import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Link,
+  NavLink,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 export default function OrderSummoryBox(props) {
-  const { ordersHandler } = props;
+  const location = useLocation();
+  const { ordersHandler, setOption, option } = props;
   const [discount, setDiscount] = useState();
   const { cart } = useSelector((store) => store.shopping);
+  const { payment, address } = useSelector((store) => store.userData);
+
+  const payAdd =
+    payment && address && location.pathname === "/payment" && !option;
 
   const orderTotal = cart.reduce((total, pro) => {
     return pro.checked ? total + pro.count * pro.product.price : total;
@@ -78,7 +87,10 @@ export default function OrderSummoryBox(props) {
           onClick={ordersHandler}
           className=" px-4 py-2 w-full bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8] "
         >
-          <span className="text-white">Chect Out</span>
+          <span className="text-white">
+            {" "}
+            {payAdd ? "Purchase" : "Save And Proceed"}{" "}
+          </span>
         </button>
       </Link>
     </div>
