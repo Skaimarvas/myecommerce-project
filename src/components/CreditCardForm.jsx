@@ -35,7 +35,6 @@ export default function CreditCardForm() {
 
   const cardDataHandle = (data) => {
     const { cvc, ...restData } = data;
-    const newdata = { ...restData };
     console.log("CARDDATA", data);
     dispatch(postPayment(data));
   };
