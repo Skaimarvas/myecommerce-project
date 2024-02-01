@@ -184,7 +184,11 @@ export default function PaymentOptions() {
         {!option && <Payment set={setPaymentID} />}
       </div>
 
-      <OrderSummoryBox setOption={setOption} ordersHandler={ordersHandler} />
+      <OrderSummoryBox
+        setOption={setOption}
+        option={option}
+        ordersHandler={ordersHandler}
+      />
       <Address isOpen={isModalOpen} setClose={closeModal} />
     </div>
   );
