@@ -29,14 +29,15 @@ const years = [
 
 export default function CreditCardForm() {
   const dispatch = useDispatch();
-  const { register, handleSubmit, control } = useForm({
+  const { register, handleSubmit, control, reset } = useForm({
     mode: "onChange",
   });
 
   const cardDataHandle = (data) => {
     const { cvc, ...restData } = data;
-    console.log("CARDDATA", data);
-    dispatch(postPayment(data));
+    console.log("CARDDATA", restData);
+    dispatch(postPayment(restData));
+    reset();
   };
 
   return (
