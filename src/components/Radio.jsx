@@ -1,13 +1,12 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 export default function Radio(props) {
   const { label, id, value, set } = props;
   const { register, watch } = useForm();
 
-  const showValue = watch(`${value}`) ? watch(`${value}`) : "";
-  set(showValue);
-  console.log("RADIO ID VALUE: ", showValue);
+  set(watch(`${value}`));
+  console.log(`RADIO ID VALUE FOR ${value}:${id}  `, watch(`${value}`));
   return (
     <div class="inline-flex items-center">
       <label
@@ -17,6 +16,7 @@ export default function Radio(props) {
         <input
           {...register(`${value}`)}
           type="radio"
+          checked={watch(`${value}`) == id ? true : false}
           value={id}
           class="before:content[''] peer relative h-3 w-3 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-6 before:w-6 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
           id={`radio-${id}`}

@@ -18,15 +18,15 @@ import {
   getUserPaymentData,
 } from "../store/actions/userActions";
 import { getPayment } from "../store/thunks/shoppingCartThunk";
+import { useForm } from "react-hook-form";
 
 export default function PaymentOptions() {
+  const { register, watch } = useForm();
   const dispatch = useDispatch();
   const { address, payment } = useSelector((store) => store.userData);
   const { addresses, payments } = useSelector((store) => store.shopping);
-  const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [option, setOption] = useState(true);
-  const [addressID, setAddressID] = useState();
   const [paymentID, setPaymentID] = useState();
   const [total, setTotal] = useState();
   console.log(
@@ -35,13 +35,15 @@ export default function PaymentOptions() {
       .toISOString()
       .split(".")[0]
   );
+  console.log("ADRESS WATCH", watch("address"));
+
   const openModal = (e) => {
     e.preventDefault();
     setIsModalOpen(true);
   };
   const closeModal = () => setIsModalOpen(false);
 
-  const userAddress = addresses.find((add) => add.id == addressID);
+  const userAddress = addresses.find((add) => add.id == watch("address"));
   const userPayment = payments.find((pay) => pay.id == paymentID);
 
   const ordersHandler = () => {
@@ -83,7 +85,7 @@ export default function PaymentOptions() {
     if (payments.length === 0) dispatch(getPayment());
     if (userAddress) dispatch(getUserAddressData(userAddress));
     if (userPayment) dispatch(getUserPaymentData(userPayment));
-  }, [addressID, paymentID]);
+  }, [watch("address")]);
   return (
     <div className="relative flex flex-wrap justify-center gap-5 bg-gray-100 p-2 w-full">
       <div className="flex flex-col items-start gap-5 w-4/6">
@@ -119,13 +121,15 @@ export default function PaymentOptions() {
                   addresses.map((add) => (
                     <div key={add.id} className="flex flex-col gap-2 w-[400px]">
                       <div className="flex flex-row justify-between items-center">
-                        <Radio
-                          label={add.title}
-                          id={add.id}
-                          value="address"
-                          set={setAddressID}
-                        />
-
+                        <div className="inline-flex items-center gap-1">
+                          <input
+                            type="radio"
+                            value={add.id}
+                            {...register("address")}
+                            id={add.id}
+                          />
+                          <label htmlFor={add.id}> {add.title} </label>
+                        </div>
                         <div className="flex">
                           <button className="hover:underline">
                             <span className="text-sm"> Edit </span>{" "}
