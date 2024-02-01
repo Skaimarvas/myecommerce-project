@@ -48,7 +48,7 @@ export const postPayment = (payment) => {
   return (dispatch, getState) => {
     axiosInstance
       .post("/user/card", payment)
-      .then((res) => dispatch(postPaymentData(res.data)))
+      .then((res) => dispatch(postPaymentData(res.data["0"])))
       .catch((err) => console.log("POST PAYMENT ERROR"));
   };
 };
