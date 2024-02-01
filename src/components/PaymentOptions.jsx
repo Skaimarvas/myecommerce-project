@@ -29,7 +29,6 @@ export default function PaymentOptions() {
   const [addressID, setAddressID] = useState();
   const [paymentID, setPaymentID] = useState();
   const [total, setTotal] = useState();
-  console.log("PAYMENT SHOW", payments);
   console.log(
     "ORDER DATE",
     new Date(new Date().toString().split("GMT")[0] + " UTC")
@@ -44,9 +43,7 @@ export default function PaymentOptions() {
 
   const userAddress = addresses.find((add) => add.id == addressID);
   const userPayment = payments.find((pay) => pay.id == paymentID);
-  console.log("userAddressfilter", addresses);
 
-  console.log("LOCATION IN PAYMENT", location.pathname);
   const ordersHandler = () => {
     if (address) setOption(false);
     const orderSample = {

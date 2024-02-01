@@ -29,7 +29,9 @@ export const postAddress = (address) => {
   return (dispatch, getState) => {
     axiosInstance
       .post("/user/address", address)
-      .then((res) => dispatch(postAddressData(address)))
+      .then((res) => {
+        dispatch(postAddressData(res.data));
+      })
       .catch((err) => console.log("POST DATA", err));
   };
 };
@@ -37,7 +39,7 @@ export const getPayment = () => {
   return (dispatch, getState) => {
     axiosInstance
       .get("/user/card")
-      .then((res) => dispatch(getPaymentData(res.data)))
+      .then((res) => dispatch(getPaymentData(...res.data)))
       .catch((err) => console.log("PAYMENT ERROR"));
   };
 };

@@ -11,9 +11,11 @@ import Radio from "./Radio";
 export default function Payment(props) {
   const dispatch = useDispatch();
   const { set } = props;
-  const { payment } = useSelector((store) => store.shopping);
+  const { payments } = useSelector((store) => store.shopping);
 
-  useEffect(() => {}, [payment]);
+  useEffect(() => {
+    if (payments.length === 0) dispatch(getPayment());
+  }, [dispatch, payments.length]);
 
   return (
     <div className="flex flex-col items-center gap-10 bg-white p-5 w-full rounded shadow border border-gray-400">
@@ -21,8 +23,8 @@ export default function Payment(props) {
 
       <form>
         <div className="flex flex-wrap justify-center gap-3 p-2 bg-white ">
-          {payment &&
-            payment.map((pay) => (
+          {payments &&
+            payments.map((pay) => (
               <div key={pay.id} className=" w-[300px] ">
                 {" "}
                 <div className="flex flex-row justify-between items-center">

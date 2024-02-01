@@ -43,7 +43,6 @@ export const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         cart: [...deletedProduct],
       };
-
     case DECREASE_PRODUCT_FROM_CART:
       const decreasedProduct = state.cart.findIndex(
         (item) => item.product.id === action.payload
@@ -59,6 +58,7 @@ export const shoppingCartReducer = (state = initialState, action) => {
           cart: updatedCart,
         };
       }
+      break;
     case INCREASE_PRODUCT_FROM_CART:
       const increasedProduct = state.cart.findIndex(
         (item) => item.product.id === action.payload
@@ -72,6 +72,7 @@ export const shoppingCartReducer = (state = initialState, action) => {
           cart: updatedCart,
         };
       }
+      break;
     case CHECKED_PRODUCT:
       const checkedProduct = state.cart.findIndex(
         (item) => item.product.id === action.payload
@@ -105,7 +106,7 @@ export const shoppingCartReducer = (state = initialState, action) => {
     case POST_PAYMENT:
       const postpayment = {
         ...state,
-        payments: [...state.payments, action.payload],
+        payments: [...state.payments, { ...action.payload }],
       };
       return postpayment;
     default:
