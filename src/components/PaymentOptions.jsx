@@ -48,6 +48,7 @@ export default function PaymentOptions() {
 
   console.log("LOCATION IN PAYMENT", location.pathname);
   const ordersHandler = () => {
+    if (address) setOption(false);
     const orderSample = {
       address_id: 1,
       order_date: "2024-01-10T14:18:30",
@@ -83,7 +84,6 @@ export default function PaymentOptions() {
     }
 
     if (payments.length === 0) dispatch(getPayment());
-
     if (userAddress) dispatch(getUserAddressData(userAddress));
     if (userPayment) dispatch(getUserPaymentData(userPayment));
   }, [addressID, paymentID]);
@@ -187,7 +187,7 @@ export default function PaymentOptions() {
         {!option && <Payment set={setPaymentID} />}
       </div>
 
-      <OrderSummoryBox ordersHandler={ordersHandler} />
+      <OrderSummoryBox setOption={setOption} ordersHandler={ordersHandler} />
       <Address isOpen={isModalOpen} setClose={closeModal} />
     </div>
   );
