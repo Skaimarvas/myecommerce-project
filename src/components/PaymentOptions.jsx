@@ -79,11 +79,11 @@ export default function PaymentOptions() {
   };
 
   useEffect(() => {
-    if (addresses.length === 0) dispatch(getAddress());
-    if (payments.length === 0) dispatch(getPayment());
     if (userAddress) dispatch(getUserAddressData(userAddress));
     if (userPayment) dispatch(getUserPaymentData(userPayment));
-  }, [watch("address")]);
+    if (addresses.length === 0) dispatch(getAddress());
+    if (payments.length === 0) dispatch(getPayment());
+  }, [watch("address"), userPayment]);
   return (
     <div className="relative flex flex-wrap justify-center gap-5 bg-gray-100 p-2 w-full">
       <div className="flex flex-col items-start gap-5 w-4/6">
