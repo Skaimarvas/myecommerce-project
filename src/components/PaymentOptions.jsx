@@ -78,10 +78,7 @@ export default function PaymentOptions() {
   };
 
   useEffect(() => {
-    if (addresses.length === 0) {
-      dispatch(getAddress());
-    }
-
+    if (addresses.length === 0) dispatch(getAddress());
     if (payments.length === 0) dispatch(getPayment());
     if (userAddress) dispatch(getUserAddressData(userAddress));
     if (userPayment) dispatch(getUserPaymentData(userPayment));
@@ -136,10 +133,7 @@ export default function PaymentOptions() {
                           </button>
                         </div>
                       </div>
-                      <label
-                        className="cursor-pointer"
-                        htmlFor={`radio-${add.id}`}
-                      >
+                      <label className="cursor-pointer" htmlFor={add.id}>
                         <div className="flex flex-col border border-gray-500 bg-gray-100 p-3 rounded-md font-bold gap-4 ">
                           <div className="flex flex-row justify-between font-normal text-gray-800 text-sm ">
                             <div className="flex items-center gap-1">
