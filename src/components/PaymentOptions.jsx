@@ -36,6 +36,7 @@ export default function PaymentOptions() {
       .split(".")[0]
   );
   console.log("ADRESS WATCH", watch("address"));
+  console.log("PAYMENT WATCH", paymentID);
 
   const openModal = (e) => {
     e.preventDefault();

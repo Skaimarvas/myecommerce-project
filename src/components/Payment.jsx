@@ -7,7 +7,6 @@ import mastercard from "../assets/cardlogos/mastercard48.png";
 import CreditCardForm from "./CreditCardForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getPayment } from "../store/thunks/shoppingCartThunk";
-import Radio from "./Radio";
 
 export default function Payment(props) {
   const { register, watch } = useForm();
@@ -15,6 +14,9 @@ export default function Payment(props) {
   const { set } = props;
   const { payments } = useSelector((store) => store.shopping);
 
+  set(watch("payment"));
+
+  useEffect(() => {}, [watch("payment")]);
   useEffect(() => {
     if (payments.length === 0) dispatch(getPayment());
   }, [dispatch, payments.length]);
@@ -22,7 +24,6 @@ export default function Payment(props) {
   return (
     <div className="flex flex-col items-center gap-10 bg-white p-5 w-full rounded shadow border border-gray-400">
       <CreditCardForm />
-
       <form>
         <div className="flex flex-wrap justify-center gap-3 p-2 bg-white ">
           {payments &&
@@ -34,13 +35,14 @@ export default function Payment(props) {
                     {" "}
                     <input
                       type="radio"
+                      value={pay.id}
                       {...register("payment")}
                       id={pay.id}
                     />{" "}
                     <label htmlFor={pay.id}> {pay.name_on_card} </label>
                   </div>
                 </div>
-                <label htmlFor={`radio-${pay.id}`}>
+                <label htmlFor={pay.id}>
                   <div className="flex flex-col gap-2 p-2 border border-gray-700 bg-gray-400 rounded-md shadow-md">
                     <div className="flex flex-row justify-between px-2 ">
                       <img className="w-10 h-10" src={citi} alt="" />
