@@ -12,6 +12,11 @@ import {
   POST_ORDERS,
 } from "../actions/shoppingCartActions";
 
+/**Notlar:
+ * Postorders işlemine gerek var mı?
+ *
+ */
+
 const initialState = {
   cart: [],
   payments: [],
@@ -115,13 +120,13 @@ export const shoppingCartReducer = (state = initialState, action) => {
     case POST_ORDERS:
       const postOrders = {
         ...state,
-        orders: [...state.orders, { ...action.payload }],
+        orders: [...state.orders, action.payload],
       };
       return postOrders;
     case GET_ORDERS:
       const getorders = {
         ...state,
-        orders: [...state.orders, ...action.payload],
+        orders: action.payload,
       };
       return getorders;
 
