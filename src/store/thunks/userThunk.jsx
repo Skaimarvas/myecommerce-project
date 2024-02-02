@@ -5,18 +5,9 @@ import {
   postLoginDataToApi,
   setUserFetchState,
   verifyUserToken,
-  getOrdersData,
 } from "../actions/userActions";
 import { FETCH_STATES } from "../actions/globalActions";
 
-export const getOrders = () => {
-  return (dispatch, getState) => {
-    axiosInstance
-      .get("/order")
-      .then((res) => dispatch(getOrdersData(res.data)))
-      .catch((err) => console.log("ERROR"));
-  };
-};
 export const postSignup = (data) => {
   return (dispatch, getState) => {
     axiosInstance

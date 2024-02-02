@@ -1,4 +1,5 @@
 import {
+  GET_ORDERS,
   GET_ADDRESS,
   POST_ADDRESS,
   GET_PAYMENT,
@@ -8,12 +9,14 @@ import {
   DECREASE_PRODUCT_FROM_CART,
   DELETE_PRODUCT_FROM_CART,
   INCREASE_PRODUCT_FROM_CART,
+  POST_ORDERS,
 } from "../actions/shoppingCartActions";
 
 const initialState = {
   cart: [],
   payments: [],
   addresses: [],
+  orders: [],
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -109,6 +112,19 @@ export const shoppingCartReducer = (state = initialState, action) => {
         payments: [...state.payments, { ...action.payload }],
       };
       return postpayment;
+    case POST_ORDERS:
+      const postOrders = {
+        ...state,
+        orders: [...state.orders, { ...action.payload }],
+      };
+      return postOrders;
+    case GET_ORDERS:
+      const getorders = {
+        ...state,
+        orders: [...state.orders, ...action.payload],
+      };
+      return getorders;
+
     default:
       return state;
   }

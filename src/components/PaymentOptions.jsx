@@ -35,9 +35,6 @@ export default function PaymentOptions() {
   const [paymentID, setPaymentID] = useState();
   const [discount, setDiscount] = useState();
 
-  console.log("ADRESS WATCH", watch("address"));
-  console.log("PAYMENT WATCH", paymentID);
-
   const orderTotal = cart.reduce((total, pro) => {
     return pro.checked ? total + pro.count * pro.product.price : total;
   }, 0);
@@ -66,8 +63,11 @@ export default function PaymentOptions() {
     const orderResult = {
       address_id: address.id,
       order_date: datenow,
-      ...payment,
       card_ccv: 321,
+      card_no: payment.card_no,
+      card_name: payment.name_on_card,
+      card_expire_month: payment.expire_month,
+      card_expire_year: payment.expire_year,
       price: totalViaShipment,
       products: products,
     };

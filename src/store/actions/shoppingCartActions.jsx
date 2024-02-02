@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 export const ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART";
 export const DECREASE_PRODUCT_FROM_CART = "DECREASE_PRODUCT_FROM_CART";
 export const INCREASE_PRODUCT_FROM_CART = "INCREASE_PRODUCT_FROM_CART";
