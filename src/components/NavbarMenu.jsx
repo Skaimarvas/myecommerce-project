@@ -40,7 +40,7 @@ export default function NavbarMenu(props) {
           {openMenu && (
             <>
               {" "}
-              <DropdownMenu className="left-[33%] p-2 sm:hidden">
+              <DropdownMenu className="-ml-12 p-2 sm:hidden">
                 <NavbarMenuItem
                   path="/shopping"
                   className="p-2 hover:bg-blue-gray-50"
