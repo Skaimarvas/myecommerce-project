@@ -10,6 +10,7 @@ import {
   DELETE_PRODUCT_FROM_CART,
   INCREASE_PRODUCT_FROM_CART,
   POST_ORDERS,
+  CLEAR_CART,
 } from "../actions/shoppingCartActions";
 
 /**Notlar:
@@ -129,7 +130,11 @@ export const shoppingCartReducer = (state = initialState, action) => {
         orders: action.payload,
       };
       return getorders;
-
+    case CLEAR_CART:
+      const clearCart = {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }
