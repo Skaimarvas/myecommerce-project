@@ -14,7 +14,7 @@ export const getOrders = () => {
     axiosInstance
       .get("/order")
       .then((res) => dispatch(getOrdersData(res.data)))
-      .catch((err) => console.log("ORDERS GET EDİLİRKEN HATA OLUŞTU"));
+      .catch((err) => console.log("ERROR"));
   };
 };
 export const postSignup = (data) => {

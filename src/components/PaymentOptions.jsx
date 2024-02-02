@@ -12,7 +12,6 @@ import { Icon } from "@iconify/react";
 //Components
 import Checkbox from "./Checkbox";
 import Payment from "./Payment";
-import Radio from "./Radio";
 import Address from "./Address";
 import OrderSummoryBox from "./OrderSummoryBox";
 import PaymentOptionsTitle from "./PaymentOptionsTitle";
@@ -64,7 +63,7 @@ export default function PaymentOptions() {
       .toISOString()
       .split(".")[0];
     if (address) setOption(false);
-    const orderSample = {
+    const orderResult = {
       address_id: address.id,
       order_date: datenow,
       ...payment,
@@ -74,9 +73,9 @@ export default function PaymentOptions() {
     };
 
     if (address && payment && location.pathname === "/payment" && !option) {
-      console.log("ORDES TOTAL", orderSample);
+      console.log("ORDES TOTAL", orderResult);
       toast.success("Order has been submitted");
-
+      dispatch(postOrders(orderResult));
       setTimeout(() => history.push("/orders"), 2000);
     } else {
       if (!address) toast.error("You need to choose an adress");

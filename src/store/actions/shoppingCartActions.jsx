@@ -6,6 +6,7 @@ export const INCREASE_PRODUCT_FROM_CART = "INCREASE_PRODUCT_FROM_CART";
 export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 export const CHECKED_PRODUCT = "CHECKED_PRODUCT";
 export const POST_ORDERS = "POST_ORDERS";
+export const GET_ORDERS = "GET_ORDERS";
 export const GET_ADDRESS = "GET_ADDRESS";
 export const POST_ADDRESS = "POST_ADDRESS";
 export const GET_PAYMENT = "GET_PAYMENT";
@@ -38,6 +39,12 @@ export const postPaymentData = (payment) => {
 export const postOrdersData = (orders) => {
   return {
     type: POST_ORDERS,
+    payload: orders,
+  };
+};
+export const getOrdersData = (orders) => {
+  return {
+    type: GET_ORDERS,
     payload: orders,
   };
 };
