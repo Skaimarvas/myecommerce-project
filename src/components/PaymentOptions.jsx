@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 //Thunk
 import { getAddress, postOrders } from "../store/thunks/shoppingCartThunk";
@@ -19,24 +22,26 @@ import {
 } from "../store/actions/userActions";
 import { getPayment } from "../store/thunks/shoppingCartThunk";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export default function PaymentOptions() {
   const { register, watch } = useForm();
+  const location = useLocation();
   const dispatch = useDispatch();
+  const history = useHistory();
   const { address, payment } = useSelector((store) => store.userData);
-  const { addresses, payments } = useSelector((store) => store.shopping);
+  const { addresses, payments, cart } = useSelector((store) => store.shopping);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [option, setOption] = useState(true);
   const [paymentID, setPaymentID] = useState();
-  const [total, setTotal] = useState();
-  console.log(
-    "ORDER DATE",
-    new Date(new Date().toString().split("GMT")[0] + " UTC")
-      .toISOString()
-      .split(".")[0]
-  );
+  const [discount, setDiscount] = useState();
+
   console.log("ADRESS WATCH", watch("address"));
   console.log("PAYMENT WATCH", paymentID);
+
+  const orderTotal = cart.reduce((total, pro) => {
+    return pro.checked ? total + pro.count * pro.product.price : total;
+  }, 0);
 
   const openModal = (e) => {
     e.preventDefault();
@@ -46,36 +51,38 @@ export default function PaymentOptions() {
 
   const userAddress = addresses.find((add) => add.id == watch("address"));
   const userPayment = payments.find((pay) => pay.id == paymentID);
+  const productsChecked = cart.filter((pro) => pro.checked === true);
+  const products = productsChecked.map((pro) => pro.product);
 
   const ordersHandler = () => {
+    const totalViaShipment =
+      orderTotal > 100
+        ? (orderTotal * 1.1 - 25).toFixed(2)
+        : (orderTotal * 1.1 + 25).toFixed(2);
+
+    const datenow = new Date(new Date().toString().split("GMT")[0] + " UTC")
+      .toISOString()
+      .split(".")[0];
     if (address) setOption(false);
     const orderSample = {
-      address_id: 1,
-      order_date: "2024-01-10T14:18:30",
-      card_no: 1234123412341234,
-      card_name: "Ali Baş",
-      card_expire_month: 12,
-      card_expire_year: 2025,
+      address_id: address.id,
+      order_date: datenow,
+      ...payment,
       card_ccv: 321,
-      price: 1919,
-      products: [
-        {
-          product_id: 12,
-          count: 1,
-          detail: "açık mavi - xl",
-        },
-        {
-          product_id: 13,
-          count: 2,
-          detail: "siyah - lg",
-        },
-      ],
+      price: totalViaShipment,
+      products: products,
     };
 
-    //Geçerli Adres ve card bilgileri yoksa post etmeye izin verme!
-    // if (location.pathname === "/payment") {
-    //   dispatch(postOrders(orderSample));
-    // }
+    if (address && payment && location.pathname === "/payment" && !option) {
+      console.log("ORDES TOTAL", orderSample);
+      toast.success("Order has been submitted");
+
+      setTimeout(() => history.push("/orders"), 2000);
+    } else {
+      if (!address) toast.error("You need to choose an adress");
+      if (!payment) toast.error("You need to choose a payment option");
+      if (!option) toast.error("Please proceed on payment section");
+    }
   };
 
   useEffect(() => {
