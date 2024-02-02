@@ -10,6 +10,7 @@ import { getAddress, postOrders } from "../store/thunks/shoppingCartThunk";
 //Icons
 import { Icon } from "@iconify/react";
 //Components
+import LoadingScreen from "./LoadingScreen";
 import Checkbox from "./Checkbox";
 import Payment from "./Payment";
 import Address from "./Address";
@@ -34,7 +35,7 @@ export default function PaymentOptions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [option, setOption] = useState(true);
   const [paymentID, setPaymentID] = useState();
-  const [discount, setDiscount] = useState();
+  const [loading, setLoading] = useState(false);
 
   const orderTotal = cart.reduce((total, pro) => {
     return pro.checked ? total + pro.count * pro.product.price : total;
@@ -77,7 +78,11 @@ export default function PaymentOptions() {
       console.log("ORDES TOTAL", orderResult);
       toast.success("Order has been submitted");
       dispatch(postOrders(orderResult));
-      setTimeout(() => history.push("/orders"), 2000);
+      setLoading(true);
+      setTimeout(() => {
+        history.push("/orders");
+        setLoading(false);
+      }, 2000);
 
       dispatch(clearCart());
     } else {
@@ -198,6 +203,7 @@ export default function PaymentOptions() {
         ordersHandler={ordersHandler}
       />
       <Address isOpen={isModalOpen} setClose={closeModal} />
+      {loading && <LoadingScreen />}
     </div>
   );
 }
