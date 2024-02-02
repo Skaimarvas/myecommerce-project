@@ -5,12 +5,13 @@ import { getOrders } from "../store/thunks/shoppingCartThunk";
 export default function OrdersPage() {
   const dispatch = useDispatch();
   const { orders } = useSelector((store) => store.shopping);
+  const { user } = useSelector((store) => store.userData);
   console.log("ORDERS ", orders);
   /**NOTLAR:
    *
    */
   useEffect(() => {
-    if (orders.length === 0) dispatch(getOrders());
+    dispatch(getOrders());
   }, []);
 
   return (
@@ -23,7 +24,7 @@ export default function OrdersPage() {
         {orders &&
           orders.map((ord) => (
             <>
-              <div className="flex flex-row justify-between w-full">
+              <div className="flex flex-wrap justify-between w-full">
                 <div className="flex flex-col gap-2">
                   <span className="font-bold">Order Date:</span>
                   <span>{ord.order_date.slice(0, 10)} </span>
@@ -35,6 +36,10 @@ export default function OrdersPage() {
                 <div className="flex flex-col gap-2">
                   <span className="font-bold">Order Total:</span>
                   <span> {ord.price} </span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="font-bold">Receiver:</span>
+                  <span> {user.name} </span>
                 </div>
                 <button className=" px-4 py-2 bg-[#23A6F0] rounded shadow hover:bg-[#2d7ba8]">
                   <span className="text-white">Order Details</span>
