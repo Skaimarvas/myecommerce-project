@@ -22,6 +22,7 @@ import {
 import { getPayment } from "../store/thunks/shoppingCartThunk";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { clearCart } from "../store/actions/shoppingCartActions";
 
 export default function PaymentOptions() {
   const { register, watch } = useForm();
@@ -77,6 +78,8 @@ export default function PaymentOptions() {
       toast.success("Order has been submitted");
       dispatch(postOrders(orderResult));
       setTimeout(() => history.push("/orders"), 2000);
+
+      dispatch(clearCart());
     } else {
       if (!address) toast.error("You need to choose an adress");
       if (!payment) toast.error("You need to choose a payment option");
