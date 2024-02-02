@@ -135,6 +135,7 @@ export const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         cart: [],
       };
+      return clearCart;
     default:
       return state;
   }
