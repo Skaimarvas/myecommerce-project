@@ -14,6 +14,7 @@ export default function Address(props) {
   const dataHandle = (data) => {
     console.log("DATA", data);
     dispatch(postAddress(data));
+    setClose(false);
   };
 
   return (
